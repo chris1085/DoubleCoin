@@ -1,0 +1,6 @@
+framework module Pods_DoubleCoin {
+  umbrella header "Pods-DoubleCoin-umbrella.h"
+
+  export *
+  module * { export * }
+}

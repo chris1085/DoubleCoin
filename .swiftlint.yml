@@ -1,0 +1,27 @@
+excluded:
+  - Pods
+disabled_rules:
+  - trailing_whitespace
+identifier_name:
+  excluded: # excluded via string array
+    - id
+    - URL
+    - url
+    - app
+file_length:
+  warning: 900
+  error: 1200
+type_body_length:
+  - 500 # warning
+  - 700 # error
+function_body_length:
+ - 100 # warning
+ - 150 # error
+line_length:
+  warning: 120
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+disabled_rules:
+  - opening_brace
