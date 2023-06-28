@@ -19,7 +19,8 @@
 **/*.xcworkspace
 **/!default.xcworkspace
 **/GoogleService-Info.plist
-**/CoinbaseService.swift
+
+CoinbaseService.swift
 
 #CocoaPods
 # **/Pods
