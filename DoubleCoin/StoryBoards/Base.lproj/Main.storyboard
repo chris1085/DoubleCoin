@@ -83,7 +83,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x95-Bn-OKr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x95-Bn-OKr">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -99,20 +99,98 @@
                     </view>
                     <navigationItem key="navigationItem" id="tuq-4U-z8O"/>
                     <connections>
+                        <outlet property="headerView" destination="yGY-UC-MxN" id="28d-St-BuD"/>
                         <outlet property="tableView" destination="x95-Bn-OKr" id="iZ3-eG-pcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="yGY-UC-MxN">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="市場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBj-iG-dzj">
+                            <rect key="frame" x="16" y="0.0" width="208" height="0.0"/>
+                            <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-eF-iJA">
+                            <rect key="frame" x="16" y="33" width="208" height="6"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幣別" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-e2-UQa">
+                                    <rect key="frame" x="0.0" y="0.0" width="104" height="6"/>
+                                    <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-pL-Szw">
+                                    <rect key="frame" x="104" y="0.0" width="104" height="6"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1天" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCH-gJ-jDT">
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="6"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$ / 24H" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luw-XT-LFs">
+                                            <rect key="frame" x="52" y="0.0" width="52" height="6"/>
+                                            <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teS-cX-vec">
+                            <rect key="frame" x="16" y="16" width="208" height="1"/>
+                            <color key="backgroundColor" systemColor="separatorColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="M4p-PU-P60"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYh-Qq-0C7">
+                            <rect key="frame" x="16" y="55" width="208" height="1"/>
+                            <color key="backgroundColor" systemColor="separatorColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="SG4-kY-vog"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="Fte-B0-mam"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="KBj-iG-dzj" firstAttribute="leading" secondItem="Fte-B0-mam" secondAttribute="leading" constant="16" id="D8z-0W-r00"/>
+                        <constraint firstAttribute="trailing" secondItem="teS-cX-vec" secondAttribute="trailing" constant="16" id="DUV-8Y-O7t"/>
+                        <constraint firstItem="Fte-B0-mam" firstAttribute="bottom" secondItem="vYh-Qq-0C7" secondAttribute="bottom" id="FZh-OF-YBs"/>
+                        <constraint firstItem="KBj-iG-dzj" firstAttribute="top" secondItem="yGY-UC-MxN" secondAttribute="top" id="JdK-7N-Z47"/>
+                        <constraint firstItem="Fte-B0-mam" firstAttribute="trailing" secondItem="KBj-iG-dzj" secondAttribute="trailing" constant="16" id="ROn-Eo-TLv"/>
+                        <constraint firstAttribute="trailing" secondItem="vYh-Qq-0C7" secondAttribute="trailing" constant="16" id="S7I-qf-pAe"/>
+                        <constraint firstItem="vYh-Qq-0C7" firstAttribute="top" secondItem="jJN-eF-iJA" secondAttribute="bottom" constant="16" id="Sma-5M-cTM"/>
+                        <constraint firstItem="jJN-eF-iJA" firstAttribute="leading" secondItem="Fte-B0-mam" secondAttribute="leading" constant="16" id="Tmd-oW-ph0"/>
+                        <constraint firstItem="Fte-B0-mam" firstAttribute="trailing" secondItem="jJN-eF-iJA" secondAttribute="trailing" constant="16" id="akh-bl-ipf"/>
+                        <constraint firstItem="teS-cX-vec" firstAttribute="leading" secondItem="Fte-B0-mam" secondAttribute="leading" constant="16" id="bhh-u6-T2k"/>
+                        <constraint firstItem="teS-cX-vec" firstAttribute="top" secondItem="KBj-iG-dzj" secondAttribute="bottom" constant="16" id="lbm-Uu-xRo"/>
+                        <constraint firstItem="jJN-eF-iJA" firstAttribute="top" secondItem="teS-cX-vec" secondAttribute="bottom" constant="16" id="q9s-5y-NVM"/>
+                        <constraint firstItem="vYh-Qq-0C7" firstAttribute="leading" secondItem="yGY-UC-MxN" secondAttribute="leading" constant="16" id="vNr-SP-WN8"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="491" y="-1056"/>
+            <point key="canvasLocation" x="497" y="-1056"/>
         </scene>
     </scenes>
     <resources>
         <image name="chart.xyaxis.line" catalog="system" width="128" height="102"/>
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

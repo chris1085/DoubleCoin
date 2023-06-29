@@ -45,6 +45,7 @@ enum HttpMethod: String {
 
 class ApiManager {
   static let shared = ApiManager()
+  var semaphore = DispatchSemaphore (value: 0)
 
   func fetchData<T: Decodable>(httpMethod: String, urlString: String, responseType: T.Type, headers: [String: String]?, completion: @escaping (Result<T, Error>) -> Void) {
     let method = httpMethod
@@ -52,6 +53,7 @@ class ApiManager {
     guard let url = URL(string: urlString) else {
       let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
       completion(.failure(error))
+      semaphore.signal()
       return
     }
 
@@ -68,18 +70,21 @@ class ApiManager {
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
         completion(.failure(error))
+        self.semaphore.signal()
         return
       }
 
       guard let data = data else {
         let error = NSError(domain: "Empty Response Data", code: 0, userInfo: nil)
         completion(.failure(error))
+        self.semaphore.signal()
         return
       }
 
       do {
         let decoder = JSONDecoder()
         let responseData = try decoder.decode(responseType, from: data)
+        self.semaphore.signal()
         completion(.success(responseData))
       } catch {
         completion(.failure(error))
@@ -87,6 +92,7 @@ class ApiManager {
     }
 
     task.resume()
+    semaphore.wait()
   }
 
   func getProducts() {

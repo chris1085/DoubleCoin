@@ -11,7 +11,7 @@ import Foundation
 
 struct ProductStat: Codable {
   let open, high, low, last: String
-  let volume, volume30Day: String
+  let volume, volume30Day: String?
 
   enum CodingKeys: String, CodingKey {
     case high, low, last, volume, open
