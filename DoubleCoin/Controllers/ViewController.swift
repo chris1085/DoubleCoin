@@ -48,20 +48,7 @@ class ViewController: UIViewController {
       self?.coinArray = coins
       guard let coinArray = self?.coinArray else { return }
     }
-//
-//    for coinId in coinArray {
-//      dispatchGroup.enter()
-//      ApiManager.shared.getProductsStats(productId: coinId) { [weak self] productStat in
-//        defer {
-//          self?.dispatchGroup.leave()
-//        }
-//
-//        print(coinId)
-//        guard let productStat = productStat else { return }
-//        print(productStat)
-//        self?.productStats.append(productStat)
-//      }
-//    }
+//c
 
     dispatchGroup.notify(queue: .main) {
       print("All requests completed")
