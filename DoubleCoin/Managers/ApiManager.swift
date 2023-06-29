@@ -142,6 +142,7 @@ class ApiManager {
 
   func getProductsStats(productId: String, completion: @escaping (ProductStat?) -> Void) {
     let productUrl = ApiUrls.getProductStats(productId: productId).urlString
+//    var semaphore = DispatchSemaphore(value: 0)
 
     fetchData(httpMethod: "GET", urlString: productUrl, responseType: ProductStat.self, headers: nil) { result in
       switch result {
@@ -152,7 +153,9 @@ class ApiManager {
         print("Error: \(error)")
         completion(nil)
       }
+//      semaphore.signal()
     }
+//    semaphore.wait()
   }
 
   func getCurrencies() {

@@ -11,6 +11,7 @@ import UIKit
 enum AppColor {
   static let primary = UIColor(red: 233 / 255, green: 74 / 255, blue: 80 / 255, alpha: 1)
   static let secondary = UIColor(red: 250 / 255, green: 250 / 255, blue: 250 / 255, alpha: 1)
+  static let success = UIColor(red: 33 / 255, green: 168 / 255, blue: 121 / 255, alpha: 1)
 }
 
 class ShadowView: UIView {
@@ -32,8 +33,8 @@ extension Double {
   func formatNumber(_ number: Double) -> String? {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 3
-    formatter.minimumFractionDigits = 3
+    formatter.maximumFractionDigits = 2
+    formatter.minimumFractionDigits = 2
 
     return formatter.string(from: NSNumber(value: number))
   }

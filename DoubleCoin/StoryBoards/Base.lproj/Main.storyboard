@@ -84,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x95-Bn-OKr">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -94,7 +94,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="x95-Bn-OKr" secondAttribute="bottom" id="6Ea-bb-H9o"/>
                             <constraint firstItem="x95-Bn-OKr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Te-TP-RHv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="x95-Bn-OKr" secondAttribute="trailing" id="JDe-0p-956"/>
-                            <constraint firstItem="x95-Bn-OKr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="boV-Mf-8Ig"/>
+                            <constraint firstItem="x95-Bn-OKr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="boV-Mf-8Ig"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tuq-4U-z8O"/>
@@ -105,35 +105,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="yGY-UC-MxN">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="90"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="163"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="市場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBj-iG-dzj">
-                            <rect key="frame" x="16" y="0.0" width="208" height="0.0"/>
+                            <rect key="frame" x="16" y="0.0" width="208" height="47.666666666666664"/>
                             <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jJN-eF-iJA">
-                            <rect key="frame" x="16" y="33" width="208" height="6"/>
+                            <rect key="frame" x="16" y="72.666666666666671" width="208" height="39.333333333333329"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幣別" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZL-e2-UQa">
-                                    <rect key="frame" x="0.0" y="0.0" width="104" height="6"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="104" height="39.333333333333336"/>
                                     <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="14"/>
                                     <color key="textColor" systemColor="systemGray2Color"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-pL-Szw">
-                                    <rect key="frame" x="104" y="0.0" width="104" height="6"/>
+                                    <rect key="frame" x="104" y="0.0" width="104" height="39.333333333333336"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1天" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCH-gJ-jDT">
-                                            <rect key="frame" x="0.0" y="0.0" width="52" height="6"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="39.333333333333336"/>
                                             <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="14"/>
                                             <color key="textColor" systemColor="systemGray2Color"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$ / 24H" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luw-XT-LFs">
-                                            <rect key="frame" x="52" y="0.0" width="52" height="6"/>
+                                            <rect key="frame" x="52" y="0.0" width="52" height="39.333333333333336"/>
                                             <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="14"/>
                                             <color key="textColor" systemColor="systemGray2Color"/>
                                             <nil key="highlightedColor"/>
@@ -143,14 +143,14 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teS-cX-vec">
-                            <rect key="frame" x="16" y="16" width="208" height="1"/>
+                            <rect key="frame" x="16" y="55.666666666666664" width="208" height="1"/>
                             <color key="backgroundColor" systemColor="separatorColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="M4p-PU-P60"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYh-Qq-0C7">
-                            <rect key="frame" x="16" y="55" width="208" height="1"/>
+                            <rect key="frame" x="16" y="128" width="208" height="1"/>
                             <color key="backgroundColor" systemColor="separatorColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="SG4-kY-vog"/>
@@ -170,7 +170,7 @@
                         <constraint firstItem="jJN-eF-iJA" firstAttribute="leading" secondItem="Fte-B0-mam" secondAttribute="leading" constant="16" id="Tmd-oW-ph0"/>
                         <constraint firstItem="Fte-B0-mam" firstAttribute="trailing" secondItem="jJN-eF-iJA" secondAttribute="trailing" constant="16" id="akh-bl-ipf"/>
                         <constraint firstItem="teS-cX-vec" firstAttribute="leading" secondItem="Fte-B0-mam" secondAttribute="leading" constant="16" id="bhh-u6-T2k"/>
-                        <constraint firstItem="teS-cX-vec" firstAttribute="top" secondItem="KBj-iG-dzj" secondAttribute="bottom" constant="16" id="lbm-Uu-xRo"/>
+                        <constraint firstItem="teS-cX-vec" firstAttribute="top" secondItem="KBj-iG-dzj" secondAttribute="bottom" constant="8" id="lbm-Uu-xRo"/>
                         <constraint firstItem="jJN-eF-iJA" firstAttribute="top" secondItem="teS-cX-vec" secondAttribute="bottom" constant="16" id="q9s-5y-NVM"/>
                         <constraint firstItem="vYh-Qq-0C7" firstAttribute="leading" secondItem="yGY-UC-MxN" secondAttribute="leading" constant="16" id="vNr-SP-WN8"/>
                     </constraints>

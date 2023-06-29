@@ -12,47 +12,27 @@ class ViewController: UIViewController {
     didSet {
       tableView.dataSource = self
       tableView.delegate = self
-      tableView.clipsToBounds = true
+//      tableView.clipsToBounds = true
       tableView.sectionHeaderTopPadding = 0
       tableView.registerCellWithNib(identifier: "BannerCell", bundle: nil)
+      tableView.registerCellWithNib(identifier: "CoinContentCell", bundle: nil)
+      tableView.contentInsetAdjustmentBehavior = .never
+      tableView.addRefreshHeader(refreshingBlock: { [weak self] in
+        self?.headerLoader()
+      })
+      tableView.beginHeaderRefreshing()
     }
   }
 
   @IBOutlet var headerView: UIView!
   var amountsText: String? = ""
   var coinArray: [String] = []
-  var productStats: [ProductStat] = []
+  var productTableStats: [ProductTableStat] = []
   let dispatchGroup = DispatchGroup()
+  var semaphore = DispatchSemaphore(value: 0)
+
   override func viewDidLoad() {
     super.viewDidLoad()
-
-//    ApiManager.shared.getUserProfile()
-    dispatchGroup.enter()
-    ApiManager.shared.getAccounts { [weak self] accounts in
-      self?.dispatchGroup.leave()
-      if let usdAccount = accounts.filter({ $0.currency == "USD" }).first {
-        guard let usdBalance = Double(usdAccount.balance) else { return }
-        self?.amountsText = usdBalance.formatNumber(usdBalance)
-        print("USD Balance: \(usdBalance)")
-        DispatchQueue.main.async {
-          self?.tableView.reloadData()
-        }
-      } else {
-        print("No USD account found")
-      }
-    }
-
-    dispatchGroup.enter()
-    ApiManager.shared.getProducts { [weak self] coins in
-      self?.dispatchGroup.leave()
-      self?.coinArray = coins
-      guard let coinArray = self?.coinArray else { return }
-    }
-//c
-
-    dispatchGroup.notify(queue: .main) {
-      print("All requests completed")
-    }
 
 //    ApiManager.shared.getUserProfile()
 //    ApiManager.shared.getAccounts
@@ -60,6 +40,59 @@ class ViewController: UIViewController {
 //    ApiManager.shared.getCurrencies()
 //    ApiManager.shared.getProductCandles()
 //    ApiManager.shared.getProductsStats()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    getData()
+  }
+
+  private func getData() {
+    coinArray = []
+    productTableStats = []
+
+    ApiManager.shared.getAccounts { [weak self] accounts in
+      if let usdAccount = accounts.filter({ $0.currency == "USD" }).first {
+        guard let usdBalance = Double(usdAccount.balance) else { return }
+        self?.amountsText = usdBalance.formatNumber(usdBalance)
+        print("USD Balance: \(usdBalance)")
+        DispatchQueue.main.async {
+          let indexPath = IndexPath(row: 0, section: 0)
+//          self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+          self?.tableView.reloadData()
+        }
+      } else {
+        print("No USD account found")
+      }
+    }
+
+    ApiManager.shared.getProducts { [weak self] coins in
+      self?.coinArray = coins
+      guard let coinArray = self?.coinArray else { return }
+
+      for coinName in coinArray {
+        self?.dispatchGroup.enter()
+        ApiManager.shared.getProductsStats(productId: coinName) { [weak self] coinStat in
+          guard let coinStat = coinStat else { return }
+          self?.productTableStats.append(ProductTableStat(name: coinName, productStat: coinStat))
+          self?.dispatchGroup.leave()
+        }
+      }
+
+      self?.dispatchGroup.notify(queue: .main) {
+        DispatchQueue.main.async {
+          guard let productTableStats = self?.productTableStats else { return }
+          let sortedData = productTableStats.sorted(by: { $0.name < $1.name })
+          self?.productTableStats = sortedData
+//          print(self?.productTableStats)
+          self?.tableView.reloadData()
+        }
+      }
+    }
+  }
+
+  private func headerLoader() {
+    tableView.endHeaderRefreshing()
   }
 }
 
@@ -69,7 +102,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    1
+    if section == 0 {
+      return 1
+    } else {
+      return productTableStats.count
+    }
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,7 +118,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
       bannerCell.tempNumberLabel = amountsText!
       return bannerCell
     } else {
-      return UITableViewCell()
+      let cell = tableView.dequeueReusableCell(withIdentifier: "CoinContentCell", for: indexPath)
+      guard let contentCell = cell as? CoinContentCell else { return cell }
+      contentCell.selectionStyle = .none
+      contentCell.configureContentCell(data: productTableStats[indexPath.row])
+      return contentCell
     }
   }
 

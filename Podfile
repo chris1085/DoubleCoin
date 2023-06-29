@@ -16,6 +16,7 @@ target 'DoubleCoin' do
   pod 'Alamofire'
   pod 'TinyConstraints'
   pod 'Charts'
+  pod 'iCarousel'
 end
 
 post_install do |installer|

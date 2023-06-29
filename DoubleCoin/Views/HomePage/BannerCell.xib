@@ -17,33 +17,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-hF-CdT">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2oX-Hi-04F" customClass="iCarousel">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="200" id="9r3-xM-kAq"/>
+                            <constraint firstAttribute="height" constant="200" id="I3t-7C-7lI"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S6q-uV-Us2">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ET-si-Gnp">
-                        <rect key="frame" x="16" y="155" width="288" height="90"/>
+                        <rect key="frame" x="16" y="156.33333333333334" width="288" height="87.666666666666657"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總餘額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pla-rJ-4IA">
-                                <rect key="frame" x="16" y="16" width="52" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="16" y="16" width="42" height="19.666666666666671"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o03-UH-U0x">
-                                <rect key="frame" x="72" y="18.999999999999993" width="24" height="16.000000000000007"/>
+                                <rect key="frame" x="62" y="19.999999999999993" width="20" height="12.000000000000007"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="3Lh-so-zP7"/>
-                                    <constraint firstAttribute="width" constant="24" id="Qvy-no-COI"/>
+                                    <constraint firstAttribute="height" constant="16" id="3Lh-so-zP7"/>
+                                    <constraint firstAttribute="width" constant="20" id="Qvy-no-COI"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="eye" catalog="system"/>
@@ -52,14 +46,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHt-K2-ZCZ">
-                                <rect key="frame" x="16" y="53" width="33" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="43.666666666666657" width="39" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35,878" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kY-QX-0bX">
-                                <rect key="frame" x="53" y="53" width="53.666666666666657" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35,878" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kY-QX-0bX">
+                                <rect key="frame" x="59.000000000000007" y="43.666666666666657" width="64.666666666666686" height="28"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -73,33 +67,33 @@
                             <constraint firstItem="pla-rJ-4IA" firstAttribute="top" secondItem="9ET-si-Gnp" secondAttribute="top" constant="16" id="YP4-Va-TLc"/>
                             <constraint firstItem="6kY-QX-0bX" firstAttribute="leading" secondItem="jHt-K2-ZCZ" secondAttribute="trailing" constant="4" id="YV6-4o-gZ5"/>
                             <constraint firstItem="o03-UH-U0x" firstAttribute="centerY" secondItem="pla-rJ-4IA" secondAttribute="centerY" id="mMu-X3-Gpu"/>
-                            <constraint firstItem="jHt-K2-ZCZ" firstAttribute="top" secondItem="pla-rJ-4IA" secondAttribute="bottom" constant="16" id="y3O-XN-r7L"/>
+                            <constraint firstItem="jHt-K2-ZCZ" firstAttribute="top" secondItem="pla-rJ-4IA" secondAttribute="bottom" constant="8" id="y3O-XN-r7L"/>
                             <constraint firstItem="pla-rJ-4IA" firstAttribute="leading" secondItem="9ET-si-Gnp" secondAttribute="leading" constant="16" id="ymi-8P-yr4"/>
                         </constraints>
                     </view>
-                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="KJD-y3-S9h">
-                        <rect key="frame" x="186.33333333333337" y="125" width="133.66666666666663" height="26"/>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="sOq-6Y-k5T">
+                        <rect key="frame" x="204" y="130.33333333333334" width="116" height="26"/>
                     </pageControl>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9ET-si-Gnp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="N5y-Eb-HMu"/>
-                    <constraint firstItem="9ET-si-Gnp" firstAttribute="centerY" secondItem="CMJ-hF-CdT" secondAttribute="bottom" id="Noa-9q-Jch"/>
-                    <constraint firstAttribute="trailing" secondItem="9ET-si-Gnp" secondAttribute="trailing" constant="16" id="Rg7-GN-Wlv"/>
-                    <constraint firstItem="CMJ-hF-CdT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Slm-nO-7wW"/>
-                    <constraint firstItem="9ET-si-Gnp" firstAttribute="top" secondItem="KJD-y3-S9h" secondAttribute="bottom" constant="4" id="iKz-5i-5qV"/>
-                    <constraint firstAttribute="trailing" secondItem="KJD-y3-S9h" secondAttribute="trailing" id="jaC-DY-KPd"/>
-                    <constraint firstItem="CMJ-hF-CdT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lDd-sh-Oeo"/>
-                    <constraint firstAttribute="trailing" secondItem="CMJ-hF-CdT" secondAttribute="trailing" id="tnh-9z-dbW"/>
+                    <constraint firstItem="9ET-si-Gnp" firstAttribute="centerY" secondItem="2oX-Hi-04F" secondAttribute="bottom" id="7VJ-kx-H87"/>
+                    <constraint firstItem="2oX-Hi-04F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8K1-cg-gCY"/>
+                    <constraint firstAttribute="trailing" secondItem="sOq-6Y-k5T" secondAttribute="trailing" id="EUD-WD-k5I"/>
+                    <constraint firstItem="2oX-Hi-04F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TDx-eJ-LJx"/>
+                    <constraint firstAttribute="trailing" secondItem="2oX-Hi-04F" secondAttribute="trailing" id="ezq-3h-JEr"/>
+                    <constraint firstItem="9ET-si-Gnp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iWN-Xt-VjG"/>
+                    <constraint firstItem="9ET-si-Gnp" firstAttribute="top" secondItem="sOq-6Y-k5T" secondAttribute="bottom" id="vIw-Mz-Tf5"/>
+                    <constraint firstAttribute="trailing" secondItem="9ET-si-Gnp" secondAttribute="trailing" constant="16" id="vYU-Rn-w6X"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="amountLabel" destination="jHt-K2-ZCZ" id="ELd-F1-6Tx"/>
                 <outlet property="amountView" destination="9ET-si-Gnp" id="Na0-9v-Fi1"/>
-                <outlet property="collectionView" destination="CMJ-hF-CdT" id="NmY-Fi-m9E"/>
+                <outlet property="carousel" destination="2oX-Hi-04F" id="cp0-tA-LSG"/>
                 <outlet property="eyeBtn" destination="o03-UH-U0x" id="pLY-lI-EgH"/>
                 <outlet property="numberLabel" destination="6kY-QX-0bX" id="cvD-NC-0h3"/>
-                <outlet property="pageControl" destination="KJD-y3-S9h" id="gwN-Zk-7SI"/>
+                <outlet property="pageControl" destination="sOq-6Y-k5T" id="6gj-Wi-QEG"/>
                 <outlet property="totalAmountLabel" destination="pla-rJ-4IA" id="LQK-DR-MX1"/>
             </connections>
             <point key="canvasLocation" x="54.961832061068698" y="141.19718309859155"/>
@@ -107,6 +101,9 @@
     </objects>
     <resources>
         <image name="eye" catalog="system" width="128" height="79"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
