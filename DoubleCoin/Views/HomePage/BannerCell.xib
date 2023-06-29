@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-hF-CdT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="240" id="9r3-xM-kAq"/>
+                            <constraint firstAttribute="height" constant="200" id="9r3-xM-kAq"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S6q-uV-Us2">
                             <size key="itemSize" width="128" height="128"/>
@@ -31,7 +31,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ET-si-Gnp">
-                        <rect key="frame" x="16" y="195" width="288" height="90"/>
+                        <rect key="frame" x="16" y="155" width="288" height="90"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總餘額" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pla-rJ-4IA">
                                 <rect key="frame" x="16" y="16" width="52" height="21"/>
@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o03-UH-U0x">
-                                <rect key="frame" x="76" y="18.999999999999993" width="24" height="16.000000000000007"/>
+                                <rect key="frame" x="72" y="18.999999999999993" width="24" height="16.000000000000007"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="3Lh-so-zP7"/>
                                     <constraint firstAttribute="width" constant="24" id="Qvy-no-COI"/>
@@ -68,7 +68,7 @@
                         <constraints>
                             <constraint firstItem="6kY-QX-0bX" firstAttribute="centerY" secondItem="jHt-K2-ZCZ" secondAttribute="centerY" id="0Pa-9H-Oby"/>
                             <constraint firstItem="jHt-K2-ZCZ" firstAttribute="leading" secondItem="9ET-si-Gnp" secondAttribute="leading" constant="16" id="5O8-p5-nyv"/>
-                            <constraint firstItem="o03-UH-U0x" firstAttribute="leading" secondItem="pla-rJ-4IA" secondAttribute="trailing" constant="8" id="Aqd-Bw-wTb"/>
+                            <constraint firstItem="o03-UH-U0x" firstAttribute="leading" secondItem="pla-rJ-4IA" secondAttribute="trailing" constant="4" id="Aqd-Bw-wTb"/>
                             <constraint firstAttribute="bottom" secondItem="jHt-K2-ZCZ" secondAttribute="bottom" constant="16" id="FNN-gZ-8Gm"/>
                             <constraint firstItem="pla-rJ-4IA" firstAttribute="top" secondItem="9ET-si-Gnp" secondAttribute="top" constant="16" id="YP4-Va-TLc"/>
                             <constraint firstItem="6kY-QX-0bX" firstAttribute="leading" secondItem="jHt-K2-ZCZ" secondAttribute="trailing" constant="4" id="YV6-4o-gZ5"/>
@@ -78,7 +78,7 @@
                         </constraints>
                     </view>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="KJD-y3-S9h">
-                        <rect key="frame" x="176.33333333333337" y="165" width="133.66666666666663" height="26"/>
+                        <rect key="frame" x="186.33333333333337" y="125" width="133.66666666666663" height="26"/>
                     </pageControl>
                 </subviews>
                 <constraints>
@@ -87,7 +87,7 @@
                     <constraint firstAttribute="trailing" secondItem="9ET-si-Gnp" secondAttribute="trailing" constant="16" id="Rg7-GN-Wlv"/>
                     <constraint firstItem="CMJ-hF-CdT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Slm-nO-7wW"/>
                     <constraint firstItem="9ET-si-Gnp" firstAttribute="top" secondItem="KJD-y3-S9h" secondAttribute="bottom" constant="4" id="iKz-5i-5qV"/>
-                    <constraint firstAttribute="trailing" secondItem="KJD-y3-S9h" secondAttribute="trailing" constant="10" id="jaC-DY-KPd"/>
+                    <constraint firstAttribute="trailing" secondItem="KJD-y3-S9h" secondAttribute="trailing" id="jaC-DY-KPd"/>
                     <constraint firstItem="CMJ-hF-CdT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lDd-sh-Oeo"/>
                     <constraint firstAttribute="trailing" secondItem="CMJ-hF-CdT" secondAttribute="trailing" id="tnh-9z-dbW"/>
                 </constraints>

@@ -16,9 +16,9 @@ enum ApiUrls {
   case getProducts
   case getAccounts
   case getUserProfile
-  case getProductStats
+  case getProductStats(productId: String)
   case getCurrencies
-  case getProductCandles
+  case getProductCandles(productId: String)
 
   var urlString: String {
     switch self {
@@ -28,12 +28,12 @@ enum ApiUrls {
       return ApiUrls.baseUrl + "/accounts"
     case .getUserProfile:
       return ApiUrls.baseUrl + "/profiles?active"
-    case .getProductStats:
-      return ApiUrls.baseUrl + "/products/BTC-USD/stats"
+    case .getProductStats(let productId):
+      return ApiUrls.baseUrl + "/products/\(productId)/stats"
     case .getCurrencies:
       return ApiUrls.baseUrl + "/currencies"
-    case .getProductCandles:
-      return ApiUrls.baseUrl + "/products/BTC-USD/candles"
+    case .getProductCandles(let productId):
+      return ApiUrls.baseUrl + "/products/\(productId)/candles"
     }
   }
 }
@@ -45,7 +45,7 @@ enum HttpMethod: String {
 
 class ApiManager {
   static let shared = ApiManager()
-  var semaphore = DispatchSemaphore (value: 0)
+//  var semaphore = DispatchSemaphore(value: 0)
 
   func fetchData<T: Decodable>(httpMethod: String, urlString: String, responseType: T.Type, headers: [String: String]?, completion: @escaping (Result<T, Error>) -> Void) {
     let method = httpMethod
@@ -53,7 +53,7 @@ class ApiManager {
     guard let url = URL(string: urlString) else {
       let error = NSError(domain: "Invalid URL", code: 0, userInfo: nil)
       completion(.failure(error))
-      semaphore.signal()
+//      semaphore.signal()
       return
     }
 
@@ -70,21 +70,21 @@ class ApiManager {
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
         completion(.failure(error))
-        self.semaphore.signal()
+//        self.semaphore.signal()
         return
       }
 
       guard let data = data else {
         let error = NSError(domain: "Empty Response Data", code: 0, userInfo: nil)
         completion(.failure(error))
-        self.semaphore.signal()
+//        self.semaphore.signal()
         return
       }
 
       do {
         let decoder = JSONDecoder()
         let responseData = try decoder.decode(responseType, from: data)
-        self.semaphore.signal()
+//        self.semaphore.signal()
         completion(.success(responseData))
       } catch {
         completion(.failure(error))
@@ -92,30 +92,34 @@ class ApiManager {
     }
 
     task.resume()
-    semaphore.wait()
+//    semaphore.wait()
   }
 
-  func getProducts() {
+  func getProducts(completion: @escaping ([String]) -> Void) {
     let accountsUrl = ApiUrls.getProducts.urlString
+    var coinArray: [String] = []
 
     fetchData(httpMethod: "GET", urlString: accountsUrl, responseType: [Product].self, headers: nil) { result in
       switch result {
       case .success(let allProducts):
-        print(allProducts)
+        coinArray = allProducts.filter { $0.quoteCurrency == "USD" }.map { $0.id }
+        completion(coinArray)
+//        print(allProducts)
       case .failure(let error):
         print("Error: \(error)")
       }
     }
   }
 
-  func getAccounts() {
+  func getAccounts(completion: @escaping ([Account]) -> Void) {
     let accountsUrl = ApiUrls.getAccounts.urlString
     let headers = CoinbaseService.shared.createHeaders(requestPath: "/accounts")
 
     fetchData(httpMethod: "GET", urlString: accountsUrl, responseType: [Account].self, headers: headers) { result in
       switch result {
       case .success(let allAccounts):
-        print(allAccounts)
+//        print(allAccounts)
+        completion(allAccounts)
       case .failure(let error):
         print("Error: \(error)")
       }
@@ -136,20 +140,22 @@ class ApiManager {
     }
   }
 
-  func getProductsStats() {
-    let productUrl = ApiUrls.getProductStats.urlString
+  func getProductsStats(productId: String, completion: @escaping (ProductStat?) -> Void) {
+    let productUrl = ApiUrls.getProductStats(productId: productId).urlString
 
     fetchData(httpMethod: "GET", urlString: productUrl, responseType: ProductStat.self, headers: nil) { result in
       switch result {
       case .success(let productStat):
-        print(productStat)
+        completion(productStat)
+//        print(productStat)
       case .failure(let error):
         print("Error: \(error)")
+        completion(nil)
       }
     }
   }
 
-  func getCurrencies(){
+  func getCurrencies() {
     let currenciesUrl = ApiUrls.getCurrencies.urlString
 
     fetchData(httpMethod: "GET", urlString: currenciesUrl, responseType: [Currencies].self, headers: nil) { result in
@@ -162,10 +168,12 @@ class ApiManager {
     }
   }
 
-  func getProductCandles(){
-    let productCandlesUrl = ApiUrls.getProductCandles.urlString
+  func getProductCandles(productId: String) {
+    let productCandlesUrl = ApiUrls.getProductCandles(productId: productId).urlString
 
-    fetchData(httpMethod: "GET", urlString: productCandlesUrl, responseType: [CandlesJSON].self, headers: nil) { result in
+    fetchData(httpMethod: "GET", urlString: productCandlesUrl,
+              responseType: [CandlesJSON].self, headers: nil)
+    { result in
       switch result {
       case .success(let productCandles):
         print(productCandles)

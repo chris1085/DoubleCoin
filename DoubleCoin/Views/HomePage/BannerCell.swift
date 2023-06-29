@@ -28,8 +28,13 @@ class BannerCell: UITableViewCell {
 
   @IBOutlet var amountView: UIView! {
     didSet {
-      amountView.layer.cornerRadius = 6
+      amountView.layer.cornerRadius = 4
       amountView.backgroundColor = AppColor.secondary
+
+      amountView.layer.shadowColor = UIColor.black.cgColor
+      amountView.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+      amountView.layer.shadowOpacity = 0.15
+      amountView.layer.shadowRadius = 4.0
     }
   }
 
@@ -46,15 +51,17 @@ class BannerCell: UITableViewCell {
 
     if isEyeBtnHidden {
       sender.setBackgroundImage(UIImage(systemName: "eye"), for: .normal)
-      numberLabel.text = "35,878"
+      numberLabel.text = tempNumberLabel
     } else {
       sender.setBackgroundImage(UIImage(systemName: "eye.slash"), for: .normal)
+      tempNumberLabel = numberLabel.text!
       numberLabel.text = "******"
     }
   }
 
   @IBOutlet var amountLabel: UILabel!
 
+  var tempNumberLabel = ""
   let images = [
     BannerImage(image: "banner1", url: "https://zh.wikipedia.org/zh-tw/%E4%BB%A5%E5%A4%AA%E5%9D%8A"),
     BannerImage(image: "banner2", url: "https://zh.wikipedia.org/zh-tw/%E6%AF%94%E7%89%B9%E5%B8%81"),
@@ -80,7 +87,7 @@ class BannerCell: UITableViewCell {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     layout.sectionInset = UIEdgeInsets.zero
-    layout.itemSize = CGSize(width: viewWidth, height: 240)
+    layout.itemSize = CGSize(width: viewWidth, height: 200)
     layout.minimumLineSpacing = CGFloat(integerLiteral: Int(0))
     layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
 

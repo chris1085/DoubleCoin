@@ -19,11 +19,56 @@ class ViewController: UIViewController {
   }
 
   @IBOutlet var headerView: UIView!
+  var amountsText: String? = ""
+  var coinArray: [String] = []
+  var productStats: [ProductStat] = []
+  let dispatchGroup = DispatchGroup()
   override func viewDidLoad() {
     super.viewDidLoad()
 
 //    ApiManager.shared.getUserProfile()
-//    ApiManager.shared.getAccounts()
+    dispatchGroup.enter()
+    ApiManager.shared.getAccounts { [weak self] accounts in
+      self?.dispatchGroup.leave()
+      if let usdAccount = accounts.filter({ $0.currency == "USD" }).first {
+        guard let usdBalance = Double(usdAccount.balance) else { return }
+        self?.amountsText = usdBalance.formatNumber(usdBalance)
+        print("USD Balance: \(usdBalance)")
+        DispatchQueue.main.async {
+          self?.tableView.reloadData()
+        }
+      } else {
+        print("No USD account found")
+      }
+    }
+
+    dispatchGroup.enter()
+    ApiManager.shared.getProducts { [weak self] coins in
+      self?.dispatchGroup.leave()
+      self?.coinArray = coins
+      guard let coinArray = self?.coinArray else { return }
+    }
+//
+//    for coinId in coinArray {
+//      dispatchGroup.enter()
+//      ApiManager.shared.getProductsStats(productId: coinId) { [weak self] productStat in
+//        defer {
+//          self?.dispatchGroup.leave()
+//        }
+//
+//        print(coinId)
+//        guard let productStat = productStat else { return }
+//        print(productStat)
+//        self?.productStats.append(productStat)
+//      }
+//    }
+
+    dispatchGroup.notify(queue: .main) {
+      print("All requests completed")
+    }
+
+//    ApiManager.shared.getUserProfile()
+//    ApiManager.shared.getAccounts
 //    ApiManager.shared.getProducts()
 //    ApiManager.shared.getCurrencies()
 //    ApiManager.shared.getProductCandles()
@@ -45,6 +90,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
       let cell = tableView.dequeueReusableCell(withIdentifier: "BannerCell", for: indexPath)
       guard let bannerCell = cell as? BannerCell else { return cell }
       bannerCell.selectionStyle = .none
+      bannerCell.numberLabel.text = amountsText
+      bannerCell.tempNumberLabel = amountsText!
       return bannerCell
     } else {
       return UITableViewCell()
@@ -56,9 +103,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 //    let row = indexPath.row
 
     if section == 0 {
-      return view.bounds.height * 0.37
+      return view.bounds.height * 0.33
     } else {
-      return 100
+      return UITableView.automaticDimension
     }
   }
 
