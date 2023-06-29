@@ -17,8 +17,11 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    ApiManager.shared.getData()
+//    ApiManager.shared.getUserProfile()
+//    ApiManager.shared.getAccounts()
+//    ApiManager.shared.getProducts()
+//    ApiManager.shared.getCurrencies()
+//    ApiManager.shared.getProductCandles()
   }
 }
 

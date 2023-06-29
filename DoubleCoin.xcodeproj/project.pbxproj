@@ -32,6 +32,10 @@
 		06CF32682A4C57630055E326 /* ProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32672A4C57630055E326 /* ProductsModel.swift */; };
 		06CF326A2A4C61110055E326 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32692A4C61110055E326 /* AccountModel.swift */; };
 		06CF326C2A4C61410055E326 /* CoinbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326B2A4C61410055E326 /* CoinbaseService.swift */; };
+		06CF326E2A4C76E20055E326 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326D2A4C76E20055E326 /* ProfileModel.swift */; };
+		06CF32702A4D1B240055E326 /* ProductStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326F2A4D1B240055E326 /* ProductStatsModel.swift */; };
+		06CF32722A4D1E1B0055E326 /* CurrenciesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32712A4D1E1B0055E326 /* CurrenciesModel.swift */; };
+		06CF32742A4D24C00055E326 /* ProductCandles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32732A4D24C00055E326 /* ProductCandles.swift */; };
 		0ED1593EC6E8DE55BBFCA874 /* Pods_DoubleCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADB91CBD46F2C0B854D95F /* Pods_DoubleCoin.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +67,10 @@
 		06CF32672A4C57630055E326 /* ProductsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsModel.swift; sourceTree = "<group>"; };
 		06CF32692A4C61110055E326 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		06CF326B2A4C61410055E326 /* CoinbaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinbaseService.swift; sourceTree = "<group>"; };
+		06CF326D2A4C76E20055E326 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		06CF326F2A4D1B240055E326 /* ProductStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStatsModel.swift; sourceTree = "<group>"; };
+		06CF32712A4D1E1B0055E326 /* CurrenciesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesModel.swift; sourceTree = "<group>"; };
+		06CF32732A4D24C00055E326 /* ProductCandles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCandles.swift; sourceTree = "<group>"; };
 		06E656148DFD8C18AD1BA45B /* Pods-DoubleCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleCoin.debug.xcconfig"; path = "Target Support Files/Pods-DoubleCoin/Pods-DoubleCoin.debug.xcconfig"; sourceTree = "<group>"; };
 		52ADB91CBD46F2C0B854D95F /* Pods_DoubleCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoubleCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9CDCC99FF991AF56A00388 /* Pods-DoubleCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoubleCoin.release.xcconfig"; path = "Target Support Files/Pods-DoubleCoin/Pods-DoubleCoin.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +176,10 @@
 			children = (
 				06CF32672A4C57630055E326 /* ProductsModel.swift */,
 				06CF32692A4C61110055E326 /* AccountModel.swift */,
+				06CF326D2A4C76E20055E326 /* ProfileModel.swift */,
+				06CF326F2A4D1B240055E326 /* ProductStatsModel.swift */,
+				06CF32712A4D1E1B0055E326 /* CurrenciesModel.swift */,
+				06CF32732A4D24C00055E326 /* ProductCandles.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06CF32722A4D1E1B0055E326 /* CurrenciesModel.swift in Sources */,
 				06CF32662A4C52590055E326 /* ApiManager.swift in Sources */,
 				06CF326A2A4C61110055E326 /* AccountModel.swift in Sources */,
 				06CF32572A4C50520055E326 /* MJRefreshWrapper.swift in Sources */,
@@ -380,6 +393,7 @@
 				06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */,
 				06CF325A2A4C50C30055E326 /* BannerCell.swift in Sources */,
 				06CF325E2A4C51EF0055E326 /* CoinTableHeaderCell.swift in Sources */,
+				06CF32702A4D1B240055E326 /* ProductStatsModel.swift in Sources */,
 				06324B342A4C1FC300142FD1 /* ViewController.swift in Sources */,
 				06CF32512A4C4FB80055E326 /* UIImage+Extension.swift in Sources */,
 				06CF32682A4C57630055E326 /* ProductsModel.swift in Sources */,
@@ -388,6 +402,8 @@
 				06324B302A4C1FC300142FD1 /* AppDelegate.swift in Sources */,
 				06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */,
 				06CF32552A4C503E0055E326 /* KingFisherWrapper.swift in Sources */,
+				06CF326E2A4C76E20055E326 /* ProfileModel.swift in Sources */,
+				06CF32742A4D24C00055E326 /* ProductCandles.swift in Sources */,
 				06324B322A4C1FC300142FD1 /* SceneDelegate.swift in Sources */,
 				06324B3A2A4C1FC300142FD1 /* DoubleCoin.xcdatamodeld in Sources */,
 				06CF32622A4C520B0055E326 /* CoinContentCell.swift in Sources */,
