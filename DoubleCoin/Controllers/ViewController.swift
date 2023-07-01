@@ -16,11 +16,11 @@ class ViewController: UIViewController {
       tableView.sectionHeaderTopPadding = 0
       tableView.registerCellWithNib(identifier: "BannerCell", bundle: nil)
       tableView.registerCellWithNib(identifier: "CoinContentCell", bundle: nil)
+      tableView.registerCellWithNib(identifier: "TradeRecordCell", bundle: nil)
       tableView.contentInsetAdjustmentBehavior = .never
       tableView.addRefreshHeader(refreshingBlock: { [weak self] in
         self?.headerLoader()
       })
-      tableView.beginHeaderRefreshing()
     }
   }
 
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
 //    ApiManager.shared.getCurrencies()
 //    ApiManager.shared.getProductCandles()
 //    ApiManager.shared.getProductsStats()
+//    ApiManager.shared.getOrders()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +58,6 @@ class ViewController: UIViewController {
         self?.amountsText = usdBalance.formatNumber(usdBalance)
         print("USD Balance: \(usdBalance)")
         DispatchQueue.main.async {
-          let indexPath = IndexPath(row: 0, section: 0)
-//          self?.tableView.reloadRows(at: [indexPath], with: .automatic)
           self?.tableView.reloadData()
         }
       } else {
@@ -149,5 +148,37 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     if section == 1 {
       return 90
     } else { return 0.1 }
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.section == 1 {
+      guard let coinDetailVC = storyboard?.instantiateViewController(withIdentifier: "CoinDetailVC")
+        as? CoinDetailVC else { return }
+      coinDetailVC.productID = productTableStats[indexPath.row].name
+
+      guard let productInfo = ProductInfo.fromTableStatName(productTableStats[indexPath.row].name) else {
+        navigationController?.pushViewController(coinDetailVC, animated: true)
+        return
+      }
+      coinDetailVC.navTitle = "\(productInfo.chtName)(\(productInfo.name))"
+      navigationController?.pushViewController(coinDetailVC, animated: true)
+    }
+  }
+
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let yOffset = scrollView.contentOffset.y
+
+    if yOffset > 20 {
+      let navigationBarAppearance = UINavigationBarAppearance()
+      navigationBarAppearance.configureWithOpaqueBackground()
+      navigationBarAppearance.backgroundColor = AppColor.primary
+      navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+      navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+    } else {
+      let navigationBarAppearance = UINavigationBarAppearance()
+      navigationBarAppearance.configureWithTransparentBackground()
+      navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+      navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+    }
   }
 }

@@ -17,6 +17,7 @@ target 'DoubleCoin' do
   pod 'TinyConstraints'
   pod 'Charts'
   pod 'iCarousel'
+  pod 'Starscream'
 end
 
 post_install do |installer|

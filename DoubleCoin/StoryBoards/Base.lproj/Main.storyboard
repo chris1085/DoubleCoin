@@ -66,6 +66,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TZ1-51-a2R">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Fv7-tw-PvG"/>
@@ -177,6 +180,74 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="497" y="-1056"/>
+        </scene>
+        <!--Coin DetailVC-->
+        <scene sceneID="h35-Vz-Jnj">
+            <objects>
+                <viewController storyboardIdentifier="CoinDetailVC" id="fQd-TB-CF2" customClass="CoinDetailVC" customModule="DoubleCoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Rd-2B-BLr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSf-XT-am0">
+                                <rect key="frame" x="0.0" y="756" width="393" height="62"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="P9h-te-rnf">
+                                        <rect key="frame" x="16" y="16" width="361" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIj-DI-7Jm">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="30"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="買入"/>
+                                                <connections>
+                                                    <action selector="butCoinTapped:" destination="fQd-TB-CF2" eventType="touchUpInside" id="YGh-Wz-v1P"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwT-GF-jUT">
+                                                <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="30"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="賣出"/>
+                                                <connections>
+                                                    <action selector="sellCoinTapped:" destination="fQd-TB-CF2" eventType="touchUpInside" id="CPd-O5-Fxx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="P9h-te-rnf" firstAttribute="leading" secondItem="rSf-XT-am0" secondAttribute="leading" constant="16" id="8xf-lj-YwR"/>
+                                    <constraint firstAttribute="trailing" secondItem="P9h-te-rnf" secondAttribute="trailing" constant="16" id="DlV-5Y-dwL"/>
+                                    <constraint firstAttribute="bottom" secondItem="P9h-te-rnf" secondAttribute="bottom" constant="16" id="Tvw-EZ-bgf"/>
+                                    <constraint firstItem="P9h-te-rnf" firstAttribute="top" secondItem="rSf-XT-am0" secondAttribute="top" constant="16" id="cBQ-9e-hec"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="J4r-PL-DHc">
+                                <rect key="frame" x="0.0" y="59" width="393" height="697"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2vb-YS-dli"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="J4r-PL-DHc" firstAttribute="leading" secondItem="2vb-YS-dli" secondAttribute="leading" id="Hq2-72-VNM"/>
+                            <constraint firstItem="2vb-YS-dli" firstAttribute="trailing" secondItem="rSf-XT-am0" secondAttribute="trailing" id="X9p-T0-Lf3"/>
+                            <constraint firstItem="J4r-PL-DHc" firstAttribute="top" secondItem="2vb-YS-dli" secondAttribute="top" id="bZm-Jn-BTk"/>
+                            <constraint firstItem="rSf-XT-am0" firstAttribute="top" secondItem="J4r-PL-DHc" secondAttribute="bottom" id="fkW-F4-Sd7"/>
+                            <constraint firstItem="2vb-YS-dli" firstAttribute="trailing" secondItem="J4r-PL-DHc" secondAttribute="trailing" id="j7j-9e-M5m"/>
+                            <constraint firstItem="rSf-XT-am0" firstAttribute="leading" secondItem="2vb-YS-dli" secondAttribute="leading" id="jEo-bu-TBv"/>
+                            <constraint firstItem="2vb-YS-dli" firstAttribute="bottom" secondItem="rSf-XT-am0" secondAttribute="bottom" id="wtI-aZ-1nC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buyBtn" destination="PIj-DI-7Jm" id="6Eh-E2-VDJ"/>
+                        <outlet property="sellBtn" destination="RwT-GF-jUT" id="0En-VU-gn6"/>
+                        <outlet property="tableView" destination="J4r-PL-DHc" id="NYV-9y-iSz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdg-qw-cPz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1544" y="-1056"/>
         </scene>
     </scenes>
     <resources>

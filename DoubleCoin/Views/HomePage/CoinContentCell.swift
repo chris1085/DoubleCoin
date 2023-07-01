@@ -42,10 +42,12 @@ class CoinContentCell: UITableViewCell {
       guard let lastPrice = Double(data.productStat.last),
             let openPrice = Double(data.productStat.open) else { return }
 
-      priceLabel.text = data.productStat.last
+      let priceAvg = ((Double(data.productStat.high) ?? 0) + (Double(data.productStat.low) ?? 0)) / 2
+      let priceAvgFormatted = priceAvg.formatNumber(priceAvg)
+      priceLabel.text = String(priceAvgFormatted ?? "")
 
-      let quoteChange = (lastPrice - openPrice) / lastPrice
-      if let formattedQuoteChange = quoteChange.formatNumber(quoteChange * 100) {
+      let quoteChange = (lastPrice - openPrice) / lastPrice * 100
+      if let formattedQuoteChange = quoteChange.formatNumber(quoteChange) {
         if quoteChange > 0 {
           quoteChangeLabel.text = "+\(formattedQuoteChange)%"
           quoteChangeLabel.textColor = AppColor.success
@@ -73,7 +75,11 @@ class CoinContentCell: UITableViewCell {
     runChartView.xAxis.enabled = false
     runChartView.leftAxis.enabled = false
     runChartView.rightAxis.enabled = false
-    runChartView.dragEnabled = false
+//    runChartView.dragEnabled = false
+//    runChartView.highlightPerDragEnabled = false
+//    runChartView.drawMarkers = false
+//    runChartView.highlightPerTapEnabled = false
+    runChartView.isUserInteractionEnabled = false
 
     var values: [Double] = []
     var valueArray: [Double] = []

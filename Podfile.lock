@@ -12,6 +12,7 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - Starscream (4.0.4)
   - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.52.2)
   - TinyConstraints (4.0.2)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Kingfisher
   - MJRefresh
   - NVActivityIndicatorView
+  - Starscream
   - SwiftLint
   - TinyConstraints
 
@@ -32,6 +34,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Charts
     - iCarousel
+    - Starscream
     - SwiftAlgorithms
     - TinyConstraints
   trunk:
@@ -52,10 +55,11 @@ SPEC CHECKSUMS:
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
   TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
 
-PODFILE CHECKSUM: 9aa45c1134f6c1c9f675195c2d9a327f511272d2
+PODFILE CHECKSUM: ea5926eb71a6f65af95c3fe05bf93ee4230a11cd
 
 COCOAPODS: 1.12.0
