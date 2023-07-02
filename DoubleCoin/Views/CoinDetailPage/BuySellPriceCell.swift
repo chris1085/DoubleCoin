@@ -9,7 +9,9 @@ import UIKit
 
 class BuySellPriceCell: UITableViewCell {
 
-    override func awakeFromNib() {
+  @IBOutlet weak var sellLabel: UILabel!
+  @IBOutlet weak var buyLabel: UILabel!
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Order
 
@@ -34,5 +35,51 @@ struct Order: Codable {
     case marketType = "market_type"
     case status, settled
     case fundingCurrency = "funding_currency"
+  }
+}
+
+enum SideInfo: String {
+  case buy
+  case sell
+
+  var color: UIColor {
+    switch self {
+    case .buy:
+      return AppColor.success
+    case .sell:
+      return AppColor.primary
+    }
+  }
+
+  var description: String {
+    switch self {
+    case .buy:
+      return "購入 "
+    case .sell:
+      return "賣出 "
+    }
+  }
+}
+
+enum StatusInfo: String {
+  case success
+  case cancel
+
+  var color: UIColor {
+    switch self {
+    case .success:
+      return AppColor.success
+    case .cancel:
+      return AppColor.primary
+    }
+  }
+
+  var description: String {
+    switch self {
+    case .success:
+      return "成功"
+    case .cancel:
+      return "已取消"
+    }
   }
 }

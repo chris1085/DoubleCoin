@@ -150,6 +150,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     } else { return 0.1 }
   }
 
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return CGFloat.leastNormalMagnitude
+  }
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 {
       guard let coinDetailVC = storyboard?.instantiateViewController(withIdentifier: "CoinDetailVC")

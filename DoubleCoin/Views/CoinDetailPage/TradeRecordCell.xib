@@ -4,20 +4,114 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TradeRecordCell" id="KGk-i7-Jjw" customClass="TradeRecordCell" customModule="DoubleCoin" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TradeRecordCell" rowHeight="118" id="KGk-i7-Jjw" customClass="TradeRecordCell" customModule="DoubleCoin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-CQ-wLu" userLabel="Trade Way View">
+                        <rect key="frame" x="16.000000000000004" y="16" width="52.333333333333343" height="27.666666666666671"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bd-KC-g83" userLabel="Trade Label">
+                                <rect key="frame" x="8" y="4" width="36.333333333333336" height="19.666666666666668"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1Bd-KC-g83" secondAttribute="trailing" constant="8" id="Ydt-5j-dci"/>
+                            <constraint firstItem="1Bd-KC-g83" firstAttribute="top" secondItem="zXm-CQ-wLu" secondAttribute="top" constant="4" id="ZHr-hx-D8i"/>
+                            <constraint firstItem="1Bd-KC-g83" firstAttribute="leading" secondItem="zXm-CQ-wLu" secondAttribute="leading" constant="8" id="i4l-Y9-Af8"/>
+                            <constraint firstAttribute="bottom" secondItem="1Bd-KC-g83" secondAttribute="bottom" constant="4" id="sNd-5k-ODl"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVo-l9-aWV" userLabel="Trade Time Label">
+                        <rect key="frame" x="76.333333333333329" y="20" width="35.333333333333329" height="19.666666666666671"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tr8-2Z-DbR" userLabel="Description Label">
+                        <rect key="frame" x="15.999999999999996" y="51.666666666666664" width="40.666666666666657" height="22.666666666666664"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-ED-npm" userLabel="Virtual  Price Label">
+                        <rect key="frame" x="263.33333333333331" y="51.666666666666664" width="40.666666666666686" height="22.666666666666664"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3o-9f-rM7" userLabel="Status Label">
+                        <rect key="frame" x="34" y="82.333333333333329" width="35.333333333333343" height="19.666666666666671"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGu-px-f05" userLabel="Status Light View">
+                        <rect key="frame" x="16" y="87.333333333333329" width="10" height="9.6666666666666714"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="fGu-px-f05" secondAttribute="height" multiplier="1:1" id="h3x-cS-NYB"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dag-Cm-zj1" userLabel="Reality Price Label">
+                        <rect key="frame" x="276.66666666666669" y="82.333333333333329" width="27.333333333333314" height="19.666666666666671"/>
+                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TjC-ED-npm" firstAttribute="centerY" secondItem="Tr8-2Z-DbR" secondAttribute="centerY" id="Dah-xl-t6R"/>
+                    <constraint firstAttribute="trailing" secondItem="dag-Cm-zj1" secondAttribute="trailing" constant="16" id="Jcp-su-NDE"/>
+                    <constraint firstAttribute="bottom" secondItem="dag-Cm-zj1" secondAttribute="bottom" constant="16" id="TlS-6Q-FTG"/>
+                    <constraint firstItem="x3o-9f-rM7" firstAttribute="top" secondItem="Tr8-2Z-DbR" secondAttribute="bottom" constant="8" id="Ugk-U1-bNC"/>
+                    <constraint firstItem="sVo-l9-aWV" firstAttribute="centerY" secondItem="zXm-CQ-wLu" secondAttribute="centerY" id="bxx-UY-nHv"/>
+                    <constraint firstItem="sVo-l9-aWV" firstAttribute="leading" secondItem="zXm-CQ-wLu" secondAttribute="trailing" constant="8" id="cX5-Xa-Ivi"/>
+                    <constraint firstAttribute="trailing" secondItem="TjC-ED-npm" secondAttribute="trailing" constant="16" id="dUr-p8-FRA"/>
+                    <constraint firstItem="zXm-CQ-wLu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="f2G-YN-v7T"/>
+                    <constraint firstItem="fGu-px-f05" firstAttribute="height" secondItem="x3o-9f-rM7" secondAttribute="height" multiplier="0.5" id="gom-xK-tXM"/>
+                    <constraint firstItem="fGu-px-f05" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iM8-Pg-JP4"/>
+                    <constraint firstItem="x3o-9f-rM7" firstAttribute="leading" secondItem="fGu-px-f05" secondAttribute="trailing" constant="8" id="n9v-wW-Zoh"/>
+                    <constraint firstItem="Tr8-2Z-DbR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="pRp-9R-Eik"/>
+                    <constraint firstItem="dag-Cm-zj1" firstAttribute="top" secondItem="TjC-ED-npm" secondAttribute="bottom" constant="8" id="scd-Qw-9NV"/>
+                    <constraint firstItem="x3o-9f-rM7" firstAttribute="centerY" secondItem="fGu-px-f05" secondAttribute="centerY" id="sph-Iz-2bL"/>
+                    <constraint firstItem="zXm-CQ-wLu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="xAH-xR-Gsx"/>
+                    <constraint firstItem="Tr8-2Z-DbR" firstAttribute="top" secondItem="zXm-CQ-wLu" secondAttribute="bottom" constant="8" id="zWA-Vv-j5O"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="56" y="20"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="Tr8-2Z-DbR" id="nd0-4k-xrw"/>
+                <outlet property="statusLabel" destination="x3o-9f-rM7" id="VCY-2F-stx"/>
+                <outlet property="statusLightView" destination="fGu-px-f05" id="UCk-Gh-eqe"/>
+                <outlet property="tradeTimeLabel" destination="sVo-l9-aWV" id="3OA-LH-EbJ"/>
+                <outlet property="tradeWayLabel" destination="1Bd-KC-g83" id="Ax1-5C-K6O"/>
+                <outlet property="tradeWayView" destination="zXm-CQ-wLu" id="J3u-7n-ebL"/>
+                <outlet property="twdPriceLabel" destination="dag-Cm-zj1" id="JnP-x9-sfn"/>
+                <outlet property="usdPriceLabel" destination="TjC-ED-npm" id="Va6-lt-asC"/>
+            </connections>
+            <point key="canvasLocation" x="68.702290076335871" y="52.112676056338032"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

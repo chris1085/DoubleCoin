@@ -19,7 +19,7 @@ enum ApiUrls {
   case getProductStats(productId: String)
   case getCurrencies
   case getProductCandles(productId: String)
-  case getOrders(limits: Int)
+  case getOrders(limits: Int, productId: String)
 
   var urlString: String {
     switch self {
@@ -35,8 +35,8 @@ enum ApiUrls {
       return ApiUrls.baseUrl + "/currencies"
     case .getProductCandles(let productId):
       return ApiUrls.baseUrl + "/products/\(productId)/candles"
-    case .getOrders(let limits):
-      return ApiUrls.baseUrl + "/orders?limit=\(limits)&status=done"
+    case .getOrders(let limits, let productId):
+      return ApiUrls.baseUrl + "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     }
   }
 
@@ -54,8 +54,8 @@ enum ApiUrls {
       return "/currencies"
     case .getProductCandles(let productId):
       return "/products/\(productId)/candles"
-    case .getOrders(let limits):
-      return "/orders?limit=\(limits)&status=done"
+    case .getOrders(let limits, let productId):
+      return "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     }
   }
 }
@@ -207,16 +207,19 @@ class ApiManager {
       }
   }
 
-  func getOrders() {
-    let orderUrl = ApiUrls.getOrders(limits: 5).urlString
-    let headers = CoinbaseService.shared.createHeaders(requestPath: ApiUrls.getOrders(limits: 5).requestUrlString)
+  func getOrders(productId: String, completion: @escaping ([Order]?) -> Void) {
+    let orderUrl = ApiUrls.getOrders(limits: 5, productId: productId).urlString
+    let headers = CoinbaseService.shared.createHeaders(
+      requestPath: ApiUrls.getOrders(limits: 5, productId: productId).requestUrlString)
 
     fetchData(httpMethod: "GET", urlString: orderUrl, responseType: [Order].self, headers: headers) { result in
       switch result {
       case .success(let allOrders):
-        print(allOrders)
+//        print(allOrders)
+        completion(allOrders)
       case .failure(let error):
         print("Error: \(error)")
+        completion(nil)
       }
     }
   }

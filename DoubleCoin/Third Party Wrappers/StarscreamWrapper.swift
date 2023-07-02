@@ -8,9 +8,14 @@
 import Foundation
 import Starscream
 
+protocol WebSocketReceiveDelegate: AnyObject {
+  func didReceiveTickerData(buyPrice: String, sellPrice: String)
+}
+
 class CoinbaseWebSocketClient: WebSocketDelegate {
   var socket: WebSocket
   var productID: String?
+  weak var delegate: WebSocketReceiveDelegate?
 
   init(productID: String) {
     self.productID = productID
@@ -47,15 +52,15 @@ class CoinbaseWebSocketClient: WebSocketDelegate {
       }
 
     case let .text(text):
-      print("test")
       if let data = text.data(using: .utf8) {
         if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
           if let type = json["type"] as? String, type == "ticker" {
-            if let productId = json["product_id"] as? String,
-               let price = json["price"] as? String,
-               let side = json["side"] as? String
+            if let buyPrice = json["best_bid"] as? String,
+               let sellPrice = json["best_ask"] as? String
             {
-              print("Product ID: \(productId), Side: \(side), Price: \(price)")
+//              print("Product ID: \(productId), Side: \(side), Price: \(price)")
+              print("buyPrice: \(buyPrice), sellPrice: \(sellPrice)")
+              delegate?.didReceiveTickerData(buyPrice: buyPrice, sellPrice: sellPrice)
             }
           }
         }
@@ -63,6 +68,14 @@ class CoinbaseWebSocketClient: WebSocketDelegate {
 
     default:
       break
+    }
+  }
+
+  func handleError(_ error: Error?) {
+    if let error = error as? WSError {
+      print("websocket encountered an error: \(error.message)\(error.localizedDescription)")
+    } else {
+      print("websocket encountered an error")
     }
   }
 }
