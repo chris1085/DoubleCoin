@@ -18,7 +18,7 @@ enum ApiUrls {
   case getUserProfile
   case getProductStats(productId: String)
   case getCurrencies
-  case getProductCandles(productId: String)
+  case getProductCandles(productId: String, start: String, end: String, granularity: String)
   case getOrders(limits: Int, productId: String)
 
   var urlString: String {
@@ -33,8 +33,8 @@ enum ApiUrls {
       return ApiUrls.baseUrl + "/products/\(productId)/stats"
     case .getCurrencies:
       return ApiUrls.baseUrl + "/currencies"
-    case .getProductCandles(let productId):
-      return ApiUrls.baseUrl + "/products/\(productId)/candles"
+    case .getProductCandles(let productId, let start, let end, let granularity):
+      return ApiUrls.baseUrl + "/products/\(productId)/candles?start=\(start)&end=\(end)&granularity=\(granularity)"
     case .getOrders(let limits, let productId):
       return ApiUrls.baseUrl + "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     }
@@ -52,8 +52,8 @@ enum ApiUrls {
       return "/products/\(productId)/stats"
     case .getCurrencies:
       return "/currencies"
-    case .getProductCandles(let productId):
-      return "/products/\(productId)/candles"
+    case .getProductCandles(let productId, let start, let end, let granularity):
+      return "/products/\(productId)/candles?start=\(start)&end=\(end)&granularity=\(granularity)"
     case .getOrders(let limits, let productId):
       return "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     }
@@ -193,16 +193,23 @@ class ApiManager {
     }
   }
 
-  func getProductCandles(productId: String) {
-    let productCandlesUrl = ApiUrls.getProductCandles(productId: productId).urlString
+  func getProductCandles(productId: String, from start: String, to end: String, granularity: String,
+                         completion: @escaping ([Candlestick]?) -> Void)
+  {
+    let productCandlesUrl = ApiUrls.getProductCandles(productId: productId, start: start, end: end,
+                                                      granularity: granularity).urlString
+    print(productCandlesUrl)
 
     fetchData(httpMethod: "GET", urlString: productCandlesUrl, responseType: [CandlesJSON].self, headers: nil)
       { result in
         switch result {
         case .success(let productCandles):
-          print(productCandles)
+          let candlesticks = self.candlesToCandlestick(candles: productCandles)
+//          print(candlesticks)
+          completion(candlesticks)
         case .failure(let error):
           print("Error: \(error)")
+          completion(nil)
         }
       }
   }
@@ -222,5 +229,16 @@ class ApiManager {
         completion(nil)
       }
     }
+  }
+
+  private func candlesToCandlestick(candles: [CandlesJSON]) -> [Candlestick] {
+    var candlesticks: [Candlestick] = []
+    for candle in candles where candle.count == 6 {
+      let candlestick = Candlestick(time: candle[0], low: candle[1], high: candle[2],
+                                    open: candle[3], close: candle[4], volume: candle[5])
+      candlesticks.append(candlestick)
+    }
+
+    return candlesticks
   }
 }

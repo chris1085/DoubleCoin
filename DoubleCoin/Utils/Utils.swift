@@ -38,4 +38,19 @@ extension Double {
 
     return formatter.string(from: NSNumber(value: number))
   }
+
+  func formatDate(epoch: Double, dateFormat: String) -> String {
+    let date = Date(timeIntervalSince1970: TimeInterval(epoch))
+
+    let calendar = Calendar.current
+    let timezone = TimeZone(secondsFromGMT: 8 * 3600) // +8 時區
+
+    let formatter = DateFormatter()
+    formatter.dateFormat = dateFormat
+    formatter.calendar = calendar
+    formatter.timeZone = timezone
+
+    let formattedDate = formatter.string(from: date)
+    return formattedDate
+  }
 }

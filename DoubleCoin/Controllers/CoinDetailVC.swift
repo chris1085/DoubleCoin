@@ -37,6 +37,8 @@ class CoinDetailVC: UIViewController {
   var productID = ""
   var navTitle = ""
   var orders: [Order] = []
+  var candlesTicks: [Candlestick] = []
+  var timelineBtnTag = 0
   override func viewDidLoad() {
     super.viewDidLoad()
     coinbaseWebSocketClient = CoinbaseWebSocketClient(productID: productID)
@@ -47,14 +49,7 @@ class CoinDetailVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    ApiManager.shared.getOrders(productId: productID) { [weak self] orders in
-      guard let orders = orders else { return }
-      self?.orders = orders
-
-      DispatchQueue.main.async {
-        self?.tableView.reloadData()
-      }
-    }
+    setDefaultView()
     setNavigationBar(true)
   }
 
@@ -62,6 +57,30 @@ class CoinDetailVC: UIViewController {
     super.viewWillDisappear(animated)
 
     setNavigationBar(false)
+  }
+
+  private func setDefaultView() {
+    if let timelineType = TimelineType(rawValue: "1D") {
+      let tickType = timelineType.tickType
+      let calendar = Calendar.current
+      let today = Date()
+      let dateFormatter = DateFormatter()
+      dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+      dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+      let oneDayAgo = calendar.date(byAdding: .day, value: -1, to: today)!
+      let start = dateFormatter.string(from: oneDayAgo)
+      let end = dateFormatter.string(from: today)
+      fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in
+        ApiManager.shared.getOrders(productId: self.productID) { [weak self] orders in
+          guard let orders = orders else { return }
+          self?.orders = orders
+
+          DispatchQueue.main.async {
+            self?.tableView.reloadData()
+          }
+        }
+      }
+    }
   }
 
   private func setNavigationBar(_ isNeededRest: Bool) {
@@ -86,11 +105,11 @@ class CoinDetailVC: UIViewController {
 
 extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    3
+    2
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 2 {
+    if section == 1 {
       return orders.count
     }
     return 1
@@ -98,15 +117,13 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "BuySellPriceCell", for: indexPath)
-      guard let buySellPriceCell = cell as? BuySellPriceCell else { return cell }
-      buySellPriceCell.selectionStyle = .none
-
-      return buySellPriceCell
-    } else if indexPath.section == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: "LineChartMainCell", for: indexPath)
       guard let lineChartCell = cell as? LineChartMainCell else { return cell }
       lineChartCell.selectionStyle = .none
+      lineChartCell.delegate = self
+      lineChartCell.candlesTicks = candlesTicks
+      lineChartCell.setTicksData()
+      lineChartCell.selectDefaultButton(tag: timelineBtnTag)
 
       return lineChartCell
     } else {
@@ -121,14 +138,14 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if indexPath.section == 1 {
-      return UIScreen.main.bounds.height * 0.45
+    if indexPath.section == 0 {
+      return UIScreen.main.bounds.height * 0.6
     }
     return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == 2 {
+    if section == 1 {
       let headerView = TradeRecordHeaderView()
       return headerView
     }
@@ -137,7 +154,7 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == 2 {
+    if section == 1 {
       return 48
     }
     return CGFloat.leastNormalMagnitude
@@ -159,12 +176,156 @@ extension CoinDetailVC: WebSocketReceiveDelegate {
     let visibleCells = tableView.visibleCells
     for cell in visibleCells {
       if let cellIdentifier = cell.reuseIdentifier,
-         cellIdentifier == "BuySellPriceCell",
-         let buySellCell = cell as? BuySellPriceCell
+         cellIdentifier == "LineChartMainCell",
+         let mainCell = cell as? LineChartMainCell
       {
-        buySellCell.sellLabel.text = formattedBuyPrice
-        buySellCell.buyLabel.text = formattedSellPrice
+        mainCell.sellPriceLabel.text = formattedBuyPrice
+        mainCell.buyPriceLabel.text = formattedSellPrice
       }
+    }
+  }
+}
+
+extension CoinDetailVC: LineChartMainCellDelegate {
+  func didTimeBtnTapped(timeline: String, tag: Int) {
+    candlesTicks = []
+    if let timelineType = TimelineType(rawValue: timeline) {
+      timelineBtnTag = tag
+      let tickType = timelineType.tickType
+      var start = ""
+      var end = ""
+      let calendar = Calendar.current
+      let today = Date()
+      let dateFormatter = DateFormatter()
+      dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+      switch timelineType {
+      case .day, .week:
+        var startDate: Date
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let oneDayAgo = calendar.date(byAdding: .day, value: -1, to: today)!
+
+        if timelineType == .day {
+          startDate = calendar.date(byAdding: .day, value: -1, to: today)!
+        } else {
+          startDate = calendar.date(byAdding: .day, value: -7, to: today)!
+        }
+
+        start = dateFormatter.string(from: startDate)
+        end = dateFormatter.string(from: today)
+        fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in }
+      case .month, .season:
+        var startDate: Date
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: today)
+
+        if timelineType == .month {
+          startDate = calendar.date(byAdding: .month, value: -1, to: today)!
+        } else {
+          startDate = calendar.date(byAdding: .month, value: -3, to: today)!
+        }
+
+        start = dateFormatter.string(from: startDate)
+        end = dateFormatter.string(from: today)
+        fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in }
+      case .year:
+        let lastYearDate = calendar.date(byAdding: .year, value: -1, to: today)!
+        let components = calendar.dateComponents([.day], from: lastYearDate, to: today)
+        let totalDays = components.day!
+        var remainDays = totalDays
+        var date = Date()
+        var array: [Candlestick] = []
+        var candlesTemp: [Candlestick] = []
+        var index = 0
+        let semaphore = DispatchSemaphore(value: 0)
+
+        repeat {
+          let start = remainDays >= 300
+            ? calendar.date(byAdding: .day, value: -300, to: date)!
+            : calendar.date(byAdding: .day, value: -remainDays, to: date)!
+          print("---------------------")
+          print("Start = \(start)")
+          print("End = \(date)")
+          let startDate = DateUtils.string(from: start, format: "yyyy-MM-dd") ?? ""
+          let endDate = DateUtils.string(from: date, format: "yyyy-MM-dd") ?? ""
+
+          fetchCandlesTicks(from: startDate, to: endDate, granularity: tickType) { candles in
+            candlesTemp = candles
+            array += candlesTemp
+            date = start - Double(tickType)!
+            index += 1
+
+            semaphore.signal()
+            print("第\(index)趟完成")
+          }
+          semaphore.wait()
+          print("---------------------")
+          remainDays -= 300
+        } while remainDays > 0
+
+        print(array.count)
+      case .all:
+        let calendar = Calendar.current
+        var date = Date()
+
+        var array: [Candlestick] = []
+        var candlesTemp: [Candlestick] = []
+        var index = 0
+
+        let semaphore = DispatchSemaphore(value: 0)
+        repeat {
+          let threeHundredDaysAgo = calendar.date(byAdding: .day, value: -300, to: date)!
+          let startDate = DateUtils.string(from: threeHundredDaysAgo, format: "yyyy-MM-dd") ?? ""
+          let endDate = DateUtils.string(from: date, format: "yyyy-MM-dd") ?? ""
+
+          print("---------------------")
+          print("Start = \(threeHundredDaysAgo)")
+          print("End = \(date)")
+
+          fetchCandlesTicks(from: startDate, to: endDate, granularity: tickType) { candles in
+            candlesTemp = candles
+            array += candlesTemp
+            date = threeHundredDaysAgo
+            index += 1
+
+            semaphore.signal()
+            print("第\(index)趟完成")
+          }
+          semaphore.wait()
+
+          print(array.count)
+          print(candlesTemp.count)
+          print("---------------------")
+        } while candlesTemp.count != 0
+
+        print(array.count)
+      }
+    } else {
+      print("Invalid timeline")
+    }
+  }
+
+  private func fetchCandlesTicks(from startDate: String, to endDate: String, granularity: String,
+                                 completion: @escaping ([Candlestick]) -> Void)
+  {
+    ApiManager.shared.getProductCandles(productId: productID, from: startDate, to: endDate,
+                                        granularity: granularity)
+    { [weak self] candlesTicks in
+      guard let candlesTicks = candlesTicks else { return }
+      self?.handleCandlesTicks(candlesTicks)
+      completion(candlesTicks)
+    }
+  }
+
+  private func handleCandlesTicks(_ candlesTicks: [Candlestick]) {
+    self.candlesTicks += candlesTicks
+    let sortedData = self.candlesTicks.sorted(by: { $0.time < $1.time })
+    self.candlesTicks = sortedData
+    print(self.candlesTicks.count)
+
+    DispatchQueue.main.async {
+      let indexPath = IndexPath(row: 0, section: 0)
+      self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
   }
 }

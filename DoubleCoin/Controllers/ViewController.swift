@@ -30,6 +30,7 @@ class ViewController: UIViewController {
   var productTableStats: [ProductTableStat] = []
   let dispatchGroup = DispatchGroup()
   var semaphore = DispatchSemaphore(value: 0)
+  let calculator = TimeRangeCalculator()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,6 +42,16 @@ class ViewController: UIViewController {
 //    ApiManager.shared.getProductCandles()
 //    ApiManager.shared.getProductsStats()
 //    ApiManager.shared.getOrders()
+//    ApiManager.shared.getOrders(productId: "BTC-USD") {
+//      _ in
+//    }
+
+//    let timeline: TimelineType = .day
+//    ApiManager.shared.getProductCandles(productId: "BTC-USD", from: nil, to: nil, granularity: timeline.tickType) { _ in
+//    }
+
+//    let timeRange = calculator.calculateTimeRange(from: .now, for: TimelineType.day)
+//    print("Start: \(timeRange!.start), End: \(timeRange!.end)")
   }
 
   override func viewWillAppear(_ animated: Bool) {
