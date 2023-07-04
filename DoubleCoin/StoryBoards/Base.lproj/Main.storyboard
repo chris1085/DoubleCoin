@@ -200,7 +200,7 @@
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="買入"/>
                                                 <connections>
-                                                    <action selector="butCoinTapped:" destination="fQd-TB-CF2" eventType="touchUpInside" id="YGh-Wz-v1P"/>
+                                                    <action selector="buyCoinTapped:" destination="fQd-TB-CF2" eventType="touchUpInside" id="YGh-Wz-v1P"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwT-GF-jUT">
@@ -249,11 +249,111 @@
             </objects>
             <point key="canvasLocation" x="1544" y="-1056"/>
         </scene>
+        <!--Buy SellVC-->
+        <scene sceneID="ZTk-gs-ZoI">
+            <objects>
+                <viewController storyboardIdentifier="BuySellVC" id="UAM-sh-2hE" customClass="BuySellVC" customModule="DoubleCoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v3x-mI-14S">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iLW-Ik-pR4">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="213"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsK-xL-osf">
+                                        <rect key="frame" x="16" y="75" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="R0M-16-LE3"/>
+                                            <constraint firstAttribute="width" constant="32" id="yVU-ko-XEc"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="tappedCancelBtn:" destination="UAM-sh-2hE" eventType="touchUpInside" id="BhB-jP-FvL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmr-me-mUs">
+                                        <rect key="frame" x="80" y="77" width="297" height="28"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZJ-Jb-l4k">
+                                        <rect key="frame" x="176.33333333333334" y="129" width="40.666666666666657" height="22.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="NZJ-Jb-l4k" firstAttribute="top" secondItem="rmr-me-mUs" secondAttribute="bottom" constant="24" id="Erb-1A-vs0"/>
+                                    <constraint firstItem="rmr-me-mUs" firstAttribute="leading" secondItem="hsK-xL-osf" secondAttribute="trailing" constant="32" id="Ii2-MN-csh"/>
+                                    <constraint firstItem="hsK-xL-osf" firstAttribute="leading" secondItem="iLW-Ik-pR4" secondAttribute="leading" constant="16" id="P1O-qC-S0c"/>
+                                    <constraint firstItem="NZJ-Jb-l4k" firstAttribute="centerX" secondItem="iLW-Ik-pR4" secondAttribute="centerX" id="RLs-tD-xpO"/>
+                                    <constraint firstAttribute="trailing" secondItem="rmr-me-mUs" secondAttribute="trailing" constant="16" id="Rct-C0-Q87"/>
+                                    <constraint firstItem="hsK-xL-osf" firstAttribute="top" secondItem="iLW-Ik-pR4" secondAttribute="top" constant="75" id="dRW-cA-fpx"/>
+                                    <constraint firstItem="rmr-me-mUs" firstAttribute="centerY" secondItem="hsK-xL-osf" secondAttribute="centerY" id="hiI-Uk-xqB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6l1-yK-aEY">
+                                <rect key="frame" x="16" y="166.66666666666669" width="361" height="140.66666666666669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOc-zd-yQV">
+                                <rect key="frame" x="16" y="760" width="361" height="42"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UV-kD-wsy">
+                                <rect key="frame" x="176" y="323.33333333333331" width="41.333333333333343" height="22.666666666666686"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="16"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3bh-4a-1Dc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3bh-4a-1Dc" firstAttribute="trailing" secondItem="6l1-yK-aEY" secondAttribute="trailing" constant="16" id="2br-BT-x2G"/>
+                            <constraint firstItem="3bh-4a-1Dc" firstAttribute="trailing" secondItem="iLW-Ik-pR4" secondAttribute="trailing" id="AkP-85-OUh"/>
+                            <constraint firstItem="6l1-yK-aEY" firstAttribute="height" secondItem="iLW-Ik-pR4" secondAttribute="height" multiplier="0.66" id="FyQ-Fx-Mrj"/>
+                            <constraint firstItem="6l1-yK-aEY" firstAttribute="centerY" secondItem="iLW-Ik-pR4" secondAttribute="bottom" constant="24" id="JqQ-OJ-Bqk"/>
+                            <constraint firstItem="tOc-zd-yQV" firstAttribute="leading" secondItem="3bh-4a-1Dc" secondAttribute="leading" constant="16" id="PB1-eh-GAK"/>
+                            <constraint firstItem="3bh-4a-1Dc" firstAttribute="trailing" secondItem="tOc-zd-yQV" secondAttribute="trailing" constant="16" id="PlW-wT-peC"/>
+                            <constraint firstItem="iLW-Ik-pR4" firstAttribute="height" secondItem="v3x-mI-14S" secondAttribute="height" multiplier="0.25" id="QiO-Ye-u6A"/>
+                            <constraint firstItem="3bh-4a-1Dc" firstAttribute="bottom" secondItem="tOc-zd-yQV" secondAttribute="bottom" constant="16" id="Wih-8l-Gjy"/>
+                            <constraint firstItem="iLW-Ik-pR4" firstAttribute="leading" secondItem="3bh-4a-1Dc" secondAttribute="leading" id="jjh-uW-Hxm"/>
+                            <constraint firstItem="6l1-yK-aEY" firstAttribute="leading" secondItem="3bh-4a-1Dc" secondAttribute="leading" constant="16" id="jni-jt-098"/>
+                            <constraint firstItem="iLW-Ik-pR4" firstAttribute="top" secondItem="v3x-mI-14S" secondAttribute="top" id="tBc-RY-aje"/>
+                            <constraint firstItem="3UV-kD-wsy" firstAttribute="centerX" secondItem="v3x-mI-14S" secondAttribute="centerX" id="tUI-ft-G08"/>
+                            <constraint firstItem="3UV-kD-wsy" firstAttribute="top" secondItem="6l1-yK-aEY" secondAttribute="bottom" constant="16" id="xon-Ms-VQG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBtn" destination="hsK-xL-osf" id="hj1-fy-PwZ"/>
+                        <outlet property="exchangeRateInfoLabel" destination="3UV-kD-wsy" id="ep5-Yq-E8H"/>
+                        <outlet property="exchangeRateView" destination="6l1-yK-aEY" id="I9a-3R-eCV"/>
+                        <outlet property="headerLabel" destination="rmr-me-mUs" id="1gE-yh-Xlf"/>
+                        <outlet property="headerView" destination="iLW-Ik-pR4" id="VNP-C5-a1T"/>
+                        <outlet property="perExchangeRateLabel" destination="NZJ-Jb-l4k" id="uTe-WT-thJ"/>
+                        <outlet property="tradeBtn" destination="tOc-zd-yQV" id="rRu-lq-lV0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rho-Jf-J8W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2485" y="-1056"/>
+        </scene>
     </scenes>
     <resources>
         <image name="chart.xyaxis.line" catalog="system" width="128" height="102"/>
         <image name="creditcard" catalog="system" width="128" height="88"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

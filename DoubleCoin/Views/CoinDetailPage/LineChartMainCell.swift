@@ -42,7 +42,6 @@ class LineChartMainCell: UITableViewCell, ChartViewDelegate {
   var dataEntries: [ChartDataEntry] = []
   var ticksData: [Double] = []
   var candlesTicks: [Candlestick] = []
-  let calculator = TimeRangeCalculator()
 
   override func awakeFromNib() {
     super.awakeFromNib()

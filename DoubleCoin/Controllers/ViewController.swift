@@ -30,7 +30,6 @@ class ViewController: UIViewController {
   var productTableStats: [ProductTableStat] = []
   let dispatchGroup = DispatchGroup()
   var semaphore = DispatchSemaphore(value: 0)
-  let calculator = TimeRangeCalculator()
 
   override func viewDidLoad() {
     super.viewDidLoad()

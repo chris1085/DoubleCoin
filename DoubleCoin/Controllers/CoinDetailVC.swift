@@ -21,8 +21,24 @@ class CoinDetailVC: UIViewController {
     }
   }
 
-  @IBAction func butCoinTapped(_ sender: Any) {}
-  @IBAction func sellCoinTapped(_ sender: Any) {}
+  @IBAction func buyCoinTapped(_ sender: Any) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    if let buySellVC = storyboard.instantiateViewController(withIdentifier: "BuySellVC") as? BuySellVC {
+      buySellVC.modalPresentationStyle = .fullScreen
+      buySellVC.side = "buy"
+      present(buySellVC, animated: true, completion: nil)
+    }
+  }
+
+  @IBAction func sellCoinTapped(_ sender: Any) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    if let buySellVC = storyboard.instantiateViewController(withIdentifier: "BuySellVC") as? BuySellVC {
+      buySellVC.modalPresentationStyle = .fullScreen
+      buySellVC.side = "sell"
+      present(buySellVC, animated: true, completion: nil)
+    }
+  }
+
   @IBOutlet var tableView: UITableView! {
     didSet {
       tableView.dataSource = self
@@ -203,7 +219,6 @@ extension CoinDetailVC: LineChartMainCellDelegate {
       case .day, .week:
         var startDate: Date
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let oneDayAgo = calendar.date(byAdding: .day, value: -1, to: today)!
 
         if timelineType == .day {
           startDate = calendar.date(byAdding: .day, value: -1, to: today)!
@@ -217,7 +232,6 @@ extension CoinDetailVC: LineChartMainCellDelegate {
       case .month, .season:
         var startDate: Date
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: today)
 
         if timelineType == .month {
           startDate = calendar.date(byAdding: .month, value: -1, to: today)!
