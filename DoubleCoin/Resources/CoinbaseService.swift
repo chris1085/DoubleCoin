@@ -25,6 +25,8 @@ class CoinbaseService {
     let body = body
     let method = method
     let message = "\(cbAccessTimestamp)\(method)\(requestPath)\(body)"
+    
+    print(message)
 
     guard let keyData = Data(base64Encoded: secret) else {
       fatalError("Failed to decode secret as base64")
@@ -40,12 +42,12 @@ class CoinbaseService {
     return (cbAccessSign, cbAccessTimestamp)
   }
 
-  func createHeaders(requestPath: String) -> [String: String] {
+  func createHeaders(requestPath: String, body: String, method: String) -> [String: String] {
     let apiKey = CoinbaseService.shared.api
     let passphrase = CoinbaseService.shared.passphrase
     let timestampSignature = CoinbaseService.shared.getTimestampSignature(requestPath: requestPath,
-                                                                          method: HttpMethod.get.rawValue,
-                                                                          body: "")
+                                                                          method: method,
+                                                                          body: body)
 
     return [
       "cb-access-key": apiKey,
