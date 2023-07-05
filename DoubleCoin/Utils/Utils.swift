@@ -30,12 +30,13 @@ class ShadowView: UIView {
 }
 
 extension Double {
-  func formatNumber(_ number: Double) -> String? {
+  func formatNumber(_ number: Double, max maxDigits: Int, min minDigits: Int, isAddSep: Bool) -> String? {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 2
-    formatter.minimumFractionDigits = 2
-
+    formatter.maximumFractionDigits = maxDigits
+    formatter.minimumFractionDigits = minDigits
+    formatter.groupingSeparator = ","
+    formatter.usesGroupingSeparator = isAddSep
     return formatter.string(from: NSNumber(value: number))
   }
 

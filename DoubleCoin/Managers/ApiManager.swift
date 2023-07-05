@@ -12,6 +12,7 @@ import FoundationNetworking
 
 enum ApiUrls {
   static let baseUrl = "https://api-public.sandbox.pro.coinbase.com"
+  static let productionUrl = "https://api.exchange.coinbase.com"
 
   case getProducts
   case getAccounts

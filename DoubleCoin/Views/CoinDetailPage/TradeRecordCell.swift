@@ -54,7 +54,7 @@ class TradeRecordCell: UITableViewCell {
     }
     statusLightView.backgroundColor = StatusInfo.success.color
     statusLabel.text = StatusInfo.success.description
-    guard let usdPrice = Double(order.price)?.formatNumber(Double(order.price)!) else {
+    guard let usdPrice = Double(order.price)?.formatNumber(Double(order.price)!, max: 6, min: 0, isAddSep: true) else {
       usdPriceLabel.text = order.price
       return
     }

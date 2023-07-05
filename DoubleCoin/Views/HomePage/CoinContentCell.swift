@@ -43,11 +43,11 @@ class CoinContentCell: UITableViewCell {
             let openPrice = Double(data.productStat.open) else { return }
 
       let priceAvg = ((Double(data.productStat.high) ?? 0) + (Double(data.productStat.low) ?? 0)) / 2
-      let priceAvgFormatted = priceAvg.formatNumber(priceAvg)
+      let priceAvgFormatted = priceAvg.formatNumber(priceAvg, max: 6, min: 0, isAddSep: true)
       priceLabel.text = String(priceAvgFormatted ?? "")
 
       let quoteChange = (lastPrice - openPrice) / lastPrice * 100
-      if let formattedQuoteChange = quoteChange.formatNumber(quoteChange) {
+      if let formattedQuoteChange = quoteChange.formatNumber(quoteChange, max: 2, min: 0, isAddSep: true) {
         if quoteChange > 0 {
           quoteChangeLabel.text = "+\(formattedQuoteChange)%"
           quoteChangeLabel.textColor = AppColor.success

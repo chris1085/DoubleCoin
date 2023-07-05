@@ -24,18 +24,23 @@ class CoinDetailVC: UIViewController {
   @IBAction func buyCoinTapped(_ sender: Any) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     if let buySellVC = storyboard.instantiateViewController(withIdentifier: "BuySellVC") as? BuySellVC {
-      buySellVC.modalPresentationStyle = .fullScreen
+      coinbaseWebSocketClient?.socket.disconnect()
+      let navController = UINavigationController(rootViewController: buySellVC)
+      navController.modalPresentationStyle = .fullScreen
       buySellVC.side = "buy"
-      present(buySellVC, animated: true, completion: nil)
+      buySellVC.productID = productID
+      present(navController, animated: true)
     }
   }
 
   @IBAction func sellCoinTapped(_ sender: Any) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     if let buySellVC = storyboard.instantiateViewController(withIdentifier: "BuySellVC") as? BuySellVC {
-      buySellVC.modalPresentationStyle = .fullScreen
+      let navController = UINavigationController(rootViewController: buySellVC)
+      navController.modalPresentationStyle = .fullScreen
       buySellVC.side = "sell"
-      present(buySellVC, animated: true, completion: nil)
+      buySellVC.productID = productID
+      present(navController, animated: true)
     }
   }
 
@@ -57,21 +62,19 @@ class CoinDetailVC: UIViewController {
   var timelineBtnTag = 0
   override func viewDidLoad() {
     super.viewDidLoad()
-    coinbaseWebSocketClient = CoinbaseWebSocketClient(productID: productID)
-    coinbaseWebSocketClient?.delegate = self
-//    coinbaseWebSocketClient.connect()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
+    coinbaseWebSocketClient = CoinbaseWebSocketClient(productID: productID)
+    coinbaseWebSocketClient?.delegate = self
     setDefaultView()
     setNavigationBar(true)
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-
+    coinbaseWebSocketClient?.socket.disconnect()
     setNavigationBar(false)
   }
 
@@ -183,8 +186,8 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CoinDetailVC: WebSocketReceiveDelegate {
   func didReceiveTickerData(buyPrice: String, sellPrice: String) {
-    guard let formattedBuyPrice = Double(buyPrice)?.formatNumber(Double(buyPrice)!),
-          let formattedSellPrice = Double(sellPrice)?.formatNumber(Double(sellPrice)!)
+    guard let formattedBuyPrice = Double(buyPrice)?.formatNumber(Double(buyPrice)!, max: 6, min: 0, isAddSep: true),
+          let formattedSellPrice = Double(sellPrice)?.formatNumber(Double(sellPrice)!, max: 6, min: 0, isAddSep: true)
     else {
       return
     }
