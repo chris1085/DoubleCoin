@@ -175,6 +175,8 @@ class BuySellVC: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.setNavigationBarHidden(false, animated: animated)
+//    navigationItem.backBarButtonItem?.title = ""
+//    navigationController?.navigationBar.topItem?.title = ""
   }
 
   private func setDefaultView() {

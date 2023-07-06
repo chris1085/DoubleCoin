@@ -25,7 +25,7 @@ class CoinbaseService {
     let body = body
     let method = method
     let message = "\(cbAccessTimestamp)\(method)\(requestPath)\(body)"
-    
+
     print(message)
 
     guard let keyData = Data(base64Encoded: secret) else {

@@ -119,7 +119,7 @@ class ApiManager {
 //        self.semaphore.signal()
         completion(.success(responseData))
       } catch {
-        print(String(data: data, encoding: .utf8))
+//        print(String(data: data, encoding: .utf8))
         completion(.failure(error))
       }
     }
@@ -252,6 +252,7 @@ class ApiManager {
 
   func creatOrder(price: String, size: String, side: String, productId: String, completion: @escaping (OrderPost?) -> Void) {
     let body = "{\"price\": \"\(price)\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
+//    let body = "{\"type\": \"market\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
     let orderUrl = ApiUrls.createOrder.urlString
     let headers = CoinbaseService.shared.createHeaders(
       requestPath: ApiUrls.createOrder.requestUrlString, body: body, method: HttpMethod.post.rawValue)

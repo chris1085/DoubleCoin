@@ -24,6 +24,8 @@
 		0611381B2A53FCC3008575AC /* BuySellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0611381A2A53FCC3008575AC /* BuySellVC.swift */; };
 		061138232A5419D5008575AC /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138222A5419D5008575AC /* ApiKeys.swift */; };
 		061138252A555EFC008575AC /* TradeResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138242A555EFC008575AC /* TradeResultVC.swift */; };
+		061138272A568785008575AC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138262A568785008575AC /* BaseViewController.swift */; };
+		061138292A568F13008575AC /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138282A568F13008575AC /* AccountVC.swift */; };
 		06324B302A4C1FC300142FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B2F2A4C1FC300142FD1 /* AppDelegate.swift */; };
 		06324B322A4C1FC300142FD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B312A4C1FC300142FD1 /* SceneDelegate.swift */; };
 		06324B342A4C1FC300142FD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B332A4C1FC300142FD1 /* ViewController.swift */; };
@@ -76,6 +78,8 @@
 		0611381A2A53FCC3008575AC /* BuySellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellVC.swift; sourceTree = "<group>"; };
 		061138222A5419D5008575AC /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		061138242A555EFC008575AC /* TradeResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeResultVC.swift; sourceTree = "<group>"; };
+		061138262A568785008575AC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		061138282A568F13008575AC /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		06324B2C2A4C1FC300142FD1 /* DoubleCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06324B2F2A4C1FC300142FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06324B312A4C1FC300142FD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				061137FA2A4E73D0008575AC /* CoinDetailVC.swift */,
 				0611381A2A53FCC3008575AC /* BuySellVC.swift */,
 				061138242A555EFC008575AC /* TradeResultVC.swift */,
+				061138262A568785008575AC /* BaseViewController.swift */,
+				061138282A568F13008575AC /* AccountVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -475,9 +481,11 @@
 				06324B342A4C1FC300142FD1 /* ViewController.swift in Sources */,
 				06CF32512A4C4FB80055E326 /* UIImage+Extension.swift in Sources */,
 				06CF32682A4C57630055E326 /* ProductsModel.swift in Sources */,
+				061138292A568F13008575AC /* AccountVC.swift in Sources */,
 				06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */,
 				06CF326C2A4C61410055E326 /* CoinbaseService.swift in Sources */,
 				06324B302A4C1FC300142FD1 /* AppDelegate.swift in Sources */,
+				061138272A568785008575AC /* BaseViewController.swift in Sources */,
 				06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */,
 				06CF32552A4C503E0055E326 /* KingFisherWrapper.swift in Sources */,
 				06CF326E2A4C76E20055E326 /* ProfileModel.swift in Sources */,
