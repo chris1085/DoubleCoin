@@ -26,3 +26,9 @@ struct Account: Codable {
     case tradingEnabled = "trading_enabled"
   }
 }
+
+struct AccountNT {
+  let twd: String
+  let currency: String
+  let balance: String
+}

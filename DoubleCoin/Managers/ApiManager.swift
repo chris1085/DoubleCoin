@@ -13,6 +13,7 @@ import FoundationNetworking
 enum ApiUrls {
   static let baseUrl = "https://api-public.sandbox.pro.coinbase.com"
   static let productionUrl = "https://api.exchange.coinbase.com"
+  static let exchangeRateUrl = "https://api.coinbase.com/v2"
 
   case getProducts
   case getAccounts
@@ -22,6 +23,8 @@ enum ApiUrls {
   case getProductCandles(productId: String, start: String, end: String, granularity: String)
   case getOrders(limits: Int, productId: String)
   case createOrder
+  case getExchangeDollars(dollars: String, date: String)
+  case getSingleOrder(orderId: String)
 
   var urlString: String {
     switch self {
@@ -41,6 +44,10 @@ enum ApiUrls {
       return ApiUrls.baseUrl + "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     case .createOrder:
       return ApiUrls.baseUrl + "/orders"
+    case .getExchangeDollars(let dollars, let date):
+      return ApiUrls.exchangeRateUrl + "/exchange-rates?currency=\(dollars)&date=\(date)"
+    case .getSingleOrder(let orderId):
+      return ApiUrls.baseUrl + "/orders/\(orderId)"
     }
   }
 
@@ -62,6 +69,10 @@ enum ApiUrls {
       return "/orders?limit=\(limits)&status=done&product_id=\(productId)"
     case .createOrder:
       return "/orders"
+    case .getExchangeDollars(let dollars, let date):
+      return "/exchange-rates?currency=\(dollars)&date=\(date)"
+    case .getSingleOrder(let orderId):
+      return "/orders/\(orderId)"
     }
   }
 }
@@ -242,6 +253,7 @@ class ApiManager {
       { result in
         switch result {
         case .success(let allOrders):
+          print(allOrders)
           completion(allOrders)
         case .failure(let error):
           print("Error: \(error)")
@@ -250,9 +262,28 @@ class ApiManager {
       }
   }
 
-  func creatOrder(price: String, size: String, side: String, productId: String, completion: @escaping (OrderPost?) -> Void) {
-    let body = "{\"price\": \"\(price)\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
-//    let body = "{\"type\": \"market\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
+  func getSingleOrder(orderId: String, completion: @escaping (Order?) -> Void) {
+    let singleOrderUrl = ApiUrls.getSingleOrder(orderId: orderId).urlString
+    let headers = CoinbaseService.shared.createHeaders(
+      requestPath: ApiUrls.getSingleOrder(orderId: orderId).requestUrlString,
+      body: "", method: HttpMethod.get.rawValue)
+
+    fetchData(httpMethod: "GET", urlString: singleOrderUrl, responseType: Order.self, headers: headers, body: "")
+      { result in
+        switch result {
+        case .success(let singleOrder):
+          print(singleOrder)
+          completion(singleOrder)
+        case .failure(let error):
+          print("Error: \(error)")
+          completion(nil)
+        }
+      }
+  }
+
+  func creatOrder(size: String, side: String, productId: String, completion: @escaping (OrderPost?) -> Void) {
+//    let body = "{\"price\": \"\(price)\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
+    let body = "{\"type\": \"market\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
     let orderUrl = ApiUrls.createOrder.urlString
     let headers = CoinbaseService.shared.createHeaders(
       requestPath: ApiUrls.createOrder.requestUrlString, body: body, method: HttpMethod.post.rawValue)
@@ -263,6 +294,22 @@ class ApiManager {
         case .success(let orderInfo):
           print(orderInfo)
           completion(orderInfo)
+        case .failure(let error):
+          print("Error: \(error)")
+          completion(nil)
+        }
+      }
+  }
+
+  func getExchangeDollars(dollars: String, dateTime: String, completion: @escaping (ExchangeRate?) -> Void) {
+    let exchangeUrl = ApiUrls.getExchangeDollars(dollars: dollars, date: dateTime).urlString
+
+    fetchData(httpMethod: "GET", urlString: exchangeUrl, responseType: ExchangeRate.self, headers: nil, body: "")
+      { result in
+        switch result {
+        case .success(let exchange):
+//          print(exchange)
+          completion(exchange)
         case .failure(let error):
           print("Error: \(error)")
           completion(nil)

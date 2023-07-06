@@ -11,20 +11,19 @@ import UIKit
 // MARK: - Order
 
 struct Order: Codable {
-  let id, price, size, productID: String
-  let profileID, side, type, timeInForce: String
-  let createdAt, doneAt, doneReason: String
-  let fillFees, filledSize, executedValue, marketType: String
-  let status: String
-  let fundingCurrency: String?
-  let postOnly, settled: Bool
+  let id, size, productID, profileID: String
+  let side, type: String
+  let createdAt, doneAt, doneReason, fillFees: String
+  let filledSize, executedValue, marketType, status: String
+  let fundingCurrency: String
+  let settled, postOnly: Bool
+  let funds: String?
 
   enum CodingKeys: String, CodingKey {
-    case id, price, size
+    case id, size
     case productID = "product_id"
     case profileID = "profile_id"
-    case side, type
-    case timeInForce = "time_in_force"
+    case side, funds, type
     case postOnly = "post_only"
     case createdAt = "created_at"
     case doneAt = "done_at"
@@ -87,27 +86,16 @@ enum StatusInfo: String {
 // MARK: - OrderPost
 
 struct OrderPost: Codable {
-  let id: String
-  let price: String
-  let size: String
-  let productID: String
-  let side: String
-  let stp: String
-  let type: String
-  let timeInForce: String
-  let postOnly: Bool
-  let createdAt: String
-  let fillFees: String
-  let filledSize: String
-  let executedValue: String
+  let id, size, productID, side: String
+  let stp, funds, type: String
+  let createdAt, fillFees, filledSize, executedValue: String
   let status: String
-  let settled: Bool
+  let settled, postOnly: Bool
 
   enum CodingKeys: String, CodingKey {
-    case id, price, size
+    case id, size
     case productID = "product_id"
-    case side, stp, type
-    case timeInForce = "time_in_force"
+    case side, stp, funds, type
     case postOnly = "post_only"
     case createdAt = "created_at"
     case fillFees = "fill_fees"

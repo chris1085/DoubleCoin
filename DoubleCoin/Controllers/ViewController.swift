@@ -33,8 +33,14 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    ApiManager.shared.creatOrder(price: "35000.99000000", size: "0.00454352", side: "buy", productId: "BTC-USD") { _ in
+//    ApiManager.shared.creatOrder(size: "0.00454352", side: "buy", productId: "BTC-USD") { _ in
 //    }
+
+//    ApiManager.shared.getSingleOrder(orderId: "724a23c9-acca-44a7-a0a9-d9fbf4f266dc") { _ in
+//    }
+
+//    ApiManager.shared.getExchangeDollars(dollars: "USD", dateTime: "2023-07-06T11:32:16.973454Z", completion: { _ in
+//    })
   }
 
   override func viewWillAppear(_ animated: Bool) {
