@@ -72,6 +72,15 @@ class TradeResultVC: BaseViewController {
     }
   }
 
+  @IBOutlet var sizeLabel: UILabel!
+  @IBOutlet var createdAtLabel: UILabel!
+  @IBOutlet var doneAtLabel: UILabel!
+  @IBOutlet var unitPriceLabel: UILabel!
+  @IBOutlet var amountLabel: UILabel!
+  var isButtonHidden = false
+  var orderId = ""
+  private var order: Order?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = AppColor.secondary
@@ -80,11 +89,45 @@ class TradeResultVC: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setNavigationBar(true)
+    walletBtn.isHidden = isButtonHidden
+    getData {}
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     setNavigationBar(false)
+  }
+
+  private func getData(completion: @escaping () -> Void) {
+    if orderId != "" {
+      ApiManager.shared.getSingleOrder(orderId: orderId) { [weak self] order in
+        guard let order = order,
+              let productInfo = ProductInfo.fromTableStatName(order.productID) else { return }
+        DispatchQueue.main.async {
+          self?.sideView.backgroundColor = order.side == "buy" ? AppColor.success : AppColor.primary
+          self?.sideLabel.text = order.side.uppercased()
+          self?.sizeLabel.text = "\(order.size) \(productInfo.name)"
+          let timeZoneOffset: TimeInterval = 8 * 3600
+          let fromFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSS'Z'"
+          let toFormat = "yyyy-MM-dd HH:mm:ss"
+          self?.createdAtLabel.text = order.createdAt.formatDateString(
+            fromFormat: fromFormat, toFormat: toFormat, timeZoneOffset: timeZoneOffset)!
+          self?.doneAtLabel.text = order.doneAt.formatDateString(
+            fromFormat: fromFormat, toFormat: toFormat, timeZoneOffset: timeZoneOffset)!
+
+          let price = Double(order.executedValue)
+          let fee = Double(order.fillFees)
+          let size = Double(order.size)
+          guard let price = price, let fee = fee, let size = size else { return }
+          let unitPrice = (price - fee) / size
+          let unitPriceText = unitPrice.formatNumber(unitPrice, max: 8, min: 2, isAddSep: true)
+          guard let unitPriceText = unitPriceText else { return }
+          self?.unitPriceLabel.text = "USD \(unitPriceText)"
+          self?.amountLabel.text = "USD \(String(price.formatNumber(price, max: 8, min: 2, isAddSep: true)!))"
+//          self?.amountLabel.text = "USD \(order.executedValue)"
+        }
+      }
+    }
   }
 
   private func setNavigationBar(_ isNeededRest: Bool) {

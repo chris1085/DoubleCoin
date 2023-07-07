@@ -47,8 +47,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-ED-npm" userLabel="Virtual  Price Label">
-                        <rect key="frame" x="263.33333333333331" y="51.666666666666664" width="40.666666666666686" height="22.666666666666664"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjC-ED-npm" userLabel="Virtual  Price Label">
+                        <rect key="frame" x="294.33333333333331" y="51.666666666666664" width="9.6666666666666856" height="22.666666666666664"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -66,8 +66,8 @@
                             <constraint firstAttribute="width" secondItem="fGu-px-f05" secondAttribute="height" multiplier="1:1" id="h3x-cS-NYB"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NT$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dag-Cm-zj1" userLabel="Reality Price Label">
-                        <rect key="frame" x="276.66666666666669" y="82.333333333333329" width="27.333333333333314" height="19.666666666666671"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dag-Cm-zj1" userLabel="Reality Price Label">
+                        <rect key="frame" x="275" y="82.333333333333329" width="29" height="19.666666666666671"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -95,13 +95,13 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionLabel" destination="Tr8-2Z-DbR" id="nd0-4k-xrw"/>
+                <outlet property="priceLabel" destination="dag-Cm-zj1" id="JnP-x9-sfn"/>
+                <outlet property="sizeLabel" destination="TjC-ED-npm" id="Va6-lt-asC"/>
                 <outlet property="statusLabel" destination="x3o-9f-rM7" id="VCY-2F-stx"/>
                 <outlet property="statusLightView" destination="fGu-px-f05" id="UCk-Gh-eqe"/>
                 <outlet property="tradeTimeLabel" destination="sVo-l9-aWV" id="3OA-LH-EbJ"/>
                 <outlet property="tradeWayLabel" destination="1Bd-KC-g83" id="Ax1-5C-K6O"/>
                 <outlet property="tradeWayView" destination="zXm-CQ-wLu" id="J3u-7n-ebL"/>
-                <outlet property="twdPriceLabel" destination="dag-Cm-zj1" id="JnP-x9-sfn"/>
-                <outlet property="usdPriceLabel" destination="TjC-ED-npm" id="Va6-lt-asC"/>
             </connections>
             <point key="canvasLocation" x="68.702290076335871" y="52.112676056338032"/>
         </tableViewCell>

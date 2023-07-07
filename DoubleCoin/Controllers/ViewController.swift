@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     didSet {
       tableView.dataSource = self
       tableView.delegate = self
-//      tableView.clipsToBounds = true
       tableView.sectionHeaderTopPadding = 0
       tableView.registerCellWithNib(identifier: "BannerCell", bundle: nil)
       tableView.registerCellWithNib(identifier: "CoinContentCell", bundle: nil)
@@ -34,7 +33,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    ApiManager.shared.creatOrder(size: "0.00454352", side: "buy", productId: "BTC-USD") { _ in
+//    ApiManager.shared.creatOrder(size: "0.0028571", side: "buy", productId: "BTC-USD") { _ in
 //    }
 
 //    ApiManager.shared.getSingleOrder(orderId: "724a23c9-acca-44a7-a0a9-d9fbf4f266dc") { _ in
@@ -47,12 +46,14 @@ class ViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     getData {}
+    tabBarController?.tabBar.isHidden = false
   }
 
   private func getData(completion: @escaping () -> Void) {
     coinArray = []
     productTableStats = []
     totalAmount = 0
+    tableView.reloadData()
 
     let dispatchGroup = DispatchGroup()
 
@@ -64,15 +65,14 @@ class ViewController: UIViewController {
           dollars: account.currency, dateTime: timestamp, completion: { exchangeRates in
             let accountBalance = Double(account.balance)!
 
-            guard let exchangeRate = exchangeRates?.data.rates["USD"],
+            guard let exchangeRate = exchangeRates?.data.rates["TWD"],
                   let rate = Double(exchangeRate)
-            else { dispatchGroup.leave()
+            else {
+              dispatchGroup.leave()
               return
             }
 
             let amounts = accountBalance * rate
-//            let currencyAccount = AccountNT(twd: String(amounts), currency: account.currency, balance: account.balance)
-//            self?.accounts.append(currencyAccount)
             self?.totalAmount += amounts
             dispatchGroup.leave()
           })
@@ -82,25 +82,22 @@ class ViewController: UIViewController {
         guard let totalAmount = self?.totalAmount else { return }
         DispatchQueue.main.async {
           self?.amountsText = totalAmount.formatNumber(totalAmount, max: 0, min: 0, isAddSep: true)
-//          self?.tempNumberLabel = (self?.amountsLabel.text)!
-          self?.tableView.reloadData()
-//          completion()
+          self?.getProducts {
+            self?.tableView.reloadData()
+            completion()
+          }
         }
       }
     }
-//    ApiManager.shared.getAccounts { [weak self] accounts in
-//      if let usdAccount = accounts.filter({ $0.currency == "USD" }).first {
-//        guard let usdBalance = Double(usdAccount.balance) else { return }
-//        self?.amountsText = usdBalance.formatNumber(usdBalance, max: 6, min: 0, isAddSep: true)
-//        print("USD Balance: \(usdBalance)")
-//        DispatchQueue.main.async {
-//          self?.tableView.reloadData()
-//        }
-//      } else {
-//        print("No USD account found")
-//      }
-//    }
+  }
 
+  private func headerLoader() {
+    getData {
+      self.tableView.endHeaderRefreshing()
+    }
+  }
+
+  private func getProducts(completion: @escaping () -> Void) {
     ApiManager.shared.getProducts { [weak self] coins in
       self?.coinArray = coins
       guard let coinArray = self?.coinArray else { return }
@@ -122,17 +119,9 @@ class ViewController: UIViewController {
           guard let productTableStats = self?.productTableStats else { return }
           let sortedData = productTableStats.sorted(by: { $0.name < $1.name })
           self?.productTableStats = sortedData
-//          print(self?.productTableStats)
           completion()
-          self?.tableView.reloadData()
         }
       }
-    }
-  }
-
-  private func headerLoader() {
-    getData {
-      self.tableView.endHeaderRefreshing()
     }
   }
 }

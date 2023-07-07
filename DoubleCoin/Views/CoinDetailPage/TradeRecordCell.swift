@@ -22,8 +22,8 @@ class TradeRecordCell: UITableViewCell {
 
   @IBOutlet var tradeTimeLabel: UILabel!
   @IBOutlet var descriptionLabel: UILabel!
-  @IBOutlet var usdPriceLabel: UILabel!
-  @IBOutlet var twdPriceLabel: UILabel!
+  @IBOutlet var sizeLabel: UILabel!
+  @IBOutlet var priceLabel: UILabel!
   @IBOutlet var statusLabel: UILabel!
   @IBOutlet var statusLightView: UIView! {
     didSet {
@@ -57,11 +57,11 @@ class TradeRecordCell: UITableViewCell {
     guard let usdPrice = Double(order.executedValue)?.formatNumber(Double(order.executedValue)!,
                                                                    max: 6, min: 0, isAddSep: true)
     else {
-      usdPriceLabel.text = order.executedValue
+      priceLabel.text = order.executedValue
       return
     }
-
-    usdPriceLabel.text = usdPrice
+    sizeLabel.text = order.size
+    priceLabel.text = usdPrice
   }
 
   private func dateFormat(dateString: String) -> String? {

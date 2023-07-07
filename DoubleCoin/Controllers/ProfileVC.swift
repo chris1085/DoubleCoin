@@ -13,6 +13,10 @@ class ProfileVC: UIViewController {
   @IBOutlet var idCheckView: UIView! {
     didSet {
       idCheckView.layer.cornerRadius = 8
+      idCheckView.layer.shadowColor = UIColor.black.cgColor
+      idCheckView.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+      idCheckView.layer.shadowOpacity = 0.15
+      idCheckView.layer.shadowRadius = 4.0
     }
   }
 

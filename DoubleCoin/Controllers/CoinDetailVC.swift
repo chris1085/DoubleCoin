@@ -70,6 +70,7 @@ class CoinDetailVC: UIViewController {
     coinbaseWebSocketClient?.delegate = self
     setDefaultView()
     setNavigationBar(true)
+    tabBarController?.tabBar.isHidden = true
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -90,7 +91,7 @@ class CoinDetailVC: UIViewController {
       let start = dateFormatter.string(from: oneDayAgo)
       let end = dateFormatter.string(from: today)
       fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in
-        ApiManager.shared.getOrders(productId: self.productID) { [weak self] orders in
+        ApiManager.shared.getOrders(productId: self.productID, limits: 5) { [weak self] orders in
           guard let orders = orders else { return }
           self?.orders = orders
 

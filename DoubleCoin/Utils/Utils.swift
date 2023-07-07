@@ -57,3 +57,20 @@ extension Double {
     return formattedDate
   }
 }
+
+extension String {
+  func formatDateString(fromFormat: String, toFormat: String, timeZoneOffset: TimeInterval) -> String? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.dateFormat = fromFormat
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+    if let date = dateFormatter.date(from: self) {
+      dateFormatter.dateFormat = toFormat
+      dateFormatter.timeZone = TimeZone(secondsFromGMT: Int(timeZoneOffset))
+      return dateFormatter.string(from: date)
+    }
+
+    return nil
+  }
+}
