@@ -34,7 +34,7 @@ class AccountVC: UIViewController {
 
   @IBOutlet var eyeBtn: UIButton! {
     didSet {
-      eyeBtn.tintColor = UIColor.darkGray
+      eyeBtn.tintColor = UIColor.white
     }
   }
 
@@ -45,6 +45,9 @@ class AccountVC: UIViewController {
       tableView.delegate = self
       tableView.sectionHeaderTopPadding = 0
       tableView.registerCellWithNib(identifier: "AccountTableCell", bundle: nil)
+      tableView.addRefreshHeader(refreshingBlock: { [weak self] in
+        self?.headerLoader()
+      })
     }
   }
 
@@ -61,7 +64,7 @@ class AccountVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.isHidden = true
-    getData()
+    getData {}
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +72,7 @@ class AccountVC: UIViewController {
     navigationController?.navigationBar.isHidden = false
   }
 
-  private func getData() {
+  private func getData(completion: @escaping () -> Void) {
     let dispatchGroup = DispatchGroup()
     ApiManager.shared.getAccounts { [weak self] accounts in
       for account in accounts {
@@ -99,8 +102,16 @@ class AccountVC: UIViewController {
           self?.amountsLabel.text = totalAmount.formatNumber(totalAmount, max: 0, min: 0, isAddSep: true)
           self?.tempNumberLabel = (self?.amountsLabel.text)!
           self?.tableView.reloadData()
+          completion()
         }
       }
+    }
+  }
+
+  private func headerLoader() {
+    totalAmount = 0
+    getData {
+      self.tableView.endHeaderRefreshing()
     }
   }
 }
