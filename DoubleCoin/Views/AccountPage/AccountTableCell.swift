@@ -31,7 +31,7 @@ class AccountTableCell: UITableViewCell {
 
   func configureCell(data: AccountNT) {
     let lowercaseCurrency = data.currency.lowercased()
-    let coinIconUrl = "https://cryptoicons.org/api/icon/\(lowercaseCurrency)/200"
+//    let coinIconUrl = "https://cryptoicons.org/api/icon/\(lowercaseCurrency)/200"
     coinImageView.image = UIImage(named: lowercaseCurrency)
 //    DispatchQueue.main.async {
 //      self.coinImageView.loadImage(coinIconUrl)

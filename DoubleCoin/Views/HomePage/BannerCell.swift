@@ -54,12 +54,13 @@ class BannerCell: UITableViewCell {
     isEyeBtnHidden = !isEyeBtnHidden
 
     if isEyeBtnHidden {
-      sender.setBackgroundImage(UIImage(systemName: "eye"), for: .normal)
-      numberLabel.text = tempNumberLabel
-    } else {
       sender.setBackgroundImage(UIImage(systemName: "eye.slash"), for: .normal)
       tempNumberLabel = numberLabel.text!
       numberLabel.text = "✲✲✲✲✲✲"
+
+    } else {
+      sender.setBackgroundImage(UIImage(systemName: "eye"), for: .normal)
+      numberLabel.text = tempNumberLabel
     }
   }
 

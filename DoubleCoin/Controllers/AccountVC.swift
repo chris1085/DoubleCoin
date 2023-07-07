@@ -73,6 +73,7 @@ class AccountVC: UIViewController {
   }
 
   private func getData(completion: @escaping () -> Void) {
+    totalAmount = 0
     let dispatchGroup = DispatchGroup()
     ApiManager.shared.getAccounts { [weak self] accounts in
       for account in accounts {
@@ -109,7 +110,6 @@ class AccountVC: UIViewController {
   }
 
   private func headerLoader() {
-    totalAmount = 0
     getData {
       self.tableView.endHeaderRefreshing()
     }
