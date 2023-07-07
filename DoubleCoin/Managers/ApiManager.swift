@@ -173,7 +173,7 @@ class ApiManager {
       }
   }
 
-  func getUserProfile() {
+  func getUserProfile(completion: @escaping (Profile?) -> Void) {
     let userProfileUrl = ApiUrls.getUserProfile.urlString
     let headers = CoinbaseService.shared.createHeaders(requestPath: ApiUrls.getUserProfile.requestUrlString,
                                                        body: "", method: HttpMethod.get.rawValue)
@@ -181,10 +181,12 @@ class ApiManager {
     fetchData(httpMethod: "GET", urlString: userProfileUrl, responseType: [Profile].self, headers: headers, body: "")
       { result in
         switch result {
-        case .success(let profile):
-          print(profile)
+        case .success(let profiles):
+//          print(profile)
+          completion(profiles.first)
         case .failure(let error):
           print("Error: \(error)")
+          completion(nil)
         }
       }
   }

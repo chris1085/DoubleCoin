@@ -29,6 +29,7 @@
 		0611382D2A56C20E008575AC /* AccountTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0611382B2A56C20E008575AC /* AccountTableCell.swift */; };
 		0611382E2A56C20E008575AC /* AccountTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0611382C2A56C20E008575AC /* AccountTableCell.xib */; };
 		061138322A57031F008575AC /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138312A57031F008575AC /* ExchangeRateModel.swift */; };
+		061138342A5787FC008575AC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138332A5787FC008575AC /* ProfileVC.swift */; };
 		06324B302A4C1FC300142FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B2F2A4C1FC300142FD1 /* AppDelegate.swift */; };
 		06324B322A4C1FC300142FD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B312A4C1FC300142FD1 /* SceneDelegate.swift */; };
 		06324B342A4C1FC300142FD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06324B332A4C1FC300142FD1 /* ViewController.swift */; };
@@ -86,6 +87,7 @@
 		0611382B2A56C20E008575AC /* AccountTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableCell.swift; sourceTree = "<group>"; };
 		0611382C2A56C20E008575AC /* AccountTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableCell.xib; sourceTree = "<group>"; };
 		061138312A57031F008575AC /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
+		061138332A5787FC008575AC /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		06324B2C2A4C1FC300142FD1 /* DoubleCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoubleCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06324B2F2A4C1FC300142FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06324B312A4C1FC300142FD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				0611381A2A53FCC3008575AC /* BuySellVC.swift */,
 				061138242A555EFC008575AC /* TradeResultVC.swift */,
 				061138282A568F13008575AC /* AccountVC.swift */,
+				061138332A5787FC008575AC /* ProfileVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */,
 				06CF32552A4C503E0055E326 /* KingFisherWrapper.swift in Sources */,
 				06CF326E2A4C76E20055E326 /* ProfileModel.swift in Sources */,
+				061138342A5787FC008575AC /* ProfileVC.swift in Sources */,
 				061138192A52646C008575AC /* TimeRangeCalculator.swift in Sources */,
 				06CF32742A4D24C00055E326 /* ProductCandles.swift in Sources */,
 				0611380E2A4FF2A9008575AC /* TradeRecordCell.swift in Sources */,

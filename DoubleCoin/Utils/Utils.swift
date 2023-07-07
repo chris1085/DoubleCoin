@@ -12,6 +12,8 @@ enum AppColor {
   static let primary = UIColor(red: 220 / 255, green: 95 / 255, blue: 91 / 255, alpha: 1)
   static let secondary = UIColor(red: 250 / 255, green: 250 / 255, blue: 250 / 255, alpha: 1)
   static let success = UIColor(red: 33 / 255, green: 168 / 255, blue: 121 / 255, alpha: 1)
+  static let checkOk = UIColor(red: 91 / 255, green: 188 / 255, blue: 122 / 255, alpha: 1)
+  static let checkDisabled = UIColor(red: 220 / 255, green: 95 / 255, blue: 91 / 255, alpha: 1)
 }
 
 class ShadowView: UIView {
