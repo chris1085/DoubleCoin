@@ -17,6 +17,28 @@ class HistoryVC: UIViewController {
     }
   }
 
+  @IBOutlet var switchingDollarsBtn: UIButton!
+  @IBAction func switchDollars(_ sender: Any) {
+    guard let dollarsSheetVC = storyboard?.instantiateViewController(withIdentifier: "DollarsSheetVC")
+      as? DollarsSheetVC else { return }
+    if let sheetPresentationController = dollarsSheetVC.sheetPresentationController {
+      sheetPresentationController.detents = [.medium()]
+      sheetPresentationController.preferredCornerRadius = 24
+    }
+    dollarsSheetVC.dollarsNames = dollarsNames
+    dollarsSheetVC.dollarsNames.insert("所有幣種", at: 0)
+    dollarsSheetVC.selectedDollars = selectedDollars
+    dollarsSheetVC.delegate = self
+
+    present(dollarsSheetVC, animated: true)
+  }
+
+  @IBOutlet var noRecordsView: UIView! {
+    didSet {
+      noRecordsView.isHidden = true
+    }
+  }
+
   @IBOutlet var historyHeaderView: HistoryHeaderView!
   private var allOrders: [Order] = []
   private var filteredOrders: [Order] = []
@@ -87,12 +109,6 @@ extension HistoryVC: UITableViewDelegate, UITableViewDataSource {
     return tradeRecordCell
   }
 
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let headerView = historyHeaderView
-    headerView?.delegate = self
-    return headerView
-  }
-
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let orderId = filteredOrders[indexPath.row].id
     guard let tradeResultVC = storyboard?.instantiateViewController(withIdentifier: "TradeResultVC")
@@ -105,31 +121,16 @@ extension HistoryVC: UITableViewDelegate, UITableViewDataSource {
   }
 }
 
-extension HistoryVC: HistoryHeaderDelegate {
-  func didTappedSelectedDollats() {
-    guard let dollarsSheetVC = storyboard?.instantiateViewController(withIdentifier: "DollarsSheetVC")
-      as? DollarsSheetVC else { return }
-    if let sheetPresentationController = dollarsSheetVC.sheetPresentationController {
-      sheetPresentationController.detents = [.medium()]
-      sheetPresentationController.preferredCornerRadius = 24
-    }
-    dollarsSheetVC.dollarsNames = dollarsNames
-    dollarsSheetVC.dollarsNames.insert("所有幣種", at: 0)
-    dollarsSheetVC.selectedDollars = selectedDollars
-    dollarsSheetVC.delegate = self
-
-    present(dollarsSheetVC, animated: true)
-  }
-}
-
 extension HistoryVC: DollarsSheetVCDelegate {
   func didSelectDollar(dollarName: String) {
     if dollarName == "所有幣種" {
       filteredOrders = allOrders
-      tableView.reloadData()
-      return
+    } else {
+      filteredOrders = allOrders.filter { $0.productID == "\(dollarName)-USD" }
     }
-    filteredOrders = allOrders.filter { $0.productID == "\(dollarName)-USD" }
+
+    noRecordsView.isHidden = filteredOrders.count != 0 ? true : false
+
     selectedDollars = dollarName
     tableView.reloadData()
   }

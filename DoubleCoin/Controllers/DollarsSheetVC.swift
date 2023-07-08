@@ -33,7 +33,6 @@ class DollarsSheetVC: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(dollarsNames)
   }
 
   override func viewWillAppear(_ animated: Bool) {

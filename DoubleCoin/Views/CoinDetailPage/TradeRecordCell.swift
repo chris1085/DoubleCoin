@@ -33,13 +33,10 @@ class TradeRecordCell: UITableViewCell {
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-
-    // Configure the view for the selected state
   }
 
   func configureCell(order: Order) {
@@ -61,7 +58,7 @@ class TradeRecordCell: UITableViewCell {
       return
     }
     sizeLabel.text = order.size
-    priceLabel.text = usdPrice
+    priceLabel.text = "USD \(usdPrice)"
   }
 
   private func dateFormat(dateString: String) -> String? {

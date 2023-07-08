@@ -369,21 +369,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pAK-wC-kGP">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="110" width="393" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36e-zY-WtL">
+                                <rect key="frame" x="0.0" y="110" width="393" height="708"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此幣種暫無任何買賣紀錄" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7x-k7-pvg">
+                                        <rect key="frame" x="108.66666666666669" y="16" width="176" height="22.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="S7x-k7-pvg" firstAttribute="centerX" secondItem="36e-zY-WtL" secondAttribute="centerX" id="VLt-56-IMS"/>
+                                    <constraint firstItem="S7x-k7-pvg" firstAttribute="top" secondItem="36e-zY-WtL" secondAttribute="top" constant="16" id="rsT-UG-Hhh"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfY-T3-eZY">
+                                <rect key="frame" x="161.66666666666666" y="67" width="86" height="35"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="16"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="全部幣種 ▼">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchDollars:" destination="5Eu-7k-ADE" eventType="touchUpInside" id="c89-FW-8tm"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-kl-Cmh">
+                                <rect key="frame" x="0.0" y="109.66666666666667" width="393" height="0.3333333333333286"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="NM0-vZ-7Vx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="67s-s0-tbH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ufc-kl-Cmh" firstAttribute="leading" secondItem="67s-s0-tbH" secondAttribute="leading" id="0HR-i5-0SQ"/>
+                            <constraint firstItem="67s-s0-tbH" firstAttribute="trailing" secondItem="ufc-kl-Cmh" secondAttribute="trailing" id="2c6-xB-gPy"/>
                             <constraint firstItem="67s-s0-tbH" firstAttribute="bottom" secondItem="pAK-wC-kGP" secondAttribute="bottom" id="BbN-dV-6U7"/>
+                            <constraint firstItem="pAK-wC-kGP" firstAttribute="top" secondItem="ufc-kl-Cmh" secondAttribute="bottom" id="BzF-7H-kbr"/>
                             <constraint firstItem="pAK-wC-kGP" firstAttribute="leading" secondItem="67s-s0-tbH" secondAttribute="leading" id="L5x-oX-8sd"/>
+                            <constraint firstItem="67s-s0-tbH" firstAttribute="trailing" secondItem="36e-zY-WtL" secondAttribute="trailing" id="OjR-SN-oFJ"/>
+                            <constraint firstItem="67s-s0-tbH" firstAttribute="bottom" secondItem="36e-zY-WtL" secondAttribute="bottom" id="P59-0s-4AF"/>
+                            <constraint firstItem="36e-zY-WtL" firstAttribute="leading" secondItem="67s-s0-tbH" secondAttribute="leading" id="X2b-aq-0Ma"/>
                             <constraint firstItem="67s-s0-tbH" firstAttribute="trailing" secondItem="pAK-wC-kGP" secondAttribute="trailing" id="dq3-D3-Bep"/>
-                            <constraint firstItem="pAK-wC-kGP" firstAttribute="top" secondItem="67s-s0-tbH" secondAttribute="top" id="nZK-u2-oUH"/>
+                            <constraint firstItem="qfY-T3-eZY" firstAttribute="centerX" secondItem="e1s-6T-waj" secondAttribute="centerX" constant="8" id="mMZ-7e-F4G"/>
+                            <constraint firstItem="qfY-T3-eZY" firstAttribute="top" secondItem="67s-s0-tbH" secondAttribute="top" constant="8" id="nTb-8T-m3v"/>
+                            <constraint firstItem="pAK-wC-kGP" firstAttribute="top" secondItem="qfY-T3-eZY" secondAttribute="bottom" constant="8" id="nZK-u2-oUH"/>
+                            <constraint firstItem="36e-zY-WtL" firstAttribute="top" secondItem="ufc-kl-Cmh" secondAttribute="bottom" id="xgc-Hm-dce"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="historyHeaderView" destination="34Y-cc-bCw" id="69f-uC-2nu"/>
+                        <outlet property="noRecordsView" destination="36e-zY-WtL" id="msr-0O-Ora"/>
+                        <outlet property="switchingDollarsBtn" destination="qfY-T3-eZY" id="XDy-gK-azr"/>
                         <outlet property="tableView" destination="pAK-wC-kGP" id="as4-zW-QmZ"/>
                     </connections>
                 </viewController>
@@ -426,7 +472,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1543" y="-245"/>
+            <point key="canvasLocation" x="1542.7480916030534" y="-245.07042253521129"/>
         </scene>
         <!--Dollars SheetVC-->
         <scene sceneID="a25-UF-eep">
@@ -480,7 +526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wyc-P8-Y2R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485" y="-245"/>
+            <point key="canvasLocation" x="2484.7328244274809" y="-245.07042253521129"/>
         </scene>
         <!--市場-->
         <scene sceneID="qWr-Op-jYk">
