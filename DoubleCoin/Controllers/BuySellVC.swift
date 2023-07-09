@@ -16,6 +16,7 @@ class BuySellVC: UIViewController {
   }
 
   @IBAction func tappedCancelBtn(_ sender: Any) {
+    coinbaseWebSocketClient?.socket.disconnect()
     dismiss(animated: true)
   }
 
@@ -126,8 +127,31 @@ class BuySellVC: UIViewController {
 
   @IBAction func tappedTradeBtn(_ sender: Any) {
     coinbaseWebSocketClient?.socket.disconnect()
-    if let controller = storyboard?.instantiateViewController(withIdentifier: "TradeResultVC") as? TradeResultVC {
-      navigationController?.pushViewController(controller, animated: true) // 顯示下一個畫面
+
+    guard let sourcePriceText = sourcePriceTextField.text,
+          let sourcePrice = Double(sourcePriceText)
+    else {
+      showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
+      return
+    }
+
+    if sourcePrice == 0.0 {
+      showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
+    }
+
+    ApiManager.shared.createOrder(size: sourcePriceText, side: side, productId: productID) { [weak self] orderInfo in
+      self?.orderInfo = orderInfo
+    }
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      guard let orderInfo = self.orderInfo else { return }
+      guard let tradeResultVC = self.storyboard?.instantiateViewController(withIdentifier: "TradeResultVC")
+        as? TradeResultVC else { return }
+
+      tradeResultVC.isButtonHidden = false
+      tradeResultVC.orderId = orderInfo.id
+
+      self.navigationController?.pushViewController(tradeResultVC, animated: true)
     }
   }
 
@@ -156,6 +180,7 @@ class BuySellVC: UIViewController {
   var sourcePrice: Double = 0
   var originPrice: Double = 0
   var accountBalance = ""
+  var orderInfo: OrderPost?
 
   override func viewDidLoad() {
     super.viewDidLoad()

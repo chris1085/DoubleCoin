@@ -87,10 +87,11 @@ enum StatusInfo: String {
 
 struct OrderPost: Codable {
   let id, size, productID, side: String
-  let stp, funds, type: String
+  let stp, type: String
   let createdAt, fillFees, filledSize, executedValue: String
   let status: String
   let settled, postOnly: Bool
+  let funds: String?
 
   enum CodingKeys: String, CodingKey {
     case id, size

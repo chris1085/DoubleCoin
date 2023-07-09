@@ -300,7 +300,7 @@ class ApiManager {
     }
   }
 
-  func creatOrder(size: String, side: String, productId: String, completion: @escaping (OrderPost?) -> Void) {
+  func createOrder(size: String, side: String, productId: String, completion: @escaping (OrderPost?) -> Void) {
 //    let body = "{\"price\": \"\(price)\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
     let body = "{\"type\": \"market\", \"size\": \"\(size)\", \"side\": \"\(side)\", \"product_id\": \"\(productId)\", \"time_in_force\": \"FOK\"}"
     let orderUrl = ApiUrls.createOrder.urlString

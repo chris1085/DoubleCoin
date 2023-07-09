@@ -74,3 +74,10 @@ extension String {
     return nil
   }
 }
+
+func showOkAlert(title: String, message: String, viewController: UIViewController) {
+  let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+  let doneAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+  alertController.addAction(doneAction)
+  viewController.present(alertController, animated: true, completion: nil)
+}

@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    ApiManager.shared.creatOrder(size: "0.0028571", side: "buy", productId: "BTC-USD") { _ in
+//    ApiManager.shared.createOrder(size: "0.0028571", side: "buy", productId: "BTC-USD") { _ in
 //    }
 
 //    ApiManager.shared.getSingleOrder(orderId: "724a23c9-acca-44a7-a0a9-d9fbf4f266dc") { _ in
