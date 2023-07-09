@@ -17,7 +17,12 @@ class HistoryVC: UIViewController {
     }
   }
 
-  @IBOutlet var switchingDollarsBtn: UIButton!
+  @IBOutlet var switchingDollarsBtn: UIButton! {
+    didSet {
+      switchingDollarsBtn.setTitle("\(selectedDollars) ▼", for: .normal)
+    }
+  }
+
   @IBAction func switchDollars(_ sender: Any) {
     guard let dollarsSheetVC = storyboard?.instantiateViewController(withIdentifier: "DollarsSheetVC")
       as? DollarsSheetVC else { return }

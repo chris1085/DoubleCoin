@@ -8,14 +8,18 @@
 import UIKit
 
 class TradeRecordHeaderView: UIView {
-  @IBOutlet var contentView: UIView!{
-    didSet{
+  @IBOutlet var contentView: UIView! {
+    didSet {
       contentView.layer.backgroundColor = AppColor.secondary.cgColor
     }
   }
-  @IBAction func showRecordsTapped(_ sender: Any) {}
+
+  @IBAction func showRecordsTapped(_ sender: Any) {
+    didTappedShowRecords!()
+  }
 
   @IBOutlet var allRecordsBtn: UIButton!
+  var didTappedShowRecords: (() -> Void)?
 
   override init(frame: CGRect) {
     super.init(frame: frame)

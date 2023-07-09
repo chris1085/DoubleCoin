@@ -167,6 +167,16 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == 1 {
       let headerView = TradeRecordHeaderView()
+      headerView.didTappedShowRecords = { [weak self] in
+        guard let historyVC = self?.storyboard?.instantiateViewController(withIdentifier: "HistoryVC")
+          as? HistoryVC else { return }
+
+        historyVC.productID = self?.productID ?? "BTC-USD"
+        guard let productInfo = ProductInfo.fromTableStatName(self?.productID ?? "BTC-USD") else { return }
+        historyVC.selectedDollars = productInfo.name
+
+        self?.navigationController?.pushViewController(historyVC, animated: true)
+      }
       return headerView
     }
 
@@ -261,9 +271,9 @@ extension CoinDetailVC: LineChartMainCellDelegate {
           let start = remainDays >= 300
             ? calendar.date(byAdding: .day, value: -300, to: date)!
             : calendar.date(byAdding: .day, value: -remainDays, to: date)!
-          print("---------------------")
-          print("Start = \(start)")
-          print("End = \(date)")
+//          print("---------------------")
+//          print("Start = \(start)")
+//          print("End = \(date)")
           let startDate = DateUtils.string(from: start, format: "yyyy-MM-dd") ?? ""
           let endDate = DateUtils.string(from: date, format: "yyyy-MM-dd") ?? ""
 
@@ -277,7 +287,7 @@ extension CoinDetailVC: LineChartMainCellDelegate {
             print("第\(index)趟完成")
           }
           semaphore.wait()
-          print("---------------------")
+//          print("---------------------")
           remainDays -= 300
         } while remainDays > 0
 
@@ -296,9 +306,9 @@ extension CoinDetailVC: LineChartMainCellDelegate {
           let startDate = DateUtils.string(from: threeHundredDaysAgo, format: "yyyy-MM-dd") ?? ""
           let endDate = DateUtils.string(from: date, format: "yyyy-MM-dd") ?? ""
 
-          print("---------------------")
-          print("Start = \(threeHundredDaysAgo)")
-          print("End = \(date)")
+//          print("---------------------")
+//          print("Start = \(threeHundredDaysAgo)")
+//          print("End = \(date)")
 
           fetchCandlesTicks(from: startDate, to: endDate, granularity: tickType) { candles in
             candlesTemp = candles
@@ -313,7 +323,7 @@ extension CoinDetailVC: LineChartMainCellDelegate {
 
           print(array.count)
           print(candlesTemp.count)
-          print("---------------------")
+//          print("---------------------")
         } while candlesTemp.count != 0
 
         print(array.count)
