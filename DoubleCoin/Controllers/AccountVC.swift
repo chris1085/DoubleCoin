@@ -17,7 +17,7 @@ class AccountVC: UIViewController {
   @IBAction func showHistoryPage(_ sender: Any) {
     guard let historyVC = storyboard?.instantiateViewController(withIdentifier: "HistoryVC")
       as? HistoryVC else { return }
-    historyVC.dollarsNames = dollarsNames
+//    historyVC.dollarsNames = dollarsNames
     navigationController?.pushViewController(historyVC, animated: true)
   }
 
@@ -89,7 +89,7 @@ class AccountVC: UIViewController {
     let dispatchGroup = DispatchGroup()
     ApiManager.shared.getAccounts { [weak self] accounts in
       for account in accounts {
-        self?.dollarsNames.append(account.currency)
+//        self?.dollarsNames.append(account.currency)
         let timestamp = String(Date().timeIntervalSince1970)
         dispatchGroup.enter()
         ApiManager.shared.getExchangeDollars(

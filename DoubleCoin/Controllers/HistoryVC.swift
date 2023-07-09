@@ -50,6 +50,7 @@ class HistoryVC: UIViewController {
   var dollarsNames: [String] = []
   var selectedDollars = "所有幣種"
   var productID = ""
+  var filterProdcutId = ""
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,6 +59,7 @@ class HistoryVC: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     getOrders()
+    getAccounts()
     setNavigationBar(true)
     tabBarController?.tabBar.isHidden = true
   }
@@ -72,10 +74,20 @@ class HistoryVC: UIViewController {
     ApiManager.shared.getOrders(productId: productID, limits: 100) { [weak self] orders in
       guard let orders = orders else { return }
       self?.allOrders = orders
-      self?.filteredOrders = orders
+      self?.filteredOrders = self?.filterProdcutId == ""
+        ? orders
+        : orders.filter { $0.productID == self?.filterProdcutId }
 
       DispatchQueue.main.async {
         self?.tableView.reloadData()
+      }
+    }
+  }
+
+  private func getAccounts() {
+    ApiManager.shared.getAccounts { [weak self] accounts in
+      for account in accounts {
+        self?.dollarsNames.append(account.currency)
       }
     }
   }
@@ -137,6 +149,7 @@ extension HistoryVC: DollarsSheetVCDelegate {
     noRecordsView.isHidden = filteredOrders.count != 0 ? true : false
 
     selectedDollars = dollarName
+    switchingDollarsBtn.setTitle("\(selectedDollars) ▼", for: .normal)
     tableView.reloadData()
   }
 }

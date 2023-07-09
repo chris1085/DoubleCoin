@@ -171,10 +171,10 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
         guard let historyVC = self?.storyboard?.instantiateViewController(withIdentifier: "HistoryVC")
           as? HistoryVC else { return }
 
-        historyVC.productID = self?.productID ?? "BTC-USD"
+        historyVC.filterProdcutId = self?.productID ?? "BTC-USD"
         guard let productInfo = ProductInfo.fromTableStatName(self?.productID ?? "BTC-USD") else { return }
         historyVC.selectedDollars = productInfo.name
-
+        self?.coinbaseWebSocketClient?.socket.disconnect()
         self?.navigationController?.pushViewController(historyVC, animated: true)
       }
       return headerView
