@@ -60,6 +60,9 @@ class CoinDetailVC: UIViewController {
   var orders: [Order] = []
   var candlesTicks: [Candlestick] = []
   var timelineBtnTag = 0
+  private var buyPrice = "-"
+  private var sellPrice = "-"
+
   override func viewDidLoad() {
     super.viewDidLoad()
   }
@@ -144,6 +147,8 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
       lineChartCell.candlesTicks = candlesTicks
       lineChartCell.setTicksData()
       lineChartCell.selectDefaultButton(tag: timelineBtnTag)
+      lineChartCell.buyPriceLabel.text = buyPrice
+      lineChartCell.sellPriceLabel.text = sellPrice
 
       return lineChartCell
     } else {
@@ -211,6 +216,8 @@ extension CoinDetailVC: WebSocketReceiveDelegate {
       {
         mainCell.sellPriceLabel.text = formattedBuyPrice
         mainCell.buyPriceLabel.text = formattedSellPrice
+        self.sellPrice = formattedBuyPrice
+        self.buyPrice = formattedSellPrice
       }
     }
   }

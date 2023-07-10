@@ -79,6 +79,7 @@ class HistoryVC: UIViewController {
         : orders.filter { $0.productID == self?.filterProdcutId }
 
       DispatchQueue.main.async {
+        self?.noRecordsView.isHidden = self?.filteredOrders.count != 0 ? true : false
         self?.tableView.reloadData()
       }
     }
