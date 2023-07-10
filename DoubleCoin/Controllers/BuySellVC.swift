@@ -129,7 +129,9 @@ class BuySellVC: UIViewController {
     coinbaseWebSocketClient?.socket.disconnect()
 
     guard let sourcePriceText = sourcePriceTextField.text,
-          let sourcePrice = Double(sourcePriceText)
+          let sourcePrice = Double(sourcePriceText),
+          let originPriceText = originPriceTextField.text,
+          let originPrice = Double(originPriceText)
     else {
       showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
       return
@@ -137,6 +139,10 @@ class BuySellVC: UIViewController {
 
     if sourcePrice == 0.0 {
       showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
+    }
+
+    if originPrice >= usdAmounts {
+      showOkAlert(title: "交易失敗", message: "交易金額超過USD餘額", viewController: self)
     }
 
     ApiManager.shared.createOrder(size: sourcePriceText, side: side, productId: productID) { [weak self] orderInfo in
@@ -181,6 +187,7 @@ class BuySellVC: UIViewController {
   var originPrice: Double = 0
   var accountBalance = ""
   var orderInfo: OrderPost?
+  private var usdAmounts: Double = 0.0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -258,9 +265,15 @@ class BuySellVC: UIViewController {
       self.accountBalance = account.first?.balance ?? "0.00"
       let blance = Double(account.first?.balance ?? "0.00") ?? 0.0
       let balanceText = blance.formatNumber(blance, max: 8, min: 2, isAddSep: true) ?? "0.00"
+      let usdAccount = accounts.filter { $0.currency == "USD" }.first
+//      self.usdAmounts = usdAccount?.balance
+
+      if let usdAmountsString = usdAccount?.balance, let usdAmountsDouble = Double(usdAmountsString) {
+        self.usdAmounts = usdAmountsDouble
+      }
 
       DispatchQueue.main.async {
-        self.exchangeRateInfoLabel.text = "可用餘額：\(balanceText)"
+        self.exchangeRateInfoLabel.text = "可用餘額：\(balanceText) \(productInfo.name)"
       }
     }
   }
