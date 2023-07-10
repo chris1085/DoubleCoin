@@ -8,7 +8,12 @@
 import UIKit
 
 class ProfileVC: UIViewController {
-  @IBOutlet var usernameLabel: UILabel!
+  @IBOutlet var usernameLabel: UILabel! {
+    didSet {
+      usernameLabel.text = "使用者"
+    }
+  }
+
   @IBOutlet var uidLabel: UILabel!
   @IBOutlet var idCheckView: UIView! {
     didSet {
@@ -22,7 +27,7 @@ class ProfileVC: UIViewController {
 
   @IBOutlet var idCheckLabel: UILabel! {
     didSet {
-      idCheckLabel.textColor = AppColor.checkOk
+      idCheckLabel.textColor = UIColor.black
     }
   }
 
