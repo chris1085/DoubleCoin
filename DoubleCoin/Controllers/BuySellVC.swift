@@ -127,12 +127,13 @@ class BuySellVC: UIViewController {
 
   @IBAction func tappedTradeBtn(_ sender: Any) {
     coinbaseWebSocketClient?.socket.disconnect()
-
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     guard let sourcePriceText = sourcePriceTextField.text,
           let sourcePrice = Double(sourcePriceText),
           let originPriceText = originPriceTextField.text,
           let originPrice = Double(originPriceText)
     else {
+      HUDManager.shared.dismissHUD()
       showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
       return
     }
@@ -145,6 +146,7 @@ class BuySellVC: UIViewController {
       showOkAlert(title: "交易失敗", message: "交易金額超過USD餘額", viewController: self)
     }
 
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.createOrder(size: sourcePriceText, side: side, productId: productID) { [weak self] orderInfo in
       self?.orderInfo = orderInfo
     }
@@ -156,7 +158,7 @@ class BuySellVC: UIViewController {
 
       tradeResultVC.isButtonHidden = false
       tradeResultVC.orderId = orderInfo.id
-
+      HUDManager.shared.dismissHUD()
       self.navigationController?.pushViewController(tradeResultVC, animated: true)
     }
   }

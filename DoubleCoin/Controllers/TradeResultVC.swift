@@ -112,10 +112,15 @@ class TradeResultVC: BaseViewController {
   }
 
   private func getData(completion: @escaping () -> Void) {
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     if orderId != "" {
       ApiManager.shared.getSingleOrder(orderId: orderId) { [weak self] order in
         guard let order = order,
-              let productInfo = ProductInfo.fromTableStatName(order.productID) else { return }
+              let productInfo = ProductInfo.fromTableStatName(order.productID)
+        else {
+          HUDManager.shared.dismissHUD()
+          return
+        }
         DispatchQueue.main.async {
           self?.sideView.backgroundColor = order.side == "buy" ? AppColor.success : AppColor.primary
           self?.sideLabel.text = order.side.uppercased()
@@ -132,13 +137,20 @@ class TradeResultVC: BaseViewController {
           let price = Double(order.executedValue)
           let fee = Double(order.fillFees)
           let size = Double(order.size)
-          guard let price = price, let fee = fee, let size = size else { return }
+          guard let price = price, let fee = fee, let size = size else {
+            HUDManager.shared.dismissHUD()
+            return
+          }
           let unitPrice = (price - fee) / size
           let unitPriceText = unitPrice.formatNumber(unitPrice, max: 8, min: 2, isAddSep: true)
-          guard let unitPriceText = unitPriceText else { return }
+          guard let unitPriceText = unitPriceText else {
+            HUDManager.shared.dismissHUD()
+            return
+          }
           self?.unitPriceLabel.text = "USD \(unitPriceText)"
           self?.amountLabel.text = "USD \(String(price.formatNumber(price, max: 8, min: 2, isAddSep: true)!))"
 //          self?.amountLabel.text = "USD \(order.executedValue)"
+          HUDManager.shared.dismissHUD()
         }
       }
     }

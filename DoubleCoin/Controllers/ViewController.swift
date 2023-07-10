@@ -46,6 +46,7 @@ class ViewController: UIViewController {
     productTableStats = []
     totalAmount = 0
     tableView.reloadData()
+    HUDManager.shared.showHUD(in: self.view, text: "Loading")
 
     let dispatchGroup = DispatchGroup()
 
@@ -76,6 +77,7 @@ class ViewController: UIViewController {
           self?.amountsText = totalAmount.formatNumber(totalAmount, max: 0, min: 0, isAddSep: true)
           self?.getProducts {
             self?.tableView.reloadData()
+            HUDManager.shared.dismissHUD()
             completion()
           }
         }

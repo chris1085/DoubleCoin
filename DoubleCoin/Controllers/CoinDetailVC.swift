@@ -93,14 +93,19 @@ class CoinDetailVC: UIViewController {
       let oneDayAgo = calendar.date(byAdding: .day, value: -1, to: today)!
       let start = dateFormatter.string(from: oneDayAgo)
       let end = dateFormatter.string(from: today)
+      HUDManager.shared.showHUD(in: view, text: "Loading")
       fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in
         ApiManager.shared.getOrders(productId: self.productID, limits: 5) { [weak self] orders in
-          guard let orders = orders else { return }
+          guard let orders = orders else {
+            HUDManager.shared.dismissHUD()
+            return
+          }
           self?.orders = orders
 
           DispatchQueue.main.async {
             self?.tableView.reloadData()
           }
+          HUDManager.shared.dismissHUD()
         }
       }
     }
@@ -353,11 +358,18 @@ extension CoinDetailVC: LineChartMainCellDelegate {
   private func fetchCandlesTicks(from startDate: String, to endDate: String, granularity: String,
                                  completion: @escaping ([Candlestick]) -> Void)
   {
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getProductCandles(productId: productID, from: startDate, to: endDate,
                                         granularity: granularity)
     { [weak self] candlesTicks in
-      guard let candlesTicks = candlesTicks else { return }
+      guard let candlesTicks = candlesTicks else {
+        HUDManager.shared.dismissHUD()
+        return
+      }
       self?.handleCandlesTicks(candlesTicks)
+      DispatchQueue.main.async {
+        HUDManager.shared.dismissHUD()
+      }
       completion(candlesTicks)
     }
   }

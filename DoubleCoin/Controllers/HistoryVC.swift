@@ -75,9 +75,11 @@ class HistoryVC: UIViewController {
   }
 
   private func getOrders(completion: @escaping () -> Void) {
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getOrders(productId: productID, limits: 100) { [weak self] orders in
       guard let orders = orders else {
         completion()
+        HUDManager.shared.dismissHUD()
         return
       }
 
@@ -89,6 +91,7 @@ class HistoryVC: UIViewController {
       DispatchQueue.main.async {
         self?.noRecordsView.isHidden = self?.filteredOrders.count != 0 ? true : false
         self?.tableView.reloadData()
+        HUDManager.shared.dismissHUD()
         completion()
       }
     }

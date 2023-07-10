@@ -87,6 +87,7 @@ class AccountVC: UIViewController {
     var tempAccounts: [AccountNT] = []
 
     let dispatchGroup = DispatchGroup()
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getAccounts { [weak self] accounts in
       for account in accounts {
 //        self?.dollarsNames.append(account.currency)
@@ -117,6 +118,7 @@ class AccountVC: UIViewController {
           self?.tempNumberLabel = (self?.amountsLabel.text)!
           self?.accounts = tempAccounts.sorted(by: { $0.currency < $1.currency })
           self?.tableView.reloadData()
+          HUDManager.shared.dismissHUD()
           completion()
         }
       }

@@ -53,6 +53,7 @@ class ProfileVC: UIViewController {
     super.viewWillAppear(animated)
     setNavigationBar(true)
 
+    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getUserProfile { profile in
       guard let profile = profile else { return }
       self.profile = profile
@@ -64,6 +65,7 @@ class ProfileVC: UIViewController {
         self.uidLabel.text = "UID: \(profile.userId)"
         self.idCheckLabel.textColor = profile.active == true ? AppColor.checkOk : AppColor.checkDisabled
         self.idCheckLabel.text = profile.active == true ? "身份驗證成功" : "尚未身份驗證"
+        HUDManager.shared.dismissHUD()
       }
     }
   }

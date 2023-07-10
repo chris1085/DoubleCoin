@@ -43,6 +43,7 @@
 		069A67D12A58184C005C92DC /* DollarsSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A67CF2A58184C005C92DC /* DollarsSheetCell.swift */; };
 		069A67D22A58184C005C92DC /* DollarsSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069A67D02A58184C005C92DC /* DollarsSheetCell.xib */; };
 		06A260C12A5BBB970011BFF5 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C02A5BBB970011BFF5 /* TabBarVC.swift */; };
+		06A260C32A5C1FDD0011BFF5 /* JGProgressHUDWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C22A5C1FDD0011BFF5 /* JGProgressHUDWrapper.swift */; };
 		06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32472A4C4EFE0055E326 /* Utils.swift */; };
 		06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324A2A4C4F780055E326 /* Int+Extension.swift */; };
 		06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */; };
@@ -109,6 +110,7 @@
 		069A67CF2A58184C005C92DC /* DollarsSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarsSheetCell.swift; sourceTree = "<group>"; };
 		069A67D02A58184C005C92DC /* DollarsSheetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DollarsSheetCell.xib; sourceTree = "<group>"; };
 		06A260C02A5BBB970011BFF5 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		06A260C22A5C1FDD0011BFF5 /* JGProgressHUDWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUDWrapper.swift; sourceTree = "<group>"; };
 		06CF32472A4C4EFE0055E326 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		06CF324A2A4C4F780055E326 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				06CF32542A4C503E0055E326 /* KingFisherWrapper.swift */,
 				06CF32562A4C50520055E326 /* MJRefreshWrapper.swift */,
 				061138062A4EC461008575AC /* StarscreamWrapper.swift */,
+				06A260C22A5C1FDD0011BFF5 /* JGProgressHUDWrapper.swift */,
 			);
 			path = "Third Party Wrappers";
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */,
 				06CF326C2A4C61410055E326 /* CoinbaseService.swift in Sources */,
 				06324B302A4C1FC300142FD1 /* AppDelegate.swift in Sources */,
+				06A260C32A5C1FDD0011BFF5 /* JGProgressHUDWrapper.swift in Sources */,
 				061138272A568785008575AC /* BaseViewController.swift in Sources */,
 				06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */,
 				06CF32552A4C503E0055E326 /* KingFisherWrapper.swift in Sources */,
