@@ -264,10 +264,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uj-LA-0nX">
-                                        <rect key="frame" x="72" y="129.33333333333334" width="24" height="20.000000000000028"/>
+                                        <rect key="frame" x="72" y="133.33333333333334" width="20" height="12.000000000000028"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="VNe-NG-pUc"/>
-                                            <constraint firstAttribute="height" constant="24" id="xpn-tT-R8h"/>
+                                            <constraint firstAttribute="width" constant="20" id="VNe-NG-pUc"/>
+                                            <constraint firstAttribute="height" constant="16" id="xpn-tT-R8h"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" backgroundImage="eye" catalog="system"/>
@@ -1181,64 +1181,39 @@
                                     <action selector="tappedToWallet:" destination="3R5-4v-HYt" eventType="touchUpInside" id="Upp-gu-H75"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂單相關問題，請撥打客服專線" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIt-wc-Rba">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="或來信至 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhO-PH-nuf">
                                 <rect key="frame" x="32" y="549" width="329" height="19.666666666666629"/>
                                 <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="或來信至 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhO-PH-nuf">
-                                <rect key="frame" x="127.66666666666667" y="568.66666666666663" width="60.666666666666671" height="19.666666666666629"/>
-                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="info@maicoin.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVx-CI-nSz">
-                                <rect key="frame" x="188.33333333333337" y="568.66666666666663" width="158.66666666666663" height="19.666666666666629"/>
-                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
-                                <color key="textColor" systemColor="tintColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(02)2722-1314" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFR-kA-kLK">
-                                <rect key="frame" x="32.000000000000007" y="568.66666666666663" width="95.666666666666686" height="19.666666666666629"/>
-                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
-                                <color key="textColor" systemColor="tintColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="48D-vj-I3p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IhO-PH-nuf" firstAttribute="leading" secondItem="yFR-kA-kLK" secondAttribute="trailing" id="6nr-y0-LgI"/>
-                            <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="IIt-wc-Rba" secondAttribute="trailing" constant="32" id="7ia-Pq-ohE"/>
-                            <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="kVx-CI-nSz" secondAttribute="trailing" constant="46" id="8OA-1i-Ret"/>
                             <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="mc5-i2-0PS" secondAttribute="trailing" constant="16" id="ICj-3u-ge1"/>
                             <constraint firstItem="4pV-hv-4Xw" firstAttribute="height" secondItem="dta-JQ-Kpf" secondAttribute="height" multiplier="0.2" id="KR4-fT-Ikg"/>
-                            <constraint firstItem="IIt-wc-Rba" firstAttribute="top" secondItem="mc5-i2-0PS" secondAttribute="bottom" constant="16" id="L4e-8L-7gx"/>
-                            <constraint firstItem="yFR-kA-kLK" firstAttribute="top" secondItem="IIt-wc-Rba" secondAttribute="bottom" id="MCk-pM-3dC"/>
                             <constraint firstItem="4pV-hv-4Xw" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" id="PjR-XB-Oar"/>
-                            <constraint firstItem="yFR-kA-kLK" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" constant="32" id="QXN-EV-VWL"/>
                             <constraint firstItem="4pV-hv-4Xw" firstAttribute="top" secondItem="48D-vj-I3p" secondAttribute="top" id="R8J-th-mkE"/>
                             <constraint firstItem="7ee-nz-K8U" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" constant="16" id="U5E-4A-aG8"/>
                             <constraint firstItem="mc5-i2-0PS" firstAttribute="height" secondItem="dta-JQ-Kpf" secondAttribute="height" multiplier="0.5" id="VuL-8b-2DM"/>
                             <constraint firstItem="mc5-i2-0PS" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" constant="16" id="XHw-k5-tu1"/>
-                            <constraint firstItem="IIt-wc-Rba" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" constant="32" id="YUi-EM-9Ok"/>
                             <constraint firstItem="48D-vj-I3p" firstAttribute="bottom" secondItem="7ee-nz-K8U" secondAttribute="bottom" id="aF1-SS-HLv"/>
-                            <constraint firstItem="IhO-PH-nuf" firstAttribute="centerY" secondItem="yFR-kA-kLK" secondAttribute="centerY" id="cap-Y8-EsH"/>
+                            <constraint firstItem="IhO-PH-nuf" firstAttribute="top" secondItem="mc5-i2-0PS" secondAttribute="bottom" constant="16" id="gFv-qn-TEc"/>
+                            <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="IhO-PH-nuf" secondAttribute="trailing" constant="32" id="iKi-Rt-x6n"/>
                             <constraint firstItem="mc5-i2-0PS" firstAttribute="top" secondItem="48D-vj-I3p" secondAttribute="top" constant="48" id="iik-2K-hj2"/>
+                            <constraint firstItem="IhO-PH-nuf" firstAttribute="leading" secondItem="48D-vj-I3p" secondAttribute="leading" constant="32" id="jXD-Vn-P7H"/>
                             <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="4pV-hv-4Xw" secondAttribute="trailing" id="jiQ-pr-4JF"/>
-                            <constraint firstItem="kVx-CI-nSz" firstAttribute="leading" secondItem="IhO-PH-nuf" secondAttribute="trailing" id="rb5-Wy-29o"/>
                             <constraint firstItem="48D-vj-I3p" firstAttribute="trailing" secondItem="7ee-nz-K8U" secondAttribute="trailing" constant="16" id="su0-VZ-zCh"/>
-                            <constraint firstItem="kVx-CI-nSz" firstAttribute="centerY" secondItem="IhO-PH-nuf" secondAttribute="centerY" id="xwW-nf-uQQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="jjN-Cm-GNd" id="acM-Ru-u1g"/>
+                        <outlet property="amountTitleLabel" destination="Puz-GV-2rq" id="ng1-Yi-CCj"/>
                         <outlet property="contentView" destination="mc5-i2-0PS" id="Kdz-iG-C4N"/>
                         <outlet property="createdAtLabel" destination="tHq-24-PlI" id="B5M-g4-b7W"/>
                         <outlet property="doneAtLabel" destination="Pdf-UA-ecL" id="jR4-vy-Ffh"/>
                         <outlet property="headerView" destination="4pV-hv-4Xw" id="9LB-zb-z8Y"/>
-                        <outlet property="orderInfoLabel" destination="IIt-wc-Rba" id="1Sr-mF-6R3"/>
                         <outlet property="sideLabel" destination="XvQ-zJ-5tL" id="8Ht-Fe-hml"/>
                         <outlet property="sideView" destination="zQA-Yk-TbT" id="9dQ-gN-Rd7"/>
                         <outlet property="sizeLabel" destination="Q7D-SQ-2jN" id="qZV-jT-0K7"/>
@@ -1281,9 +1256,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

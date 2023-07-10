@@ -38,15 +38,26 @@ class TradeResultVC: BaseViewController {
     }
   }
 
-  @IBOutlet var orderInfoLabel: UILabel! {
-    didSet {
-      orderInfoLabel.text = "\u{24D8} 訂單相關問題，請撥打客服專線"
-    }
-  }
-
   @IBOutlet var stackViewContentLabel: UILabel! {
     didSet {
       stackViewContentLabel.sizeToFit()
+      let phoneNumber = "(02)2722-1314"
+      let emailAddress = "info@maicoin.com"
+      let fullText = "\u{24D8} 訂單相關問題，請撥打客服專線\n\(phoneNumber) 或來信至 \(emailAddress)"
+
+      let attributedString = NSMutableAttributedString(string: fullText)
+
+      // 設定電話號碼的樣式（底線、藍色）
+      let phoneNumberRange = (fullText as NSString).range(of: phoneNumber)
+      attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: phoneNumberRange)
+      attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: phoneNumberRange)
+
+      // 設定電子郵件地址的樣式（底線、藍色）
+      let emailRange = (fullText as NSString).range(of: emailAddress)
+      attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: emailRange)
+      attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: emailRange)
+
+      stackViewContentLabel.attributedText = attributedString
     }
   }
 
@@ -77,6 +88,8 @@ class TradeResultVC: BaseViewController {
   @IBOutlet var doneAtLabel: UILabel!
   @IBOutlet var unitPriceLabel: UILabel!
   @IBOutlet var amountLabel: UILabel!
+  @IBOutlet var amountTitleLabel: UILabel!
+
   var isButtonHidden = false
   var orderId = ""
   private var order: Order?
@@ -107,6 +120,7 @@ class TradeResultVC: BaseViewController {
           self?.sideView.backgroundColor = order.side == "buy" ? AppColor.success : AppColor.primary
           self?.sideLabel.text = order.side.uppercased()
           self?.sizeLabel.text = "\(order.size) \(productInfo.name)"
+          self?.amountTitleLabel.text = order.side == "buy" ? "應付金額" : "獲得金額"
           let timeZoneOffset: TimeInterval = 8 * 3600
           let fromFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSS'Z'"
           let toFormat = "yyyy-MM-dd HH:mm:ss"

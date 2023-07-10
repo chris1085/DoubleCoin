@@ -58,6 +58,7 @@ class ProfileVC: UIViewController {
         self.usernameLabel.text = profile.name
         self.uidLabel.text = "UID: \(profile.userId)"
         self.idCheckLabel.textColor = profile.active == true ? AppColor.checkOk : AppColor.checkDisabled
+        self.idCheckLabel.text = profile.active == true ? "身份驗證成功" : "尚未身份驗證"
       }
     }
   }
