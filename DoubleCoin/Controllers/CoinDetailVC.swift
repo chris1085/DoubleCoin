@@ -123,6 +123,16 @@ class CoinDetailVC: UIViewController {
     navigationController?.navigationBar.standardAppearance = navigationBarAppearance
     navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
     navigationController?.navigationBar.tintColor = UIColor.white
+    let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                  style: .plain,
+                                  target: self,
+                                  action: #selector(closeVC))
+    navigationItem.leftBarButtonItem = backBtn
+//    navigationController?.navigationBar.layoutIfNeeded()
+  }
+
+  @objc func closeVC() {
+    navigationController?.popViewController(animated: true)
   }
 }
 

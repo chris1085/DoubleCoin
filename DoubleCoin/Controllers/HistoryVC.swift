@@ -14,6 +14,9 @@ class HistoryVC: UIViewController {
       tableView.delegate = self
       tableView.registerCellWithNib(identifier: "TradeRecordCell", bundle: nil)
       tableView.sectionHeaderTopPadding = 0
+      tableView.addRefreshHeader(refreshingBlock: { [weak self] in
+        self?.headerLoader()
+      })
     }
   }
 
@@ -58,8 +61,9 @@ class HistoryVC: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    getOrders()
     getAccounts()
+    getOrders {}
+
     setNavigationBar(true)
     tabBarController?.tabBar.isHidden = true
   }
@@ -70,9 +74,13 @@ class HistoryVC: UIViewController {
     setNavigationBar(false)
   }
 
-  private func getOrders() {
+  private func getOrders(completion: @escaping () -> Void) {
     ApiManager.shared.getOrders(productId: productID, limits: 100) { [weak self] orders in
-      guard let orders = orders else { return }
+      guard let orders = orders else {
+        completion()
+        return
+      }
+
       self?.allOrders = orders
       self?.filteredOrders = self?.filterProdcutId == ""
         ? orders
@@ -81,6 +89,7 @@ class HistoryVC: UIViewController {
       DispatchQueue.main.async {
         self?.noRecordsView.isHidden = self?.filteredOrders.count != 0 ? true : false
         self?.tableView.reloadData()
+        completion()
       }
     }
   }
@@ -94,21 +103,28 @@ class HistoryVC: UIViewController {
   }
 
   private func setNavigationBar(_ isNeededRest: Bool) {
-    let navigationBarAppearance = UINavigationBarAppearance()
-
-    if isNeededRest {
-      navigationBarAppearance.configureWithOpaqueBackground()
-      navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-      navigationController?.navigationBar.tintColor = UIColor.black
-      navigationItem.title = "資產紀錄"
-    } else {
-      navigationBarAppearance.configureWithTransparentBackground()
-      navigationController?.navigationBar.tintColor = nil
-    }
-
-    navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-    navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+    navigationItem.title = "資產紀錄"
     navigationController?.navigationBar.tintColor = UIColor.black
+
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController?.navigationBar.shadowImage = UIImage()
+//    navigationItem.backBarButtonItem = nil
+    let backBtn = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                  style: .plain,
+                                  target: self,
+                                  action: #selector(closeVC))
+    navigationItem.leftBarButtonItem = backBtn
+//    navigationController?.navigationBar.layoutIfNeeded()
+  }
+
+  @objc func closeVC() {
+    navigationController?.popViewController(animated: true)
+  }
+
+  private func headerLoader() {
+    getOrders {
+      self.tableView.endHeaderRefreshing()
+    }
   }
 }
 
