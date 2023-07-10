@@ -26,7 +26,7 @@ class TradeResultVC: BaseViewController {
 
   @IBOutlet var sideView: UIView! {
     didSet {
-      sideView.backgroundColor = AppColor.success
+      sideView.backgroundColor = UIColor.clear
       sideView.layer.cornerRadius = 6
     }
   }
