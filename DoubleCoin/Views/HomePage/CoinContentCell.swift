@@ -108,7 +108,8 @@ class CoinContentCell: UITableViewCell {
     }
 
     let dataSet = LineChartDataSet(entries: dataEntries, label: "Line Data Set")
-    dataSet.mode = .linear
+    dataSet.mode = .cubicBezier
+    dataSet.cubicIntensity = 0.15
     dataSet.drawCirclesEnabled = false
     dataSet.drawValuesEnabled = false
     dataSet.lineWidth = 2.0

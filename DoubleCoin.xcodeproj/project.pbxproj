@@ -42,6 +42,7 @@
 		069A67CE2A580F5C005C92DC /* DollarsSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A67CD2A580F5C005C92DC /* DollarsSheetVC.swift */; };
 		069A67D12A58184C005C92DC /* DollarsSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A67CF2A58184C005C92DC /* DollarsSheetCell.swift */; };
 		069A67D22A58184C005C92DC /* DollarsSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069A67D02A58184C005C92DC /* DollarsSheetCell.xib */; };
+		06A260C12A5BBB970011BFF5 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C02A5BBB970011BFF5 /* TabBarVC.swift */; };
 		06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32472A4C4EFE0055E326 /* Utils.swift */; };
 		06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324A2A4C4F780055E326 /* Int+Extension.swift */; };
 		06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */; };
@@ -107,6 +108,7 @@
 		069A67CD2A580F5C005C92DC /* DollarsSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarsSheetVC.swift; sourceTree = "<group>"; };
 		069A67CF2A58184C005C92DC /* DollarsSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollarsSheetCell.swift; sourceTree = "<group>"; };
 		069A67D02A58184C005C92DC /* DollarsSheetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DollarsSheetCell.xib; sourceTree = "<group>"; };
+		06A260C02A5BBB970011BFF5 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		06CF32472A4C4EFE0055E326 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		06CF324A2A4C4F780055E326 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				061138332A5787FC008575AC /* ProfileVC.swift */,
 				069A67C62A57E5B7005C92DC /* HistoryVC.swift */,
 				069A67CD2A580F5C005C92DC /* DollarsSheetVC.swift */,
+				06A260C02A5BBB970011BFF5 /* TabBarVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				06CF32572A4C50520055E326 /* MJRefreshWrapper.swift in Sources */,
 				0611382D2A56C20E008575AC /* AccountTableCell.swift in Sources */,
 				061138252A555EFC008575AC /* TradeResultVC.swift in Sources */,
+				06A260C12A5BBB970011BFF5 /* TabBarVC.swift in Sources */,
 				06CF324F2A4C4F9C0055E326 /* UICollectionView+Extension.swift in Sources */,
 				06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */,
 				06CF32772A4D34FB0055E326 /* BannerCollectionViewCell.swift in Sources */,
