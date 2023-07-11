@@ -9,7 +9,7 @@ import Foundation
 
 typealias CandlesJSON = [Double]
 
-struct Candlestick {
+struct CandlesTick {
   let time: Double
   let low: Double
   let high: Double

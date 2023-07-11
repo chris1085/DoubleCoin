@@ -16,7 +16,7 @@
 **/.idea/
 **/*.hmap
 **/*.xccheckout
-**/*.xcworkspace
+# **/*.xcworkspace
 **/!default.xcworkspace
 **/GoogleService-Info.plist
 

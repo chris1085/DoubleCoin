@@ -239,7 +239,7 @@ class ApiManager {
   }
 
   func getProductCandles(productId: String, from start: String, to end: String, granularity: String,
-                         completion: @escaping ([Candlestick]?) -> Void)
+                         completion: @escaping ([CandlesTick]?) -> Void)
   {
     let productCandlesUrl = ApiUrls.getProductCandles(productId: productId, start: start, end: end,
                                                       granularity: granularity).urlString
@@ -338,10 +338,10 @@ class ApiManager {
     }
   }
 
-  private func candlesToCandlestick(candles: [CandlesJSON]) -> [Candlestick] {
-    var candlesticks: [Candlestick] = []
+  private func candlesToCandlestick(candles: [CandlesJSON]) -> [CandlesTick] {
+    var candlesticks: [CandlesTick] = []
     for candle in candles where candle.count == 6 {
-      let candlestick = Candlestick(time: candle[0], low: candle[1], high: candle[2],
+      let candlestick = CandlesTick(time: candle[0], low: candle[1], high: candle[2],
                                     open: candle[3], close: candle[4], volume: candle[5])
       candlesticks.append(candlestick)
     }

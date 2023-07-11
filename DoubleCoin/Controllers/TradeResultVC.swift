@@ -119,6 +119,7 @@ class TradeResultVC: BaseViewController {
               let productInfo = ProductInfo.fromTableStatName(order.productID)
         else {
           HUDManager.shared.dismissHUD()
+          showOkAlert(title: "詳細資料取得失敗", message: "請至歷史紀錄重新查詢", viewController: self!)
           return
         }
         DispatchQueue.main.async {

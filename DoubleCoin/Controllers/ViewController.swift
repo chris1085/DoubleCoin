@@ -33,6 +33,11 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+//    let calendar = Calendar.current
+//    let today = calendar.startOfDay(for: Date())
+//    let timestamp = today.timeIntervalSince1970 + 8 * 3600
+//    print(timestamp)
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +51,7 @@ class ViewController: UIViewController {
     productTableStats = []
     totalAmount = 0
     tableView.reloadData()
-    HUDManager.shared.showHUD(in: self.view, text: "Loading")
+    HUDManager.shared.showHUD(in: view, text: "Loading")
 
     let dispatchGroup = DispatchGroup()
 
@@ -72,7 +77,10 @@ class ViewController: UIViewController {
       }
 
       dispatchGroup.notify(queue: .main) {
-        guard let totalAmount = self?.totalAmount else { return }
+        guard let totalAmount = self?.totalAmount else {
+          HUDManager.shared.dismissHUD()
+          return
+        }
         DispatchQueue.main.async {
           self?.amountsText = totalAmount.formatNumber(totalAmount, max: 0, min: 0, isAddSep: true)
           self?.getProducts {

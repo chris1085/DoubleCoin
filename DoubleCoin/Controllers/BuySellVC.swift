@@ -126,7 +126,6 @@ class BuySellVC: UIViewController {
   }
 
   @IBAction func tappedTradeBtn(_ sender: Any) {
-    coinbaseWebSocketClient?.socket.disconnect()
     HUDManager.shared.showHUD(in: view, text: "Loading")
     guard let sourcePriceText = sourcePriceTextField.text,
           let sourcePrice = Double(sourcePriceText),
@@ -140,26 +139,38 @@ class BuySellVC: UIViewController {
 
     if sourcePrice == 0.0 {
       showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
+      return
     }
 
     if originPrice >= usdAmounts {
       showOkAlert(title: "交易失敗", message: "交易金額超過USD餘額", viewController: self)
+      return
     }
 
-    HUDManager.shared.showHUD(in: view, text: "Loading")
+//    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.createOrder(size: sourcePriceText, side: side, productId: productID) { [weak self] orderInfo in
+
+      guard let orderInfo = orderInfo else {
+        self?.coinbaseWebSocketClient?.socket.disconnect()
+        DispatchQueue.main.async {
+          HUDManager.shared.dismissHUD()
+        }
+        showOkAlert(title: "交易失敗", message: "伺服器正在忙碌中，請稍後再試", viewController: self!)
+        return
+      }
+      self?.coinbaseWebSocketClient?.socket.disconnect()
       self?.orderInfo = orderInfo
-    }
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      guard let orderInfo = self.orderInfo else { return }
-      guard let tradeResultVC = self.storyboard?.instantiateViewController(withIdentifier: "TradeResultVC")
-        as? TradeResultVC else { return }
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        HUDManager.shared.dismissHUD()
 
-      tradeResultVC.isButtonHidden = false
-      tradeResultVC.orderId = orderInfo.id
-      HUDManager.shared.dismissHUD()
-      self.navigationController?.pushViewController(tradeResultVC, animated: true)
+        guard let tradeResultVC = self?.storyboard?.instantiateViewController(withIdentifier: "TradeResultVC")
+          as? TradeResultVC else { return }
+
+        tradeResultVC.isButtonHidden = false
+        tradeResultVC.orderId = orderInfo.id
+        self?.navigationController?.pushViewController(tradeResultVC, animated: true)
+      }
     }
   }
 

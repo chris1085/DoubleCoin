@@ -1,8 +1,8 @@
 //
-//  JGProgressHUDWrapper.swift
+//  HUDManager.swift
 //  DoubleCoin
 //
-//  Created by 姜權芳 on 2023/7/10.
+//  Created by 姜權芳 on 2023/7/11.
 //
 
 import Foundation

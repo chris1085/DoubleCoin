@@ -78,8 +78,24 @@ class HistoryVC: UIViewController {
     HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getOrders(productId: productID, limits: 100) { [weak self] orders in
       guard let orders = orders else {
+//        HUDManager.shared.dismissHUD()
+
+        let alertController = UIAlertController(title: "無法獲取資料", message: "是否繼續加載？", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "繼續", style: .default) { _ in
+          self?.getOrders {}
+        }
+        alertController.addAction(continueAction)
+        let cancelAction = UIAlertAction(title: "返回", style: .cancel) { _ in
+          self?.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(cancelAction)
+
+        DispatchQueue.main.async {
+          self?.present(alertController, animated: true, completion: nil)
+          HUDManager.shared.dismissHUD()
+        }
+
         completion()
-        HUDManager.shared.dismissHUD()
         return
       }
 

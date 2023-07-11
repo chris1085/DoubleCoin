@@ -41,7 +41,7 @@ class LineChartMainCell: UITableViewCell, ChartViewDelegate {
   var dataSet: LineChartDataSet!
   var dataEntries: [ChartDataEntry] = []
   var ticksData: [Double] = []
-  var candlesTicks: [Candlestick] = []
+  var candlesTicks: [CandlesTick] = []
 
   override func awakeFromNib() {
     super.awakeFromNib()

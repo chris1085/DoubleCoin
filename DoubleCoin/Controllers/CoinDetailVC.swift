@@ -58,10 +58,11 @@ class CoinDetailVC: UIViewController {
   var productID = ""
   var navTitle = ""
   var orders: [Order] = []
-  var candlesTicks: [Candlestick] = []
+  var candlesTicks: [CandlesTick] = []
   var timelineBtnTag = 0
   private var buyPrice = "-"
   private var sellPrice = "-"
+  private var selectedTimelineType = ""
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -94,6 +95,8 @@ class CoinDetailVC: UIViewController {
       let start = dateFormatter.string(from: oneDayAgo)
       let end = dateFormatter.string(from: today)
       HUDManager.shared.showHUD(in: view, text: "Loading")
+      selectedTimelineType = timelineType.rawValue
+
       fetchCandlesTicks(from: start, to: end, granularity: tickType) { _ in
         ApiManager.shared.getOrders(productId: self.productID, limits: 5) { [weak self] orders in
           guard let orders = orders else {
@@ -102,11 +105,12 @@ class CoinDetailVC: UIViewController {
           }
           self?.orders = orders
 
+//          HUDManager.shared.dismissHUD()
           DispatchQueue.main.async {
             self?.tableView.reloadData()
           }
-          HUDManager.shared.dismissHUD()
         }
+        HUDManager.shared.dismissHUD()
       }
     }
   }
@@ -242,6 +246,7 @@ extension CoinDetailVC: LineChartMainCellDelegate {
   func didTimeBtnTapped(timeline: String, tag: Int) {
     candlesTicks = []
     if let timelineType = TimelineType(rawValue: timeline) {
+      print(timelineType.rawValue)
       timelineBtnTag = tag
       let tickType = timelineType.tickType
       var start = ""
@@ -250,6 +255,8 @@ extension CoinDetailVC: LineChartMainCellDelegate {
       let today = Date()
       let dateFormatter = DateFormatter()
       dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+      selectedTimelineType = timelineType.rawValue
+      HUDManager.shared.showHUD(in: view, text: "Loading")
 
       switch timelineType {
       case .day, .week:
@@ -284,8 +291,8 @@ extension CoinDetailVC: LineChartMainCellDelegate {
         let totalDays = components.day!
         var remainDays = totalDays
         var date = Date()
-        var array: [Candlestick] = []
-        var candlesTemp: [Candlestick] = []
+        var array: [CandlesTick] = []
+        var candlesTemp: [CandlesTick] = []
         var index = 0
         let semaphore = DispatchSemaphore(value: 0)
 
@@ -315,11 +322,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
 
         print(array.count)
       case .all:
-        let calendar = Calendar.current
         var date = Date()
 
-        var array: [Candlestick] = []
-        var candlesTemp: [Candlestick] = []
+        var array: [CandlesTick] = []
+        var candlesTemp: [CandlesTick] = []
         var index = 0
 
         let semaphore = DispatchSemaphore(value: 0)
@@ -343,22 +349,32 @@ extension CoinDetailVC: LineChartMainCellDelegate {
           }
           semaphore.wait()
 
-          print(array.count)
-          print(candlesTemp.count)
+//          print(array.count)
+//          print(candlesTemp.count)
 //          print("---------------------")
         } while candlesTemp.count != 0
 
         print(array.count)
       }
+
+      HUDManager.shared.dismissHUD()
+
     } else {
       print("Invalid timeline")
     }
   }
 
   private func fetchCandlesTicks(from startDate: String, to endDate: String, granularity: String,
-                                 completion: @escaping ([Candlestick]) -> Void)
+                                 completion: @escaping ([CandlesTick]) -> Void)
   {
-    HUDManager.shared.showHUD(in: view, text: "Loading")
+    let tempCandles = CandlesDataManager.shared.getCandlesData(timelineType: selectedTimelineType)
+
+//    if tempCandles.count == 0 && {
+//      CandlesDataManager.shared.setCandlesData(timelineType: selectedTimelineType, data: candlesTicks)
+//    } else {
+//
+//    }
+
     ApiManager.shared.getProductCandles(productId: productID, from: startDate, to: endDate,
                                         granularity: granularity)
     { [weak self] candlesTicks in
@@ -366,15 +382,13 @@ extension CoinDetailVC: LineChartMainCellDelegate {
         HUDManager.shared.dismissHUD()
         return
       }
+
       self?.handleCandlesTicks(candlesTicks)
-      DispatchQueue.main.async {
-        HUDManager.shared.dismissHUD()
-      }
       completion(candlesTicks)
     }
   }
 
-  private func handleCandlesTicks(_ candlesTicks: [Candlestick]) {
+  private func handleCandlesTicks(_ candlesTicks: [CandlesTick]) {
     self.candlesTicks += candlesTicks
     let sortedData = self.candlesTicks.sorted(by: { $0.time < $1.time })
     self.candlesTicks = sortedData
