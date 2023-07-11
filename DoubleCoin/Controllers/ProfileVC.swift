@@ -54,21 +54,38 @@ class ProfileVC: UIViewController {
     setNavigationBar(true)
 
     HUDManager.shared.showHUD(in: view, text: "Loading")
-    ApiManager.shared.getUserProfile { profile in
-      guard let profile = profile else {
-        HUDManager.shared.dismissHUD()
-        return
-      }
-      self.profile = profile
 
-      print(profile)
+    let defaults = UserDefaults.standard
+    if let userName = defaults.string(forKey: "UserName"),
+       let id = defaults.string(forKey: "UserID")
+    {
+      let active = defaults.bool(forKey: "Active")
+      usernameLabel.text = userName
+      uidLabel.text = "UID: \(id)"
+      idCheckLabel.textColor = active == true ? AppColor.checkOk : AppColor.checkDisabled
+      idCheckLabel.text = active == true ? "身份驗證成功" : "尚未身份驗證"
+      HUDManager.shared.dismissHUD()
+    } else {
+      ApiManager.shared.getUserProfile { profile in
+        guard let profile = profile else {
+          HUDManager.shared.dismissHUD()
+          return
+        }
+        self.profile = profile
 
-      DispatchQueue.main.async {
-        self.usernameLabel.text = profile.name
-        self.uidLabel.text = "UID: \(profile.userId)"
-        self.idCheckLabel.textColor = profile.active == true ? AppColor.checkOk : AppColor.checkDisabled
-        self.idCheckLabel.text = profile.active == true ? "身份驗證成功" : "尚未身份驗證"
-        HUDManager.shared.dismissHUD()
+        defaults.set(profile.name, forKey: "UserName")
+        defaults.set(profile.userId, forKey: "UserID")
+        defaults.set(profile.active, forKey: "Active")
+
+        print(profile)
+
+        DispatchQueue.main.async {
+          self.usernameLabel.text = profile.name
+          self.uidLabel.text = "UID: \(profile.userId)"
+          self.idCheckLabel.textColor = profile.active == true ? AppColor.checkOk : AppColor.checkDisabled
+          self.idCheckLabel.text = profile.active == true ? "身份驗證成功" : "尚未身份驗證"
+          HUDManager.shared.dismissHUD()
+        }
       }
     }
   }
