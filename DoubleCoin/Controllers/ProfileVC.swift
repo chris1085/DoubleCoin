@@ -55,7 +55,10 @@ class ProfileVC: UIViewController {
 
     HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.getUserProfile { profile in
-      guard let profile = profile else { return }
+      guard let profile = profile else {
+        HUDManager.shared.dismissHUD()
+        return
+      }
       self.profile = profile
 
       print(profile)

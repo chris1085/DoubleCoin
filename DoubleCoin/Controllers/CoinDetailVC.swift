@@ -254,8 +254,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
       let calendar = Calendar.current
       let today = Date()
       let dateFormatter = DateFormatter()
+      let tempCandles = CandlesDataManager.shared.getCandlesData(timelineType: selectedTimelineType)
       dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
       selectedTimelineType = timelineType.rawValue
+
       HUDManager.shared.showHUD(in: view, text: "Loading")
 
       switch timelineType {
@@ -296,6 +298,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
         var index = 0
         let semaphore = DispatchSemaphore(value: 0)
 
+        if checkCandlesExpired() {
+          return
+        }
+
         repeat {
           let start = remainDays >= 300
             ? calendar.date(byAdding: .day, value: -300, to: date)!
@@ -320,6 +326,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
           remainDays -= 300
         } while remainDays > 0
 
+        if tempCandles.count == 0 {
+          CandlesDataManager.shared.setCandlesData(timelineType: selectedTimelineType, data: candlesTicks)
+        }
+
         print(array.count)
       case .all:
         var date = Date()
@@ -327,6 +337,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
         var array: [CandlesTick] = []
         var candlesTemp: [CandlesTick] = []
         var index = 0
+
+        if checkCandlesExpired() {
+          return
+        }
 
         let semaphore = DispatchSemaphore(value: 0)
         repeat {
@@ -354,6 +368,10 @@ extension CoinDetailVC: LineChartMainCellDelegate {
 //          print("---------------------")
         } while candlesTemp.count != 0
 
+        if tempCandles.count == 0 {
+          CandlesDataManager.shared.setCandlesData(timelineType: selectedTimelineType, data: candlesTicks)
+        }
+
         print(array.count)
       }
 
@@ -367,13 +385,7 @@ extension CoinDetailVC: LineChartMainCellDelegate {
   private func fetchCandlesTicks(from startDate: String, to endDate: String, granularity: String,
                                  completion: @escaping ([CandlesTick]) -> Void)
   {
-    let tempCandles = CandlesDataManager.shared.getCandlesData(timelineType: selectedTimelineType)
-
-//    if tempCandles.count == 0 && {
-//      CandlesDataManager.shared.setCandlesData(timelineType: selectedTimelineType, data: candlesTicks)
-//    } else {
-//
-//    }
+//    CandlesDataManager.shared.setCandlesData(timelineType: selectedTimelineType, data: candlesTicks)
 
     ApiManager.shared.getProductCandles(productId: productID, from: startDate, to: endDate,
                                         granularity: granularity)
@@ -398,5 +410,25 @@ extension CoinDetailVC: LineChartMainCellDelegate {
       let indexPath = IndexPath(row: 0, section: 0)
       self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+  }
+
+  private func checkCandlesExpired() -> Bool {
+    let calendar = Calendar.current
+    let now = calendar.startOfDay(for: Date())
+    let nowTimeStamp = now.timeIntervalSince1970 + 8 * 3600
+    let tempCandles = CandlesDataManager.shared.getCandlesData(timelineType: selectedTimelineType)
+    if let lastCandles = tempCandles.last,
+       (lastCandles.time - nowTimeStamp) <= 86400
+    {
+      candlesTicks = tempCandles
+      HUDManager.shared.dismissHUD()
+      DispatchQueue.main.async {
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+      }
+      return true
+    }
+
+    return false
   }
 }

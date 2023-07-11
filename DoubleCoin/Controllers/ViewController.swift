@@ -33,11 +33,6 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-//    let calendar = Calendar.current
-//    let today = calendar.startOfDay(for: Date())
-//    let timestamp = today.timeIntervalSince1970 + 8 * 3600
-//    print(timestamp)
   }
 
   override func viewWillAppear(_ animated: Bool) {

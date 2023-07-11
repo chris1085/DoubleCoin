@@ -138,11 +138,13 @@ class BuySellVC: UIViewController {
     }
 
     if sourcePrice == 0.0 {
+      HUDManager.shared.dismissHUD()
       showOkAlert(title: "交易失敗", message: "請重新確認交易金額", viewController: self)
       return
     }
 
     if originPrice >= usdAmounts {
+      HUDManager.shared.dismissHUD()
       showOkAlert(title: "交易失敗", message: "交易金額超過USD餘額", viewController: self)
       return
     }
@@ -154,8 +156,8 @@ class BuySellVC: UIViewController {
         self?.coinbaseWebSocketClient?.socket.disconnect()
         DispatchQueue.main.async {
           HUDManager.shared.dismissHUD()
+          showOkAlert(title: "交易失敗", message: "伺服器正在忙碌中，請稍後再試", viewController: self!)
         }
-        showOkAlert(title: "交易失敗", message: "伺服器正在忙碌中，請稍後再試", viewController: self!)
         return
       }
       self?.coinbaseWebSocketClient?.socket.disconnect()
