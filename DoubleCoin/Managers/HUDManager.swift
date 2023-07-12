@@ -25,4 +25,8 @@ final class HUDManager {
   func dismissHUD() {
     hud.dismiss()
   }
+
+  func dismissAdterHUD(delayTime: Double) {
+    hud.dismiss(afterDelay: delayTime)
+  }
 }

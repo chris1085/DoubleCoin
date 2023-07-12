@@ -31,7 +31,7 @@ enum TimelineType: String {
     case .day:
       return "3600"
     case .week:
-      return "3600"
+      return "21600"
     case .month:
       return "86400"
     case .season:

@@ -122,6 +122,7 @@ class BuySellVC: UIViewController {
       tradeBtn.layer.cornerRadius = 6
       tradeBtn.backgroundColor = AppColor.primary
       tradeBtn.setTitleColor(UIColor.white, for: .normal)
+      tradeBtn.isEnabled = true
     }
   }
 
@@ -149,6 +150,11 @@ class BuySellVC: UIViewController {
       return
     }
 
+    originPriceTextField.resignFirstResponder()
+    sourcePriceTextField.resignFirstResponder()
+    tradeBtn.isEnabled = false
+    tradeBtn.backgroundColor = UIColor.lightGray
+
 //    HUDManager.shared.showHUD(in: view, text: "Loading")
     ApiManager.shared.createOrder(size: sourcePriceText, side: side, productId: productID) { [weak self] orderInfo in
 
@@ -157,13 +163,15 @@ class BuySellVC: UIViewController {
         DispatchQueue.main.async {
           HUDManager.shared.dismissHUD()
           showOkAlert(title: "交易失敗", message: "伺服器正在忙碌中，請稍後再試", viewController: self!)
+          self?.tradeBtn.isEnabled = true
+          self?.tradeBtn.backgroundColor = AppColor.primary
         }
         return
       }
       self?.coinbaseWebSocketClient?.socket.disconnect()
       self?.orderInfo = orderInfo
 
-      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         HUDManager.shared.dismissHUD()
 
         guard let tradeResultVC = self?.storyboard?.instantiateViewController(withIdentifier: "TradeResultVC")
@@ -217,6 +225,8 @@ class BuySellVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: animated)
     getCoinBlance()
+    tradeBtn.isEnabled = true
+    tradeBtn.backgroundColor = AppColor.primary
   }
 
   override func viewWillDisappear(_ animated: Bool) {

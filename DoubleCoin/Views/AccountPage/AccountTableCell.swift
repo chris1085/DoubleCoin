@@ -38,7 +38,12 @@ class AccountTableCell: UITableViewCell {
 //    }
 //    coinImageView.loadImage(coinIconUrl)
     coinNameLabel.text = data.currency
-    coinAmountLabel.text = "≈NT$ \(data.twd)"
     coinBalanceLabel.text = data.twd == "0.0" ? "0.0" : data.balance
+    guard let twdFormatted = Double(data.twd)?.formatNumber(Double(data.twd)!, max: 8, min: 0, isAddSep: true) else {
+      coinAmountLabel.text = "≈NT$ \(data.twd)"
+      return
+    }
+
+    coinAmountLabel.text = "≈NT$ \(twdFormatted)"
   }
 }

@@ -96,7 +96,7 @@ class TradeResultVC: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = AppColor.secondary
+    view.backgroundColor = AppColor.primary
   }
 
   override func viewWillAppear(_ animated: Bool) {
