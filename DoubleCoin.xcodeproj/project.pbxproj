@@ -45,6 +45,8 @@
 		06A260C12A5BBB970011BFF5 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C02A5BBB970011BFF5 /* TabBarVC.swift */; };
 		06A260C52A5CE6870011BFF5 /* HUDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C42A5CE6870011BFF5 /* HUDManager.swift */; };
 		06A260C72A5CE7A10011BFF5 /* CandlesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C62A5CE7A10011BFF5 /* CandlesManager.swift */; };
+		06A260CA2A5E94890011BFF5 /* UnrecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C82A5E94890011BFF5 /* UnrecordCell.swift */; };
+		06A260CB2A5E94890011BFF5 /* UnrecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A260C92A5E94890011BFF5 /* UnrecordCell.xib */; };
 		06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32472A4C4EFE0055E326 /* Utils.swift */; };
 		06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324A2A4C4F780055E326 /* Int+Extension.swift */; };
 		06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */; };
@@ -113,6 +115,8 @@
 		06A260C02A5BBB970011BFF5 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		06A260C42A5CE6870011BFF5 /* HUDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDManager.swift; sourceTree = "<group>"; };
 		06A260C62A5CE7A10011BFF5 /* CandlesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandlesManager.swift; sourceTree = "<group>"; };
+		06A260C82A5E94890011BFF5 /* UnrecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnrecordCell.swift; sourceTree = "<group>"; };
+		06A260C92A5E94890011BFF5 /* UnrecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnrecordCell.xib; sourceTree = "<group>"; };
 		06CF32472A4C4EFE0055E326 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		06CF324A2A4C4F780055E326 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				0611380D2A4FF2A9008575AC /* TradeRecordCell.xib */,
 				061138122A4FFA77008575AC /* TradeRecordHeaderView.swift */,
 				061138102A4FFA53008575AC /* TradeRecordHeaderView.xib */,
+				06A260C82A5E94890011BFF5 /* UnrecordCell.swift */,
+				06A260C92A5E94890011BFF5 /* UnrecordCell.xib */,
 			);
 			path = CoinDetailPage;
 			sourceTree = "<group>";
@@ -443,6 +449,7 @@
 				0611380B2A4FEDD9008575AC /* BuySellPriceCell.xib in Resources */,
 				0611380F2A4FF2A9008575AC /* TradeRecordCell.xib in Resources */,
 				06CF32782A4D34FB0055E326 /* BannerCollectionViewCell.xib in Resources */,
+				06A260CB2A5E94890011BFF5 /* UnrecordCell.xib in Resources */,
 				06324B372A4C1FC300142FD1 /* Main.storyboard in Resources */,
 				061138112A4FFA53008575AC /* TradeRecordHeaderView.xib in Resources */,
 			);
@@ -538,6 +545,7 @@
 				06CF32702A4D1B240055E326 /* ProductStatsModel.swift in Sources */,
 				06324B342A4C1FC300142FD1 /* ViewController.swift in Sources */,
 				06CF32512A4C4FB80055E326 /* UIImage+Extension.swift in Sources */,
+				06A260CA2A5E94890011BFF5 /* UnrecordCell.swift in Sources */,
 				06A260C72A5CE7A10011BFF5 /* CandlesManager.swift in Sources */,
 				069A67CE2A580F5C005C92DC /* DollarsSheetVC.swift in Sources */,
 				06CF32682A4C57630055E326 /* ProductsModel.swift in Sources */,

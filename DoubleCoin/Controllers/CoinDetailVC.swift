@@ -51,6 +51,7 @@ class CoinDetailVC: UIViewController {
       tableView.registerCellWithNib(identifier: "LineChartMainCell", bundle: nil)
       tableView.registerCellWithNib(identifier: "BuySellPriceCell", bundle: nil)
       tableView.registerCellWithNib(identifier: "TradeRecordCell", bundle: nil)
+      tableView.registerCellWithNib(identifier: "UnrecordCell", bundle: nil)
       tableView.sectionHeaderTopPadding = 0
     }
   }
@@ -151,7 +152,7 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 1 {
+    if section == 1 && orders.count > 0 {
       return orders.count
     }
     return 1
@@ -171,13 +172,21 @@ extension CoinDetailVC: UITableViewDelegate, UITableViewDataSource {
 
       return lineChartCell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "TradeRecordCell", for: indexPath)
-      guard let tradeRecordCell = cell as? TradeRecordCell else { return cell }
-      tradeRecordCell.selectionStyle = .none
+      if orders.count > 0 {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TradeRecordCell", for: indexPath)
+        guard let tradeRecordCell = cell as? TradeRecordCell else { return cell }
+        tradeRecordCell.selectionStyle = .none
 
-      tradeRecordCell.configureCell(order: orders[indexPath.row])
+        tradeRecordCell.configureCell(order: orders[indexPath.row])
 
-      return tradeRecordCell
+        return tradeRecordCell
+      } else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UnrecordCell", for: indexPath)
+        guard let unrecordCell = cell as? UnrecordCell else { return cell }
+        unrecordCell.selectionStyle = .none
+
+        return unrecordCell
+      }
     }
   }
 

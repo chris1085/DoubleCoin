@@ -64,7 +64,7 @@ class TradeResultVC: BaseViewController {
   @IBOutlet var walletBtn: UIButton! {
     didSet {
       walletBtn.layer.cornerRadius = 8
-      walletBtn.backgroundColor = UIColor.gray
+      walletBtn.backgroundColor = AppColor.primary
       walletBtn.setTitleColor(UIColor.white, for: .normal)
     }
   }
@@ -96,7 +96,7 @@ class TradeResultVC: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = AppColor.primary
+    view.backgroundColor = AppColor.secondary
   }
 
   override func viewWillAppear(_ animated: Bool) {
