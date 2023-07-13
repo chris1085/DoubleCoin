@@ -106,9 +106,11 @@ class CoinDetailVC: UIViewController {
           }
           self?.orders = orders
 
-//          HUDManager.shared.dismissHUD()
           DispatchQueue.main.async {
-            self?.tableView.reloadData()
+            HUDManager.shared.dismissHUD()
+            let sectionToReload = 1
+            let indexSet = IndexSet(integer: sectionToReload)
+            self?.tableView.reloadSections(indexSet, with: .automatic)
           }
         }
         HUDManager.shared.dismissHUD()

@@ -47,6 +47,28 @@
 		06A260C72A5CE7A10011BFF5 /* CandlesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C62A5CE7A10011BFF5 /* CandlesManager.swift */; };
 		06A260CA2A5E94890011BFF5 /* UnrecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260C82A5E94890011BFF5 /* UnrecordCell.swift */; };
 		06A260CB2A5E94890011BFF5 /* UnrecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A260C92A5E94890011BFF5 /* UnrecordCell.xib */; };
+		06A260D22A5EB7670011BFF5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A260D12A5EB7670011BFF5 /* WidgetKit.framework */; };
+		06A260D42A5EB7670011BFF5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A260D32A5EB7670011BFF5 /* SwiftUI.framework */; };
+		06A260D72A5EB7670011BFF5 /* DoubleCoinWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260D62A5EB7670011BFF5 /* DoubleCoinWidgetBundle.swift */; };
+		06A260D92A5EB7670011BFF5 /* DoubleCoinWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260D82A5EB7670011BFF5 /* DoubleCoinWidget.swift */; };
+		06A260DB2A5EB7680011BFF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A260DA2A5EB7680011BFF5 /* Assets.xcassets */; };
+		06A260DF2A5EB7680011BFF5 /* DoubleCoinWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 06A260D02A5EB7670011BFF5 /* DoubleCoinWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		06A260E42A5EB80F0011BFF5 /* ProductCandles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32732A4D24C00055E326 /* ProductCandles.swift */; };
+		06A260E72A5EB9790011BFF5 /* DoubleCoinSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260E62A5EB9790011BFF5 /* DoubleCoinSmallView.swift */; };
+		06A260E92A5EB9930011BFF5 /* DoubleCoinMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260E82A5EB9930011BFF5 /* DoubleCoinMediumView.swift */; };
+		06A260EB2A5EB9A20011BFF5 /* DoubleCoinLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260EA2A5EB9A20011BFF5 /* DoubleCoinLargeView.swift */; };
+		06A260ED2A5EBA480011BFF5 /* DoubleCoinEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A260EC2A5EBA480011BFF5 /* DoubleCoinEntry.swift */; };
+		06A260EE2A5EBCFD0011BFF5 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32692A4C61110055E326 /* AccountModel.swift */; };
+		06A260EF2A5ECB5E0011BFF5 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32652A4C52590055E326 /* ApiManager.swift */; };
+		06A260F02A5ECB6F0011BFF5 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138222A5419D5008575AC /* ApiKeys.swift */; };
+		06A260F12A5F8DD00011BFF5 /* ProductStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326F2A4D1B240055E326 /* ProductStatsModel.swift */; };
+		06A260F22A5F9DFB0011BFF5 /* ProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32672A4C57630055E326 /* ProductsModel.swift */; };
+		06A260F32A5F9DFF0011BFF5 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326D2A4C76E20055E326 /* ProfileModel.swift */; };
+		06A260F42A5F9E030011BFF5 /* CurrenciesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32712A4D1E1B0055E326 /* CurrenciesModel.swift */; };
+		06A260F52A5F9E070011BFF5 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061137F62A4E6652008575AC /* OrderModel.swift */; };
+		06A260F62A5F9E090011BFF5 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061138312A57031F008575AC /* ExchangeRateModel.swift */; };
+		06A260F72A5F9E150011BFF5 /* CoinbaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF326B2A4C61410055E326 /* CoinbaseService.swift */; };
+		06A260F82A5F9E1E0011BFF5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32472A4C4EFE0055E326 /* Utils.swift */; };
 		06CF32482A4C4EFE0055E326 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF32472A4C4EFE0055E326 /* Utils.swift */; };
 		06CF324B2A4C4F780055E326 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324A2A4C4F780055E326 /* Int+Extension.swift */; };
 		06CF324D2A4C4F8C0055E326 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */; };
@@ -73,6 +95,30 @@
 		06CF32782A4D34FB0055E326 /* BannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06CF32762A4D34FB0055E326 /* BannerCollectionViewCell.xib */; };
 		0ED1593EC6E8DE55BBFCA874 /* Pods_DoubleCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52ADB91CBD46F2C0B854D95F /* Pods_DoubleCoin.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06A260DD2A5EB7680011BFF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06324B242A4C1FC300142FD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06A260CF2A5EB7670011BFF5;
+			remoteInfo = DoubleCoinWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		06A260E02A5EB7680011BFF5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				06A260DF2A5EB7680011BFF5 /* DoubleCoinWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		061137F62A4E6652008575AC /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
@@ -117,6 +163,17 @@
 		06A260C62A5CE7A10011BFF5 /* CandlesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandlesManager.swift; sourceTree = "<group>"; };
 		06A260C82A5E94890011BFF5 /* UnrecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnrecordCell.swift; sourceTree = "<group>"; };
 		06A260C92A5E94890011BFF5 /* UnrecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnrecordCell.xib; sourceTree = "<group>"; };
+		06A260D02A5EB7670011BFF5 /* DoubleCoinWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoubleCoinWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		06A260D12A5EB7670011BFF5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		06A260D32A5EB7670011BFF5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		06A260D62A5EB7670011BFF5 /* DoubleCoinWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinWidgetBundle.swift; sourceTree = "<group>"; };
+		06A260D82A5EB7670011BFF5 /* DoubleCoinWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinWidget.swift; sourceTree = "<group>"; };
+		06A260DA2A5EB7680011BFF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		06A260DC2A5EB7680011BFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06A260E62A5EB9790011BFF5 /* DoubleCoinSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinSmallView.swift; sourceTree = "<group>"; };
+		06A260E82A5EB9930011BFF5 /* DoubleCoinMediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinMediumView.swift; sourceTree = "<group>"; };
+		06A260EA2A5EB9A20011BFF5 /* DoubleCoinLargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinLargeView.swift; sourceTree = "<group>"; };
+		06A260EC2A5EBA480011BFF5 /* DoubleCoinEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleCoinEntry.swift; sourceTree = "<group>"; };
 		06CF32472A4C4EFE0055E326 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		06CF324A2A4C4F780055E326 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		06CF324C2A4C4F8C0055E326 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -155,6 +212,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06A260CD2A5EB7670011BFF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A260D42A5EB7670011BFF5 /* SwiftUI.framework in Frameworks */,
+				06A260D22A5EB7670011BFF5 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -188,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				06324B2E2A4C1FC300142FD1 /* DoubleCoin */,
+				06A260D52A5EB7670011BFF5 /* DoubleCoinWidget */,
 				06324B2D2A4C1FC300142FD1 /* Products */,
 				08CD6D11C23EC8DAF17027A2 /* Pods */,
 				DFD6DDB4F53AC7228F5C0595 /* Frameworks */,
@@ -198,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				06324B2C2A4C1FC300142FD1 /* DoubleCoin.app */,
+				06A260D02A5EB7670011BFF5 /* DoubleCoinWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,6 +298,29 @@
 				069A67D02A58184C005C92DC /* DollarsSheetCell.xib */,
 			);
 			path = HistoryPage;
+			sourceTree = "<group>";
+		};
+		06A260D52A5EB7670011BFF5 /* DoubleCoinWidget */ = {
+			isa = PBXGroup;
+			children = (
+				06A260E52A5EB88C0011BFF5 /* WidgetInterface */,
+				06A260D62A5EB7670011BFF5 /* DoubleCoinWidgetBundle.swift */,
+				06A260D82A5EB7670011BFF5 /* DoubleCoinWidget.swift */,
+				06A260EC2A5EBA480011BFF5 /* DoubleCoinEntry.swift */,
+				06A260DA2A5EB7680011BFF5 /* Assets.xcassets */,
+				06A260DC2A5EB7680011BFF5 /* Info.plist */,
+			);
+			path = DoubleCoinWidget;
+			sourceTree = "<group>";
+		};
+		06A260E52A5EB88C0011BFF5 /* WidgetInterface */ = {
+			isa = PBXGroup;
+			children = (
+				06A260E62A5EB9790011BFF5 /* DoubleCoinSmallView.swift */,
+				06A260E82A5EB9930011BFF5 /* DoubleCoinMediumView.swift */,
+				06A260EA2A5EB9A20011BFF5 /* DoubleCoinLargeView.swift */,
+			);
+			path = WidgetInterface;
 			sourceTree = "<group>";
 		};
 		06CF323D2A4C4E4B0055E326 /* StoryBoards */ = {
@@ -373,6 +464,8 @@
 			isa = PBXGroup;
 			children = (
 				52ADB91CBD46F2C0B854D95F /* Pods_DoubleCoin.framework */,
+				06A260D12A5EB7670011BFF5 /* WidgetKit.framework */,
+				06A260D32A5EB7670011BFF5 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -390,15 +483,34 @@
 				06324B2A2A4C1FC300142FD1 /* Resources */,
 				96904B28F2AA61E08204EFE9 /* [CP] Embed Pods Frameworks */,
 				06CF32392A4C319D0055E326 /* ShellScript */,
+				06A260E02A5EB7680011BFF5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				06A260DE2A5EB7680011BFF5 /* PBXTargetDependency */,
 			);
 			name = DoubleCoin;
 			productName = DoubleCoin;
 			productReference = 06324B2C2A4C1FC300142FD1 /* DoubleCoin.app */;
 			productType = "com.apple.product-type.application";
+		};
+		06A260CF2A5EB7670011BFF5 /* DoubleCoinWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06A260E32A5EB7680011BFF5 /* Build configuration list for PBXNativeTarget "DoubleCoinWidgetExtension" */;
+			buildPhases = (
+				06A260CC2A5EB7670011BFF5 /* Sources */,
+				06A260CD2A5EB7670011BFF5 /* Frameworks */,
+				06A260CE2A5EB7670011BFF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoubleCoinWidgetExtension;
+			productName = DoubleCoinWidgetExtension;
+			productReference = 06A260D02A5EB7670011BFF5 /* DoubleCoinWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -411,6 +523,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					06324B2B2A4C1FC300142FD1 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					06A260CF2A5EB7670011BFF5 = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
@@ -429,6 +544,7 @@
 			projectRoot = "";
 			targets = (
 				06324B2B2A4C1FC300142FD1 /* DoubleCoin */,
+				06A260CF2A5EB7670011BFF5 /* DoubleCoinWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -452,6 +568,14 @@
 				06A260CB2A5E94890011BFF5 /* UnrecordCell.xib in Resources */,
 				06324B372A4C1FC300142FD1 /* Main.storyboard in Resources */,
 				061138112A4FFA53008575AC /* TradeRecordHeaderView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06A260CE2A5EB7670011BFF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A260DB2A5EB7680011BFF5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +699,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06A260CC2A5EB7670011BFF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06A260F32A5F9DFF0011BFF5 /* ProfileModel.swift in Sources */,
+				06A260E92A5EB9930011BFF5 /* DoubleCoinMediumView.swift in Sources */,
+				06A260F72A5F9E150011BFF5 /* CoinbaseService.swift in Sources */,
+				06A260F62A5F9E090011BFF5 /* ExchangeRateModel.swift in Sources */,
+				06A260EF2A5ECB5E0011BFF5 /* ApiManager.swift in Sources */,
+				06A260E72A5EB9790011BFF5 /* DoubleCoinSmallView.swift in Sources */,
+				06A260D72A5EB7670011BFF5 /* DoubleCoinWidgetBundle.swift in Sources */,
+				06A260F02A5ECB6F0011BFF5 /* ApiKeys.swift in Sources */,
+				06A260EE2A5EBCFD0011BFF5 /* AccountModel.swift in Sources */,
+				06A260F52A5F9E070011BFF5 /* OrderModel.swift in Sources */,
+				06A260E42A5EB80F0011BFF5 /* ProductCandles.swift in Sources */,
+				06A260F82A5F9E1E0011BFF5 /* Utils.swift in Sources */,
+				06A260F22A5F9DFB0011BFF5 /* ProductsModel.swift in Sources */,
+				06A260EB2A5EB9A20011BFF5 /* DoubleCoinLargeView.swift in Sources */,
+				06A260F12A5F8DD00011BFF5 /* ProductStatsModel.swift in Sources */,
+				06A260D92A5EB7670011BFF5 /* DoubleCoinWidget.swift in Sources */,
+				06A260F42A5F9E030011BFF5 /* CurrenciesModel.swift in Sources */,
+				06A260ED2A5EBA480011BFF5 /* DoubleCoinEntry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06A260DE2A5EB7680011BFF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06A260CF2A5EB7670011BFF5 /* DoubleCoinWidgetExtension */;
+			targetProxy = 06A260DD2A5EB7680011BFF5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		06324B352A4C1FC300142FD1 /* Main.storyboard */ = {
@@ -715,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 06E656148DFD8C18AD1BA45B /* Pods-DoubleCoin.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -744,6 +902,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5A9CDCC99FF991AF56A00388 /* Pods-DoubleCoin.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -769,6 +928,60 @@
 			};
 			name = Release;
 		};
+		06A260E12A5EB7680011BFF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H283S3BVFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoubleCoinWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DoubleCoinWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleC.DoubleCoin.DoubleCoinWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		06A260E22A5EB7680011BFF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H283S3BVFN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DoubleCoinWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DoubleCoinWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DoubleC.DoubleCoin.DoubleCoinWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -786,6 +999,15 @@
 			buildConfigurations = (
 				06324B442A4C1FC400142FD1 /* Debug */,
 				06324B452A4C1FC400142FD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06A260E32A5EB7680011BFF5 /* Build configuration list for PBXNativeTarget "DoubleCoinWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06A260E12A5EB7680011BFF5 /* Debug */,
+				06A260E22A5EB7680011BFF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

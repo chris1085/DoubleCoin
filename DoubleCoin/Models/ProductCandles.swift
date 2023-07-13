@@ -9,7 +9,9 @@ import Foundation
 
 typealias CandlesJSON = [Double]
 
-struct CandlesTick {
+struct CandlesTick: Identifiable {
+  var id = UUID()
+
   let time: Double
   let low: Double
   let high: Double

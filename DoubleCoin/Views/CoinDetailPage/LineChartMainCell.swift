@@ -184,6 +184,7 @@ class LineChartMainCell: UITableViewCell, ChartViewDelegate {
     }
 
     chartView.notifyDataSetChanged()
+    chartView.animate(xAxisDuration: 0.75)
   }
 
   func chartViewDidEndPanning(_ chartView: ChartViewBase) {
