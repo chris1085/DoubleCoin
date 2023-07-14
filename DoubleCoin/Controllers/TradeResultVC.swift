@@ -151,7 +151,13 @@ class TradeResultVC: BaseViewController {
             HUDManager.shared.dismissHUD()
             return
           }
-          self?.unitPriceLabel.text = "USD \(unitPriceText)"
+
+          if unitPriceText == "NaN" {
+            self?.unitPriceLabel.text = "USD 0"
+          } else {
+            self?.unitPriceLabel.text = "USD \(unitPriceText)"
+          }
+
           self?.amountLabel.text = "USD \(String(price.formatNumber(price, max: 8, min: 2, isAddSep: true)!))"
 //          self?.amountLabel.text = "USD \(order.executedValue)"
           HUDManager.shared.dismissHUD()
